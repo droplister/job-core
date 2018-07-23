@@ -9,7 +9,7 @@ trait NarrowsListings
      */
     public function scopeNarrow($query, $keyword)
     {
-        $listings = \App\Listing::search($keyword)->pluck('id');
+        $listings = Droplister\JobCore\App\Listing::search($keyword)->pluck('id');
 
         return $query->whereHas('listings', function($listing) use($listings) {
                 $listing->whereIn('id', $listings);
