@@ -48,10 +48,18 @@ class JobCoreServiceProvider extends ServiceProvider
         * Routes
         */
         $this->app->router->group(['namespace' => 'Droplister\JobCore\App\Http\Controllers'],
-            function(){
+            function() {
                 require __DIR__.'/routes/web.php';
             }
         );
+
+        /**
+        * Views
+        */
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'Droplister\JobCore');
+        $this->publishes([
+            __DIR__.'/resources/views' => base_path('resources/views/vendor/droplister/job-core'),
+        ]);
     }
 
     /**
