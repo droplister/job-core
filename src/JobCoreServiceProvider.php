@@ -43,6 +43,15 @@ class JobCoreServiceProvider extends ServiceProvider
          * Migrations
          */
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+
+        /**
+        * Routes
+        */
+        $this->app->router->group(['namespace' => 'Droplister\JobCore\App\Http\Controllers'],
+            function(){
+                require __DIR__.'/routes/web.php';
+            }
+        );
     }
 
     /**
