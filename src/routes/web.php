@@ -12,7 +12,6 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home.index');
-Route::get('/map', 'GoogleMapController@index')->name('map.index');
 Route::resource('alerts', 'AlertsController');
 Route::resource('search', 'SearchController');
 Route::resource('agencies', 'AgencySubElementsController');
