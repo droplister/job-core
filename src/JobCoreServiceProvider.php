@@ -17,6 +17,13 @@ class JobCoreServiceProvider extends ServiceProvider
          * Migrations
          */
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+
+        /**
+         * Configuration
+         */
+        $this->publishes([
+            __DIR__.'/config' => config_path('job-core.php'),
+        ]);
     }
 
     /**
