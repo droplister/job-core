@@ -15,19 +15,16 @@
         "znck/belongs-to-through": "^2.3"
     },
     "autoload": {
-        "classmap": [
-            "src/"
-        ],
         "psr-4": {
             "Droplister\\JobCore\\": "src/"
         }
     },
-    "minimum-stability": "dev",
     "extra": {
         "laravel": {
             "providers": [
                 "Droplister\\JobCore\\JobCoreServiceProvider"
             ]
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
