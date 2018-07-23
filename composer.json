@@ -1,0 +1,20 @@
+{
+    "name": "droplister/job-core",
+    "description": "USAJobs.gov Explorer",
+    "homepage": "https://github.com/droplister/job-core",
+    "authors": [
+        {
+            "name": "Family Media LLC",
+            "email": "familymediallc@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Droplister\\JobCore\\JobCoreServiceProvider"
+            ]
+        }
+    },
+}
