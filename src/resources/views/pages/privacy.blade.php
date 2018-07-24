@@ -5,7 +5,7 @@
 @section('content')
     @include('job-core::partials.title', [
         'fa' => 'fa-info-circle',
-        'title' => 'Privacy',
+        'title' => 'Privacy Policy',
         'link' => route('pages.privacy')
     ])
     <div class="my-3 p-3 bg-white rounded box-shadow">
