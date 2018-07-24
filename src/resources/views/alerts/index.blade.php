@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('job-core::layouts.app')
 
 @section('title', str_singular(config('job-core.keyword')) . ' Alerts')
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('job-core::layouts.app')
 
 @section('title', 'Hiring for ' . config('job-core.keyword'))
 

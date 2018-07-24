@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('job-core::layouts.app')
 
 @section('title', $career->value . ' (' . $career->code . ') - ' . config('job-core.keyword'))
 

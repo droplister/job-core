@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('job-core::layouts.app')
 
 @section('title', $travel->value . ' ' . config('job-core.keyword'))
 
