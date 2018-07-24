@@ -210,6 +210,7 @@ class Location extends Model
             ->where('name', 'not like', '% Army %')
             ->where('name', 'not like', '% Navy %')
             ->where('name', 'not like', '% Naval %')
+            ->where('name', 'not like', '% Defense Logistics Center %')
             ->where('name', 'not like', '% AFB')
             ->where('name', 'not like', '% ANG')
             ->where('name', 'not like', '% Air Reserve Base')
