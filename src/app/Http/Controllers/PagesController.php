@@ -39,6 +39,16 @@ class PagesController extends Controller
     }
 
     /**
+     * Newsletter Page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function newsletter()
+    {
+        return view('job-core::pages.newsletter');
+    }
+
+    /**
      * Privacy Page
      *
      * @return \Illuminate\Http\Response
