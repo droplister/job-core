@@ -5,16 +5,6 @@
 @section('content')
 <div class="row justify-content-center small mt-5">
     <div class="col-md-8">
-        <section class="jumbotron text-center mt-3 {{ config('job-core.body_class') }}">
-            <div class="container">
-                <h1 class="jumbotron-heading">
-                    <i class="fa fa-bell"></i>
-                    Email Alerts
-                </h1>
-                <p class="lead text-muted">Get instantly notified of new jobs.</p>
-                <p class="lead text-muted small"><em>(ad free experience)</em></p>
-            </div>
-        </section>
         <div class="card">
             <div class="card-header">{{ __('Registration') }}</div>
 
@@ -70,7 +60,7 @@
                                 <input class="form-check-input" type="checkbox" name="newsletter" id="newsletter" {{ old('newsletter') ? 'checked' : '' }}>
 
                                 <label class="form-check-label" for="newsletter">
-                                    {{ __('Subscribe to ') }}
+                                    {{ __('Subscribe to the') }}
                                     <a href="{{ route('pages.newsletter') }}">{{ config('job-core.keyword') }} Newsletter</a>.
                                 </label>
                             </div>
@@ -83,7 +73,7 @@
                                 <input class="form-check-input" type="checkbox" name="terms" id="terms" {{ old('terms') ? 'checked' : '' }}>
 
                                 <label class="form-check-label" for="remember">
-                                    {{ __('I agree to the ') }}
+                                    {{ __('I agree to the') }}
                                     <a href="{{ route('pages.terms') }}">{{ __('Terms of Service') }}</a>.
                                 </label>
                             </div>

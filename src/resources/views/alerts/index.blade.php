@@ -3,12 +3,23 @@
 @section('title', str_singular(config('job-core.keyword')) . ' Alerts')
 
 @section('content')
+    <section class="jumbotron text-center mt-3 {{ config('job-core.body_class') }}">
+        <div class="container">
+            <h1 class="jumbotron-heading">
+                <i class="fa fa-bell"></i>
+                Email Alerts
+            </h1>
+            <p class="lead text-muted">Get instantly notified of new jobs.</p>
+            <p class="lead text-muted small"><em>(ad free experience)</em></p>
+        </div>
+    </section>
     <div class="alert alert-warning mt-3 box-shadow">
         <i class="fa fa-bell"></i> Job Alerts - Coming Soon!
     </div>
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="row">
             <div class="col-md-9">
+                @include('job-core::alerts.partials.index')
             </div>
             <div class="col-md-3">
                 @include('job-core::partials.h-tag', [
