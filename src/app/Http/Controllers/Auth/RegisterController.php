@@ -62,7 +62,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return \App\User::create([
+        return \Droplister\JobCore\App\User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
