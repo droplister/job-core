@@ -36,7 +36,7 @@ class JobCoreServiceProvider extends ServiceProvider
          * Configuration
          */
         $this->publishes([
-            __DIR__.'/config' => config_path('job-core.php'),
+            __DIR__.'/config' => config_path(''),
         ], 'job-core');
 
         /**
