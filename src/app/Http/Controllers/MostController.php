@@ -23,7 +23,7 @@ class MostController extends Controller
             })
             ->withCount('listings')
             ->orderBy('listings_count', 'desc')
-            ->take(config('job-core.max_relations'))
+            ->has('listings', '>=', config('job-core.min_listings'))
             ->get();
 
         return view('job-core::most.index', compact('listings', 'parent', 'children'));
