@@ -3,7 +3,7 @@
 @if(isset($sponsored))
 	@foreach($sponsored->all() as $job)
 	    @include('job-core::listings.partials.listing-sponsored')
-	    @if($loop->iteration === 2) @break @endif
+	    @if($loop->iteration === 1) @break @endif
 	@endforeach
 @endif
 
