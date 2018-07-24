@@ -5,7 +5,7 @@
     <span class="d-block">
         {{ $job['company'] }}
         -
-        {{ $job['location'] }}
+        {{ is_array($job['location']) ? $job['location'][0] : $job['location'] }}
     </span>
     <span class="d-block text-success">
         Sponsored Job Listing
