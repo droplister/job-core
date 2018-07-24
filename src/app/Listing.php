@@ -357,6 +357,10 @@ class Listing extends Model
     {
         switch(config('job-core.filter'))
         {
+            case 'federal': 
+                return $query->listingFilter()
+                    ->where('maximum_range', '>', 99999)
+                    ->orderBy('maximum_range', 'desc');
             case 'internship': 
                 return $query->listingFilter()
                     ->where('minimum_range', '>', 0)
@@ -381,6 +385,11 @@ class Listing extends Model
     {
         switch(config('job-core.filter'))
         {
+            case 'federal': 
+                return $query->listingFilter()
+                    ->whereHas('careers', function($career){
+                        $career->where('job_family', '=', '0600');
+                    });
             case 'internship': 
                 return $query->listingFilter()
                     ->where('minimum_range', '=', 0)

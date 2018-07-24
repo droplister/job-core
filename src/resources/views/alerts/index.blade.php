@@ -3,6 +3,7 @@
 @section('title', str_singular(config('job-core.keyword')) . ' Alerts')
 
 @section('content')
+    @if(count($alerts) === 0)
     <section class="jumbotron text-center mt-3 {{ config('job-core.body_class') }}">
         <div class="container">
             <h1 class="jumbotron-heading">
@@ -13,13 +14,20 @@
             <p class="lead text-muted small"><em>(ad free experience)</em></p>
         </div>
     </section>
-    <div class="alert alert-warning mt-3 box-shadow">
-        <i class="fa fa-bell"></i> Job Alerts - Coming Soon!
-    </div>
+    @endif
+    @include('job-core::partials.title', [
+        'fa' => 'fa-bell',
+        'title' => 'Alerts',
+        'link' => route('alerts.index')
+    ])
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="row">
             <div class="col-md-9">
-                @include('job-core::alerts.partials.index')
+                @include('job-core::partials.h-tag', [
+                    'tag' => 'h6',
+                    'title' => 'My Alerts',
+                ])
+                @include('job-core::partials.resources')
             </div>
             <div class="col-md-3">
                 @include('job-core::partials.h-tag', [

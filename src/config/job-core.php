@@ -68,6 +68,21 @@ return [
     'tagline' => env('JOB_CORE_TAGLINE', 'Find a federal government job.'),
 
     /**
+     * Most Slug
+     */
+    'most_route' => env('JOB_CORE_MOST_ROUTE', '/most-salary'),
+
+    /**
+     * Specific Slug
+     */
+    'specific_route' => env('JOB_CORE_SPECIFIC_ROUTE', '/veterans'),
+
+    /**
+     * Affiliate Slug
+     */
+    'affiliate_route' => env('JOB_CORE_AFFILIATE_ROUTE', '/amazon'),
+
+    /**
      * Monetized
      */
     'monetized' => env('JOB_CORE_MONETIZED', false),

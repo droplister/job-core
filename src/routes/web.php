@@ -24,9 +24,9 @@ Route::group(['middleware' => ['web']], function () {
 	Route::resource('schedules', 'PositionSchedulesController');
 	Route::resource('travels', 'TravelPercentagesController');
 	Route::resource('paths', 'HiringPathsController');
-	Route::get('/most-salary', 'MostController@index')->name('most.index');
-	Route::get('/veterans', 'SpecificController@index')->name('specific.index');
-	Route::get('/amazon', 'AffiliateController@index')->name('affiliate.index');
+	Route::get(config('job-core.most_route'), 'MostController@index')->name('most.index');
+	Route::get(config('job-core.specific_route'), 'SpecificController@index')->name('specific.index');
+	Route::get(config('job-core.affiliate_route'), 'AffiliateController@index')->name('affiliate.index');
 	Route::get('/contact', 'ContactController@create')->name('contact.create');
 	Route::post('/contact', 'ContactController@store')->name('contact.store');
 	Route::get('/about', 'PagesController@about')->name('pages.about');
