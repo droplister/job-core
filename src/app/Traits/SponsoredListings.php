@@ -12,27 +12,23 @@ trait SponsoredListings
      */
     public function sponsoredListings()
     {
+        $keyword = isset($this->value) ? $this->value : $this->name;
+
         $query = new \JobApis\Jobs\Client\Queries\JujuQuery([
             'partnerid' => config('job-core.partner_id')
         ]);
-
-        if(isset($this->value))
-        {
-        	$keyword = $this->value;
-        }
-        elseif(isset($this->name))
-        {
-        	$keyword = $this->name;
-        }
-        else
-        {
-        	$keyword = 'Federal Government Jobs';
-        }
 
         $query->set('k', $keyword);
 
         $client = new \JobApis\Jobs\Client\Providers\JujuProvider($query);
 
-        return $client->getJobs();
+        try
+        {
+            return $client->getJobs();
+        }
+        catch(\Exception $e)
+        {
+            return null;
+        }
     }
 }
