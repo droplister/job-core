@@ -42,7 +42,7 @@ class AgencySubElementsDataTableSeeder extends Seeder
 
             if($this->guardAgainstNonAgencies($data)) continue;
 
-            $agency = \Droplister\JobCore\App\AgencySubElements::whereValue($result->value)->first();
+            $agency = \Droplister\JobCore\App\AgencySubElements::whereValue($data['value'])->first();
 
             $agency->update($data);
         }
