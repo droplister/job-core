@@ -11,10 +11,7 @@
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="row">
             <div class="col-12 col-md-9">
-                <h6 class="border-bottom border-gray pb-2 mb-0">
-                    Privacy Policy
-                </h6>
-                <p class="text-muted small lh-135 pt-3">We at {{ config('job-core.domain') }} know that you care how your information is used, and we appreciate your trust. This notice describes our privacy policy. By visiting us, you are accepting the privacy policy described below.</p>
+                <p class="text-muted small lh-135">We at {{ config('job-core.domain') }} know that you care how your information is used, and we appreciate your trust. This notice describes our privacy policy. By visiting us, you are accepting the privacy policy described below.</p>
                 <h6>What Personal Information Do We Collect?</h6>
                 <p class="text-muted small lh-135"><strong>Information You Provide.</strong> We receive and store information you enter. For example, when you search for something, or leave a comment, or when you supply information such as your address, phone number or e-mail address. You can choose not to provide certain information, but then you might not be able to take advantage of some of our features. We use the information that you provide for such purposes as responding to your requests, customizing your experience, improving our Web site, and communicating with you.</p>
                 <p class="text-muted small lh-135"><strong>Cookies.</strong> Like many web sites, we use "cookies". Cookies are small programs that we transfer to your hard drive that allow us to recognize you and to provide you with a customized experience. If you do not want us to use cookies, you can easily disable them by going to the toolbar of your web browser, and clicking on the "help" button. Follow the instructions that will prevent the browser from accepting cookies, or set the browser to inform you when you receive a new cookie. In addition, you may visit this and other websites anonymously through the use of utilities provided by other private companies.</p>

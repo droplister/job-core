@@ -11,10 +11,7 @@
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="row">
             <div class="col-12 col-md-9">
-                <h6 class="border-bottom border-gray pb-2 mb-0">
-                    Terms of Service
-                </h6>
-                <h6 class="mt-3">1. Your Acceptance</h6>
+                <h6>1. Your Acceptance</h6>
                 <p class="text-muted small lh-135">Welcome to the Terms of Service for {{ config('job-core.domain') }}. This is an agreement (&#8220;Agreement&#8221;) between Family Media, LLC, (&#8220;{{ config('job-core.domain') }}&#8221;), the owner and operator of https://{{ config('job-core.domain') }} (the &#8220;Site&#8221; and any &#8220;Services&#8221;) and you (&#8220;you&#8221; or &#8220;your&#8221; or &#8220;user(s)&#8221;), a user of the Site and Service. This Agreement is legally binding and governs your use of our Site and Service.</p>
                 <p class="text-muted small lh-135">Throughout this Agreement, the words &#8220;{{ config('job-core.domain') }},&#8221; &#8220;us,&#8221; &#8220;we,&#8221; and &#8220;our,&#8221; refer to our company, Family Media, LLC and our Site, https://{{ config('job-core.domain') }} or our Service, {{ config('job-core.domain') }}, as is appropriate in the context of the use of the words.</p>
                 <p class="text-muted small lh-135">By using or accessing our Site and using any of our Services, you acknowledge and agree to these terms and agree to be bound by this Agreement and the Privacy Policy. We may amend our Terms of Service or Privacy Policy from time to time, we will notify you of these changes to our policy. In order to continue using our Site and Service you must agree to all such changes.</p>
