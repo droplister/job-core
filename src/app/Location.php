@@ -104,6 +104,11 @@ class Location extends Model
     {
         switch(config('job-core.filter'))
         {
+            case 'federal': 
+                return $query->notMilitaryBase()
+                    ->has('listings', '>=', config('job-core.min_listings'))
+                    ->where('name', 'not like', '% County')
+                    ->orderBy('title', 'asc');
             case 'military_base': 
                 return $query->isMilitaryBase()
                     ->has('listings', '>=', config('job-core.min_listings'))
@@ -184,6 +189,42 @@ class Location extends Model
             ->orWhere('name', 'like', '% Submarine Base')
             ->orWhere('name', 'like', 'Twentynine Palms');
     }
+
+    /**
+     * Not Military Base
+     */
+    public function scopeNotMilitaryBase($query)
+    {
+        return $query->where('name', 'not like', 'Military %')
+            ->orWhere('name', 'not like', 'Fort %')
+            ->orWhere('name', 'not like', 'Camp %')
+            ->orWhere('name', 'not like', 'Air %')
+            ->orWhere('name', 'not like', 'Army %')
+            ->orWhere('name', 'not like', 'Pentagon, %')
+            ->orWhere('name', 'not like', 'Navy %')
+            ->orWhere('name', 'not like', 'Army %')
+            ->orWhere('name', 'not like', 'Joint %')
+            ->orWhere('name', 'not like', 'Marine Corps Air Station %')
+            ->orWhere('name', 'not like', '% Military %')
+            ->orWhere('name', 'not like', '% Army %')
+            ->orWhere('name', 'not like', '% Navy %')
+            ->orWhere('name', 'not like', '% Naval %')
+            ->orWhere('name', 'not like', '% AFB')
+            ->orWhere('name', 'not like', '% ANG')
+            ->orWhere('name', 'not like', '% Air Reserve Base')
+            ->orWhere('name', 'not like', '% Airfield')
+            ->orWhere('name', 'not like', '% Arsenal')
+            ->orWhere('name', 'not like', '% Barracks')
+            ->orWhere('name', 'not like', '% Base')
+            ->orWhere('name', 'not like', '% Defense Logistics Center')
+            ->orWhere('name', 'not like', '% Field')
+            ->orWhere('name', 'not like', '% Missile Range')
+            ->orWhere('name', 'not like', '% Ordnance Depot')
+            ->orWhere('name', 'not like', '% Proving Ground')
+            ->orWhere('name', 'not like', '% Submarine Base')
+            ->orWhere('name', 'not like', 'Twentynine Palms');
+    }
+
     /**
      * Return the sluggable configuration array for this model.
      *
