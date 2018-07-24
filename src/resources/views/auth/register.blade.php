@@ -5,6 +5,7 @@
 @section('content')
 <div class="row justify-content-center small mt-5">
     <div class="col-md-8">
+        @include('job-core::partials.session')
         <div class="card">
             <div class="card-header">{{ __('Registration') }}</div>
 
