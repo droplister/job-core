@@ -56,9 +56,9 @@ class JobCoreServiceProvider extends ServiceProvider
         /**
         * Views
         */
-        $this->loadViewsFrom(__DIR__.'/resources/views', 'Droplister\JobCore');
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'job-core');
         $this->publishes([
-            __DIR__.'/resources/views' => base_path('resources/views/vendor/droplister/job-core'),
+            __DIR__.'/resources/views' => resource_path('views/vendor/job-core'),
         ]);
     }
 

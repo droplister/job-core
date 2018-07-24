@@ -20,7 +20,7 @@ class HiringPathsController extends Controller
         // Get Chunks
         $chunks = null;
 
-        return view('paths.index', compact('paths', 'chunks'));
+        return view('job-core::paths.index', compact('paths', 'chunks'));
     }
 
     /**
@@ -42,6 +42,6 @@ class HiringPathsController extends Controller
         // Get Children
         $children = \Droplister\JobCore\App\HiringPaths::related()->get();
 
-        return view('paths.show', compact('path', 'listings', 'parent', 'children'));
+        return view('job-core::paths.show', compact('path', 'listings', 'parent', 'children'));
     }
 }

@@ -34,6 +34,6 @@ class HomeController extends Controller
             return \Droplister\JobCore\App\SecurityClearances::home()->get();
         });
 
-        return view('home', compact('locations', 'careers', 'agencies', 'levels'));
+        return view('job-core::home', compact('locations', 'careers', 'agencies', 'levels'));
     }
 }

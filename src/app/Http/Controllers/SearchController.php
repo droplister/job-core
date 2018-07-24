@@ -67,6 +67,6 @@ class SearchController extends Controller
             $locations = null;
         }
 
-        return view('search.index', compact('request', 'subtitle', 'listings', 'schedules', 'levels'));
+        return view('job-core::search.index', compact('request', 'subtitle', 'listings', 'schedules', 'levels'));
     }
 }

@@ -20,7 +20,7 @@ class PayPlansController extends Controller
         // Get Chunks
         $chunks = null;
 
-        return view('plans.index', compact('plans', 'chunks'));
+        return view('job-core::plans.index', compact('plans', 'chunks'));
     }
 
     /**
@@ -42,6 +42,6 @@ class PayPlansController extends Controller
         // Get Children
         $children = \Droplister\JobCore\App\PayPlans::related()->get();
 
-        return view('plans.show', compact('plan', 'listings', 'parent', 'children'));
+        return view('job-core::plans.show', compact('plan', 'listings', 'parent', 'children'));
     }
 }

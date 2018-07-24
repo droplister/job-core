@@ -26,7 +26,7 @@ class LocationsController extends Controller
         // Get Chunks
         $chunks = $locations->chunk($chunk_size);
 
-        return view('locations.index', compact('locations', 'chunks', 'google_map'));
+        return view('job-core::locations.index', compact('locations', 'chunks', 'google_map'));
     }
 
     /**
@@ -57,6 +57,6 @@ class LocationsController extends Controller
             $children = $location->related()->get();
         }
 
-        return view('locations.show', compact('location', 'listings', 'parent', 'children'));
+        return view('job-core::locations.show', compact('location', 'listings', 'parent', 'children'));
     }
 }

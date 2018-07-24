@@ -20,7 +20,7 @@ class TravelPercentagesController extends Controller
         // Get Chunks
         $chunks = null;
 
-        return view('travels.index', compact('travels', 'chunks'));
+        return view('job-core::travels.index', compact('travels', 'chunks'));
     }
 
     /**
@@ -42,6 +42,6 @@ class TravelPercentagesController extends Controller
         // Get Children
         $children = \Droplister\JobCore\App\TravelPercentage::related()->get();
 
-        return view('travels.show', compact('travel', 'listings', 'parent', 'children'));
+        return view('job-core::travels.show', compact('travel', 'listings', 'parent', 'children'));
     }
 }

@@ -26,6 +26,6 @@ class MostController extends Controller
             ->take(config('job-core.max_relations'))
             ->get();
 
-        return view('most.index', compact('listings', 'parent', 'children'));
+        return view('job-core::most.index', compact('listings', 'parent', 'children'));
     }
 }
