@@ -1,9 +1,9 @@
 @if($listing->who_may_apply)
-    @include('partials.h-tag', [
+    @include('job-core::partials.h-tag', [
         'tag' => 'h6',
         'title' => 'Who May Apply'
     ])
-    @include('partials.p-tag', [
+    @include('job-core::partials.p-tag', [
         'text' => $listing->who_may_apply
     ])
 @endif

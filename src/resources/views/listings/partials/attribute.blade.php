@@ -1,7 +1,7 @@
-@include('partials.h-tag', [
+@include('job-core::partials.h-tag', [
     'tag' => 'h6',
     'title' => $title
 ])
-@include('partials.p-tag', [
+@include('job-core::partials.p-tag', [
     'text' => $text
 ])

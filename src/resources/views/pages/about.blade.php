@@ -3,7 +3,7 @@
 @section('title', 'About ' . config('job-core.domain'))
 
 @section('content')
-    @include('partials.title', [
+    @include('job-core::partials.title', [
         'fa' => 'fa-question-circle',
         'title' => 'About',
         'link' => route('pages.about')

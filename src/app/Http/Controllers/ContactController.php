@@ -14,7 +14,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('contact.create');
+        return view('job-core::contact.create');
     }
 
     /**

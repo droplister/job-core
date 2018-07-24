@@ -3,7 +3,7 @@
 @section('title', 'Six Figure ' . config('job-core.keyword'))
 
 @section('content')
-    @include('partials.title', [
+    @include('job-core::partials.title', [
         'fa' => 'fa-money',
         'title' => 'Six Figures',
         'subtitle' => config('job-core.keyword'),
@@ -12,10 +12,10 @@
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="row">
             <div class="col-12 col-md-9">
-                @include('listings.partials.listings')
+                @include('job-core::listings.partials.listings')
             </div>
             <div class="col-12 col-md-3">
-                @include('careers.partials.careers')
+                @include('job-core::careers.partials.careers')
             </div>
         </div>
     </div>

@@ -43,21 +43,21 @@
                 <br class="d-md-none" />
             </div>
             <div class="col-md-3">
-                @include('partials.h-tag', [
+                @include('job-core::partials.h-tag', [
                     'tag' => 'h6',
                     'title' => 'Profile',
                 ])
-                @include('partials.p-tag', [
+                @include('job-core::partials.p-tag', [
                     'text' => $user->name,
                     'pt' => 'pt-3',
                     'pb' => '',
                 ])
-                @include('partials.p-tag', [
+                @include('job-core::partials.p-tag', [
                     'text' => $user->email,
                     'pt' => '',
                     'pb' => '',
                 ])
-                @include('partials.p-tag', [
+                @include('job-core::partials.p-tag', [
                     'text' => 'Joined: ' . $user->created_at->toDateString(),
                     'pt' => '',
                     'pb' => 'pb-4',

@@ -23,7 +23,7 @@ class OccupationalSeriesController extends Controller
         // Get Chunks
         $chunks = $careers->groupBy('job_family')->chunk($chunk_size);
 
-        return view('careers.index', compact('careers', 'chunks'));
+        return view('job-core::careers.index', compact('careers', 'chunks'));
     }
 
     /**
@@ -45,6 +45,6 @@ class OccupationalSeriesController extends Controller
         // Get Children
         $children = Droplister\JobCore\App\OccupationalSeries::related($career)->get();
 
-        return view('careers.show', compact('career', 'listings', 'parent', 'children'));
+        return view('job-core::careers.show', compact('career', 'listings', 'parent', 'children'));
     }
 }

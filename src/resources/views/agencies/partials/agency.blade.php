@@ -1,9 +1,9 @@
-@include('partials.h-tag', [
+@include('job-core::partials.h-tag', [
     'tag' => 'h6',
     'title' => $agency->value,
 ])
 @if(\Request::route()->getName() === 'listings.show' && strlen($agency->description) > 1000)
-    @include('partials.p-tag', [
+    @include('job-core::partials.p-tag', [
         'text' => str_limit(strip_tags($agency->description), 1000),
         'pb' => 'pb-3 border-bottom border-gray',
     ])
@@ -14,7 +14,7 @@
     </small>
 @else
     @foreach($agency->chunkParagraphs($agency->description) as $paragraph)
-        @include('partials.p-tag', [
+        @include('job-core::partials.p-tag', [
             'text' => $paragraph,
             'pb' => $loop->last ? 'pb-3 border-bottom border-gray' : 'pb-0',
         ])

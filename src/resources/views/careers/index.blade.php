@@ -3,7 +3,7 @@
 @section('title', config('job-core.keyword_root') . ' Careers')
 
 @section('content')
-    @include('partials.title', [
+    @include('job-core::partials.title', [
         'fa' => 'fa-graduation-cap',
         'title' => 'Careers',
         'link' => route('careers.index')
@@ -13,7 +13,7 @@
             @foreach($chunks as $nested_chunk)
                 <div class="col-12 col-md-4 pb-4">
                     @foreach($nested_chunk as $chunk)
-                        @include('careers.partials.chunk')
+                        @include('job-core::careers.partials.chunk')
                     @endforeach
                 </div>
             @endforeach

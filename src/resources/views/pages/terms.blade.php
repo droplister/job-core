@@ -3,7 +3,7 @@
 @section('title', 'Terms of Service')
 
 @section('content')
-    @include('partials.title', [
+    @include('job-core::partials.title', [
         'fa' => 'fa-info-circle',
         'title' => 'Terms',
         'link' => route('pages.terms')

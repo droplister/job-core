@@ -15,7 +15,7 @@ class PagesController extends Controller
      */
     public function about()
     {
-        return view('pages.about');
+        return view('job-core::pages.about');
     }
 
     /**
@@ -25,7 +25,7 @@ class PagesController extends Controller
      */
     public function advertise()
     {
-        return view('pages.advertise');
+        return view('job-core::pages.advertise');
     }
 
     /**
@@ -35,7 +35,7 @@ class PagesController extends Controller
      */
     public function disclaimer()
     {
-        return view('pages.disclaimer');
+        return view('job-core::pages.disclaimer');
     }
 
     /**
@@ -45,7 +45,7 @@ class PagesController extends Controller
      */
     public function privacy()
     {
-        return view('pages.privacy');
+        return view('job-core::pages.privacy');
     }
 
     /**
@@ -55,6 +55,6 @@ class PagesController extends Controller
      */
     public function terms()
     {
-        return view('pages.terms');
+        return view('job-core::pages.terms');
     }
 }

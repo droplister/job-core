@@ -3,7 +3,7 @@
 @section('title', config('job-core.keyword') . ' for the ' . $agency->value)
 
 @section('content')
-    @include('partials.title', [
+    @include('job-core::partials.title', [
         'fa' => 'fa-university',
         'title' => $agency->value,
         'subtitle' => config('job-core.keyword'),
@@ -12,10 +12,10 @@
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="row">
             <div class="col-12 col-md-9">
-                @include('listings.partials.listings')
+                @include('job-core::listings.partials.listings')
             </div>
             <div class="col-12 col-md-3">
-                @include('agencies.partials.agencies')
+                @include('job-core::agencies.partials.agencies')
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
         <div class="my-3 p-3 bg-white rounded box-shadow">
             <div class="row">
                 <div class="col-12 col-md-9">
-                    @include('agencies.partials.agency')
+                    @include('job-core::agencies.partials.agency')
                 </div>
             </div>
         </div>

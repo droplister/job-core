@@ -3,7 +3,7 @@
 @section('title', 'Privacy Policy')
 
 @section('content')
-    @include('partials.title', [
+    @include('job-core::partials.title', [
         'fa' => 'fa-info-circle',
         'title' => 'Privacy',
         'link' => route('pages.privacy')

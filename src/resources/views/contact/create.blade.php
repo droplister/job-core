@@ -3,7 +3,7 @@
 @section('title', 'Contact')
 
 @section('content')
-    @include('partials.title', [
+    @include('job-core::partials.title', [
         'fa' => 'fa-envelope-o',
         'title' => 'Contact',
         'link' => route('contact.create')

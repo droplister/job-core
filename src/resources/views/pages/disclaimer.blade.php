@@ -3,7 +3,7 @@
 @section('title', 'Disclaimer')
 
 @section('content')
-    @include('partials.title', [
+    @include('job-core::partials.title', [
         'fa' => 'fa-info-circle',
         'title' => 'Disclaimer',
         'link' => route('pages.disclaimer')

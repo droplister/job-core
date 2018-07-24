@@ -1,11 +1,11 @@
 <!-- Related Careers -->
-@include('listings.partials.related-careers')
+@include('job-core::listings.partials.related-careers')
 
 <!-- Related Agencies -->
-@include('listings.partials.related-agencies')
+@include('job-core::listings.partials.related-agencies')
 
 <!-- Related Listings -->
-@include('listings.partials.related-locations')
+@include('job-core::listings.partials.related-locations')
 
 <!-- Job Search Link -->
-@include('partials.search-link')
+@include('job-core::partials.search-link')

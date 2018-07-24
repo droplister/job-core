@@ -3,7 +3,7 @@
 @section('title', config('job-core.keyword') . ' by Agency')
 
 @section('content')
-    @include('partials.title', [
+    @include('job-core::partials.title', [
         'fa' => 'fa-university',
         'title' => 'Agencies',
         'link' => route('agencies.index')
@@ -13,7 +13,7 @@
             @foreach($chunks as $chunk)
                 <div class="col-12 col-md-4 pb-4">
                     @foreach($chunk as $agency)
-                        @include('agencies.partials.chunk')
+                        @include('job-core::agencies.partials.chunk')
                     @endforeach
                 </div>
             @endforeach

@@ -1,9 +1,9 @@
-@include('partials.h-tag', [
+@include('job-core::partials.h-tag', [
     'tag' => 'h6',
     'title' => 'Security Clearance'
 ])     
 @foreach($levels as $level)
-    @include('partials.p-tag', [
+    @include('job-core::partials.p-tag', [
         'text' => $level->value,
         'link' => route('levels.show', ['level' => $level->slug]),
         'pt' => $loop->first ? 'pt-3' : 'pt-2',

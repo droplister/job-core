@@ -18,5 +18,5 @@
     </div>
 </div>
 @guest
-    @include('partials.adsense')
+    @include('job-core::partials.adsense')
 @endguest

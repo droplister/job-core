@@ -3,7 +3,7 @@
 @section('title', config('job-core.keyword') . ' in the United States')
 
 @section('content')
-    @include('partials.title', [
+    @include('job-core::partials.title', [
         'fa' => 'fa-map',
         'title' => 'Browse by State',
         'link' => route('locations.index')
@@ -13,7 +13,7 @@
             @foreach($chunks as $chunk)
                 <div class="col-12 col-md-3 pb-4">
                     @foreach($chunk as $location)
-                        @include('locations.partials.chunk')
+                        @include('job-core::locations.partials.chunk')
                     @endforeach
                 </div>
             @endforeach

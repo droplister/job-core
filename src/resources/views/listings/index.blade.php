@@ -3,7 +3,7 @@
 @section('title', 'Latest')
 
 @section('content')
-    @include('partials.title', [
+    @include('job-core::partials.title', [
         'fa' => 'fa-calendar',
         'title' => 'Latest',
         'subtitle' => config('job-core.keyword_root'),
@@ -12,10 +12,10 @@
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="row">
             <div class="col-12 col-md-9">
-                @include('listings.partials.listings')
+                @include('job-core::listings.partials.listings')
             </div>
             <div class="col-12 col-md-3">
-                @include('levels.partials.levels')
+                @include('job-core::levels.partials.levels')
             </div>
         </div>
     </div>

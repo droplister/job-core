@@ -1,7 +1,7 @@
-@include('listings.partials.listings-header')
+@include('job-core::listings.partials.listings-header')
 
 @foreach($listings as $listing)
-    @include('listings.partials.listing')
+    @include('job-core::listings.partials.listing')
 @endforeach
 
-@include('listings.partials.listings-footer')
+@include('job-core::listings.partials.listings-footer')
