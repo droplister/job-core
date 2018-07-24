@@ -49,7 +49,7 @@ class UsaJobsFetchSecurity extends Command
      */
     public function handle()
     {
-        $clearances = Droplister\JobCore\SecurityClearances::get();
+        $clearances = \Droplister\JobCore\App\SecurityClearances::get();
 
         foreach ($clearances as $clearance)
         {
@@ -106,7 +106,7 @@ class UsaJobsFetchSecurity extends Command
     private function processResult($clearance, $result)
     {
         // Find Listing
-        $listing = Droplister\JobCore\Listing::whereControlNumber(trim($result->MatchedObjectId))->first();
+        $listing = \Droplister\JobCore\App\Listing::whereControlNumber(trim($result->MatchedObjectId))->first();
 
         if(! $listing) return false;
 

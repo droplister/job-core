@@ -37,7 +37,7 @@ class UsaJobsFetchMilitary extends Command
      */
     public function handle()
     {
-        $listings = Droplister\JobCore\App\Listing::whereHas('locations', function($location) {
+        $listings = \Droplister\JobCore\App\Listing::whereHas('locations', function($location) {
                 return $location->isMilitaryBase();
             })->get();
 

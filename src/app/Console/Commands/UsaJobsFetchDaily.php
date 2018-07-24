@@ -53,7 +53,7 @@ class UsaJobsFetchDaily extends Command
      */
     public function handle()
     {
-        Droplister\JobCore\App\AgencySubElements::chunk(25, function ($agencies)
+        \Droplister\JobCore\App\AgencySubElements::chunk(25, function ($agencies)
         {
             foreach ($agencies as $agency)
             {
@@ -182,7 +182,7 @@ class UsaJobsFetchDaily extends Command
      */
     private function firstOrCreateListing($data)
     {
-        return Droplister\JobCore\App\Listing::firstOrCreate(
+        return \Droplister\JobCore\App\Listing::firstOrCreate(
             array_only($data, ['control_number']),
             array_except($data, ['control_number'])
         );
@@ -197,7 +197,7 @@ class UsaJobsFetchDaily extends Command
     {
         if($location)
         {
-            return Droplister\JobCore\App\Location::firstOrCreate([
+            return \Droplister\JobCore\App\Location::firstOrCreate([
                 'parent_id' => $parent_id,
                 'type' => $type,
                 'name' => trim($name),
@@ -209,7 +209,7 @@ class UsaJobsFetchDaily extends Command
         }
         else
         {
-            return Droplister\JobCore\App\Location::firstOrCreate([
+            return \Droplister\JobCore\App\Location::firstOrCreate([
                 'parent_id' => $parent_id,
                 'type' => $type,
                 'name' => trim($name),
@@ -278,7 +278,7 @@ class UsaJobsFetchDaily extends Command
 
         foreach($result->MatchedObjectDescriptor->UserArea->Details->HiringPath as $hiring_path)
         {
-            $path = Droplister\JobCore\App\HiringPaths::whereCode($hiring_path)->first();
+            $path = \Droplister\JobCore\App\HiringPaths::whereCode($hiring_path)->first();
 
             $paths[] = $path->id;
         }
@@ -297,7 +297,7 @@ class UsaJobsFetchDaily extends Command
 
         foreach($result->MatchedObjectDescriptor->JobCategory as $job_category)
         {
-            $category = OccupationalSeries::whereCode($job_category->Code)->first();
+            $category = \Droplister\JobCore\App\OccupationalSeries::whereCode($job_category->Code)->first();
 
             $careers[] = $category->id;
         }
@@ -316,7 +316,7 @@ class UsaJobsFetchDaily extends Command
         {
             $code = trim($result->MatchedObjectDescriptor->JobGrade[0]->Code);
 
-            $payplan = Droplister\JobCore\App\PayPlans::whereCode($code)->first();
+            $payplan = \Droplister\JobCore\App\PayPlans::whereCode($code)->first();
 
             $listing->payplans()->sync([$payplan->id], false);
         }
@@ -388,7 +388,7 @@ class UsaJobsFetchDaily extends Command
      */
     private function guardAgainstTrashed($data)
     {
-        return Droplister\JobCore\App\Listing::whereControlNumber($data['control_number'])
+        return \Droplister\JobCore\App\Listing::whereControlNumber($data['control_number'])
             ->onlyTrashed()
             ->exists();
     }

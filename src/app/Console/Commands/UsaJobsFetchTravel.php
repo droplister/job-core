@@ -49,7 +49,7 @@ class UsaJobsFetchTravel extends Command
      */
     public function handle()
     {
-        $percentages = Droplister\JobCore\TravelPercentage::get();
+        $percentages = \Droplister\JobCore\App\TravelPercentage::get();
 
         foreach ($percentages as $percentage)
         {
@@ -106,7 +106,7 @@ class UsaJobsFetchTravel extends Command
     private function processResult($percentage, $result)
     {
         // Find Listing
-        $listing = Droplister\JobCore\Listing::whereControlNumber(trim($result->MatchedObjectId))->first();
+        $listing = \Droplister\JobCore\App\Listing::whereControlNumber(trim($result->MatchedObjectId))->first();
 
         if(! $listing) return false;
 
