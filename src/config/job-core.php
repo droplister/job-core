@@ -68,9 +68,29 @@ return [
     'tagline' => env('JOB_CORE_TAGLINE', 'Find a federal government job.'),
 
     /**
+     * Most Icon
+     */
+    'most_icon' => env('JOB_CORE_MOST_ICON', 'fa-money'),
+
+    /**
+     * Most Title
+     */
+    'most_title' => env('JOB_CORE_MOST_TITLE', 'Six Figure'),
+
+    /**
      * Most Slug
      */
     'most_route' => env('JOB_CORE_MOST_ROUTE', '/most-salary'),
+
+    /**
+     * Specific Icon
+     */
+    'specific_icon' => env('JOB_CORE_SPECIFIC_ICON', 'fa-star'),
+
+    /**
+     * Specific Title
+     */
+    'specific_title' => env('JOB_CORE_SPECIFIC_TITLE', 'Veterans'),
 
     /**
      * Specific Slug

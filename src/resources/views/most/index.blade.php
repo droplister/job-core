@@ -4,8 +4,8 @@
 
 @section('content')
     @include('job-core::partials.title', [
-        'fa' => 'fa-money',
-        'title' => 'Six Figures',
+        'fa' => config('job-core.most_icon'),
+        'title' => config('job-core.most_title'),
         'subtitle' => config('job-core.keyword'),
          'link' => route('most.index')
     ])

@@ -4,8 +4,8 @@
 
 @section('content')
     @include('job-core::partials.title', [
-        'fa' => 'fa-star',
-        'title' => 'Veterans',
+        'fa' => config('job-core.specific_icon'),
+        'title' => config('job-core.specific_title'),
         'subtitle' => config('job-core.keyword'),
          'link' => route('specific.index')
     ])
