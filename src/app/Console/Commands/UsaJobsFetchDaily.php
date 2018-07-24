@@ -38,6 +38,8 @@ class UsaJobsFetchDaily extends Command
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->curl = new \Curl\Curl();
         $this->curl->setHeader('Host', config('job-core.usajobs_host'));
         $this->curl->setHeader('User-Agent', config('job-core.usajobs_email'));
