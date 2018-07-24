@@ -40,8 +40,8 @@ class CoreInstallCommand extends Command
         $this->call('core:clear');
         $this->call('vendor:publish', ['--provider' => 'Droplister\\JobCore\\JobCoreServiceProvider']);
         $this->call('vendor:publish', ['--tag' => 'job-core']);
+        $this->call('core:cache');
         $this->call('db:seed', ['--class' => 'Droplister\\JobCore\\Database\\Seeds\\DatabaseSeeder']);
         $this->call('core:update');
-        $this->call('core:cache');
     }
 }
