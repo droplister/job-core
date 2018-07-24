@@ -14,11 +14,11 @@ class SpecificController extends Controller
      */
     public function index()
     {
-        $listings = Droplister\JobCore\App\Listing::specific()->paginate(config('job-core.max_listings'));
+        $listings = \Droplister\JobCore\App\Listing::specific()->paginate(config('job-core.max_listings'));
 
         $parent = null;
 
-        $children = Droplister\JobCore\App\AgencySubElements::whereHas('listings', function($listing) {
+        $children = \Droplister\JobCore\App\AgencySubElements::whereHas('listings', function($listing) {
                 $listing->specific();
             })
             ->withCount('listings')

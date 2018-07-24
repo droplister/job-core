@@ -15,7 +15,7 @@ class LocationsController extends Controller
     public function index()
     {
         // Get Location
-        $locations = Droplister\JobCore\App\Location::index()->get();
+        $locations = \Droplister\JobCore\App\Location::index()->get();
 
         // Get Coordinates
         $google_map = config('job-core.google_map');
@@ -37,7 +37,7 @@ class LocationsController extends Controller
     public function show(\Illuminate\Http\Request $request, $location)
     {
         // Get Location
-        $location = Droplister\JobCore\App\Location::findBySlugOrFail($location);
+        $location = \Droplister\JobCore\App\Location::findBySlugOrFail($location);
 
         // Get Listings
         $listings = $location->listings()->paginate(config('job-core.per_page'));

@@ -30,7 +30,7 @@ class SearchController extends Controller
             $subtitle = 'Results for "' . title_case($keyword) . '"';
 
             // Get Listings
-            $listings = Droplister\JobCore\App\Listing::search($keyword);
+            $listings = \Droplister\JobCore\App\Listing::search($keyword);
 
             // Handle Narrow
             if($request->has('l'))
@@ -50,14 +50,14 @@ class SearchController extends Controller
             $listings = $listings->paginate(config('job-core.per_page'));
 
             // Get Schedules
-            $schedules = Droplister\JobCore\App\PositionSchedule::narrow($keyword)
+            $schedules = \Droplister\JobCore\App\PositionSchedule::narrow($keyword)
                 ->withCount('listings')
                 ->orderBy('listings_count', 'desc')
                 ->orderBy('value', 'asc')
                 ->get();           
 
             // Get Levels
-            $levels = Droplister\JobCore\App\SecurityClearances::narrow($keyword)->get(); 
+            $levels = \Droplister\JobCore\App\SecurityClearances::narrow($keyword)->get(); 
         }
         else
         {

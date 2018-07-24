@@ -14,11 +14,11 @@ class MostController extends Controller
      */
     public function index()
     {
-        $listings = Droplister\JobCore\App\Listing::most()->paginate(config('job-core.max_listings'));
+        $listings = \Droplister\JobCore\App\Listing::most()->paginate(config('job-core.max_listings'));
 
         $parent = null;
 
-        $children = Droplister\JobCore\App\OccupationalSeries::whereHas('listings', function($listing) {
+        $children = \Droplister\JobCore\App\OccupationalSeries::whereHas('listings', function($listing) {
                 $listing->most();
             })
             ->withCount('listings')

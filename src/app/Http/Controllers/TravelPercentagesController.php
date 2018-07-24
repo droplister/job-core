@@ -15,7 +15,7 @@ class TravelPercentagesController extends Controller
     public function index()
     {
         // Get Travels
-        $travels = Droplister\JobCore\App\TravelPercentage::index()->get();
+        $travels = \Droplister\JobCore\App\TravelPercentage::index()->get();
 
         // Get Chunks
         $chunks = null;
@@ -31,7 +31,7 @@ class TravelPercentagesController extends Controller
     public function show(\Illuminate\Http\Request $request, $travel)
     {
         // Get Travel
-        $travel = Droplister\JobCore\App\TravelPercentage::findBySlugOrFail($travel);
+        $travel = \Droplister\JobCore\App\TravelPercentage::findBySlugOrFail($travel);
 
         //  Get Listings
         $listings = $travel->listings()->paginate(config('job-core.per_page'));
@@ -40,7 +40,7 @@ class TravelPercentagesController extends Controller
         $parent = null;
 
         // Get Children
-        $children = Droplister\JobCore\App\TravelPercentage::related()->get();
+        $children = \Droplister\JobCore\App\TravelPercentage::related()->get();
 
         return view('job-core::travels.show', compact('travel', 'listings', 'parent', 'children'));
     }

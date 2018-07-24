@@ -15,7 +15,7 @@ class OccupationalSeriesController extends Controller
     public function index()
     {
         // Get Careers
-        $careers = Droplister\JobCore\App\OccupationalSeries::index()->get();
+        $careers = \Droplister\JobCore\App\OccupationalSeries::index()->get();
 
         // Chunk Size
         $chunk_size = ceil(count($careers->groupBy('job_family')) / 3);
@@ -34,7 +34,7 @@ class OccupationalSeriesController extends Controller
     public function show(\Illuminate\Http\Request $request, $career)
     {
         // Get Career
-        $career = Droplister\JobCore\App\OccupationalSeries::findBySlugOrFail($career);
+        $career = \Droplister\JobCore\App\OccupationalSeries::findBySlugOrFail($career);
         
         // Get Listings
         $listings = $career->listings()->paginate(config('job-core.per_page'));
@@ -43,7 +43,7 @@ class OccupationalSeriesController extends Controller
         $parent = $career->parent;
 
         // Get Children
-        $children = Droplister\JobCore\App\OccupationalSeries::related($career)->get();
+        $children = \Droplister\JobCore\App\OccupationalSeries::related($career)->get();
 
         return view('job-core::careers.show', compact('career', 'listings', 'parent', 'children'));
     }

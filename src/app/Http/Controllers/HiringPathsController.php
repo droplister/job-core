@@ -15,7 +15,7 @@ class HiringPathsController extends Controller
     public function index()
     {
         // Get Hiring Paths
-        $paths = Droplister\JobCore\App\HiringPaths::index()->get();
+        $paths = \Droplister\JobCore\App\HiringPaths::index()->get();
 
         // Get Chunks
         $chunks = null;
@@ -31,7 +31,7 @@ class HiringPathsController extends Controller
     public function show(\Illuminate\Http\Request $request, $hiring)
     {
         // Get Hiring Path
-        $path = Droplister\JobCore\App\HiringPaths::findBySlugOrFail($hiring);
+        $path = \Droplister\JobCore\App\HiringPaths::findBySlugOrFail($hiring);
 
         // Get Listings
         $listings = $path->listings()->paginate(config('job-core.per_page'));
@@ -40,7 +40,7 @@ class HiringPathsController extends Controller
         $parent = null;
 
         // Get Children
-        $children = Droplister\JobCore\App\HiringPaths::related()->get();
+        $children = \Droplister\JobCore\App\HiringPaths::related()->get();
 
         return view('job-core::paths.show', compact('path', 'listings', 'parent', 'children'));
     }

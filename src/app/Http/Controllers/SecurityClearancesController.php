@@ -15,7 +15,7 @@ class SecurityClearancesController extends Controller
     public function index()
     {
         // Get Levels
-        $levels = Droplister\JobCore\App\SecurityClearances::index()->get();
+        $levels = \Droplister\JobCore\App\SecurityClearances::index()->get();
 
         // Get Chunks
         $chunks = null;
@@ -31,7 +31,7 @@ class SecurityClearancesController extends Controller
     public function show(\Illuminate\Http\Request $request, $level)
     {
         // Get Level
-        $level = Droplister\JobCore\App\SecurityClearances::findBySlugOrFail($level);
+        $level = \Droplister\JobCore\App\SecurityClearances::findBySlugOrFail($level);
         
         //  Get Listings
         $listings = $level->listings()->paginate(config('job-core.per_page'));
@@ -40,7 +40,7 @@ class SecurityClearancesController extends Controller
         $parent = null;
 
         // Get Children
-        $children = Droplister\JobCore\App\SecurityClearances::related()->get();
+        $children = \Droplister\JobCore\App\SecurityClearances::related()->get();
 
         return view('job-core::levels.show', compact('level', 'listings', 'parent', 'children'));
     }

@@ -15,10 +15,10 @@ class ListingsController extends Controller
     public function index()
     {
         // Get Listings
-        $listings = Droplister\JobCore\App\Listing::index()->paginate(config('job-core.per_page'));
+        $listings = \Droplister\JobCore\App\Listing::index()->paginate(config('job-core.per_page'));
 
         // Get Children
-        $children = Droplister\JobCore\App\SecurityClearances::related()->get();
+        $children = \Droplister\JobCore\App\SecurityClearances::related()->get();
 
         return view('job-core::listings.index', compact('listings', 'children'));
     }
@@ -31,16 +31,16 @@ class ListingsController extends Controller
     public function show(\Illuminate\Http\Request $request, $listing)
     {
         // Get Listing
-        $listing = Droplister\JobCore\App\Listing::findBySlugOrFail($listing);
+        $listing = \Droplister\JobCore\App\Listing::findBySlugOrFail($listing);
 
         // Filter Show
-        if(! Droplister\JobCore\App\Listing::listingFilter()->get()->contains($listing))
+        if(! \Droplister\JobCore\App\Listing::listingFilter()->get()->contains($listing))
         {
             return abort(404);
         }
 
         // Get Listings
-        $listings = Droplister\JobCore\App\Listing::related($listing)->get();
+        $listings = \Droplister\JobCore\App\Listing::related($listing)->get();
         
         return view('job-core::listings.show', compact('listing', 'listings'));
     }

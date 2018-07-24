@@ -15,7 +15,7 @@ class PositionSchedulesController extends Controller
     public function index()
     {
         // Get Schedules
-        $schedules = Droplister\JobCore\App\PositionSchedule::index()->get();
+        $schedules = \Droplister\JobCore\App\PositionSchedule::index()->get();
 
         // Get Chunks
         $chunks = null;
@@ -31,7 +31,7 @@ class PositionSchedulesController extends Controller
     public function show(\Illuminate\Http\Request $request, $schedule)
     {
         // Get Schedule
-        $schedule = Droplister\JobCore\App\PositionSchedule::findBySlugOrFail($schedule);
+        $schedule = \Droplister\JobCore\App\PositionSchedule::findBySlugOrFail($schedule);
 
         // Get Listings
         $listings = $schedule->listings()->paginate(config('job-core.per_page'));
@@ -40,7 +40,7 @@ class PositionSchedulesController extends Controller
         $parent = null;
 
         // Get Children
-        $children = Droplister\JobCore\App\PositionSchedule::related()->get();
+        $children = \Droplister\JobCore\App\PositionSchedule::related()->get();
 
         return view('job-core::schedules.show', compact('schedule', 'listings', 'parent', 'children'));
     }

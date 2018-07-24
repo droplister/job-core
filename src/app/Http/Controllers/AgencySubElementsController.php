@@ -16,7 +16,7 @@ class AgencySubElementsController extends Controller
     {
         // Get Agencies
         $agencies = \Cache::remember('agencies_index', 1440, function () {
-            return Droplister\JobCore\App\AgencySubElements::index()->get();
+            return \Droplister\JobCore\App\AgencySubElements::index()->get();
         });
 
         // Chunk Size
@@ -36,7 +36,7 @@ class AgencySubElementsController extends Controller
     public function show(\Illuminate\Http\Request $request, $agency)
     {
         // Get Agency
-        $agency = Droplister\JobCore\App\AgencySubElements::findBySlugOrFail($agency);
+        $agency = \Droplister\JobCore\App\AgencySubElements::findBySlugOrFail($agency);
 
         // Get Listings
         $listings = $agency->listings()->paginate(config('job-core.per_page'));

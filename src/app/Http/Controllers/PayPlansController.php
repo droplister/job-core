@@ -15,7 +15,7 @@ class PayPlansController extends Controller
     public function index()
     {
         // Get Pay Plans
-        $plans = Droplister\JobCore\App\PayPlans::index()->get();
+        $plans = \Droplister\JobCore\App\PayPlans::index()->get();
 
         // Get Chunks
         $chunks = null;
@@ -31,7 +31,7 @@ class PayPlansController extends Controller
     public function show(\Illuminate\Http\Request $request, $plan)
     {
         // Get Pay Plan
-        $plan = Droplister\JobCore\App\PayPlans::findBySlugOrFail($plan);
+        $plan = \Droplister\JobCore\App\PayPlans::findBySlugOrFail($plan);
 
         // Get Listings
         $listings = $plan->listings()->paginate(config('job-core.per_page'));
@@ -40,7 +40,7 @@ class PayPlansController extends Controller
         $parent = null;
 
         // Get Children
-        $children = Droplister\JobCore\App\PayPlans::related()->get();
+        $children = \Droplister\JobCore\App\PayPlans::related()->get();
 
         return view('job-core::plans.show', compact('plan', 'listings', 'parent', 'children'));
     }

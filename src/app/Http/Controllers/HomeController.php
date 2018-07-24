@@ -16,22 +16,22 @@ class HomeController extends Controller
     {
         // Top Locations
         $locations = \Cache::remember('home_locations', 1440, function () {
-            return Droplister\JobCore\App\Location::home()->get();
+            return \Droplister\JobCore\App\Location::home()->get();
         });
 
         // Top Careers
         $careers = \Cache::remember('home_careers', 1440, function () {
-            return Droplister\JobCore\App\OccupationalSeries::home()->get();
+            return \Droplister\JobCore\App\OccupationalSeries::home()->get();
         });
 
         // Top Agencies
         $agencies = \Cache::remember('home_agencies', 1440, function () {
-            return Droplister\JobCore\App\AgencySubElements::home()->get();
+            return \Droplister\JobCore\App\AgencySubElements::home()->get();
         });
 
         // Top Levels
         $levels = \Cache::remember('home_levels', 1440, function () {
-            return Droplister\JobCore\App\SecurityClearances::home()->get();
+            return \Droplister\JobCore\App\SecurityClearances::home()->get();
         });
 
         return view('job-core::home', compact('locations', 'careers', 'agencies', 'levels'));
