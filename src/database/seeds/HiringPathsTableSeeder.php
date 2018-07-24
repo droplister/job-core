@@ -39,7 +39,7 @@ class HiringPathsTableSeeder extends Seeder
         {
             $data = $this->fetchDataArray($result);
 
-            Droplister\JobCore\App\HiringPaths::firstOrCreate($data);
+            \Droplister\JobCore\App\HiringPaths::firstOrCreate($data);
         }
     }
 

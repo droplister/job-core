@@ -39,7 +39,7 @@ class OccupationalSeriesTableSeeder extends Seeder
         {
             $data = $this->fetchDataArray($result);
 
-            Droplister\JobCore\App\OccupationalSeries::firstOrCreate($data);
+            \Droplister\JobCore\App\OccupationalSeries::firstOrCreate($data);
         }
     }
 

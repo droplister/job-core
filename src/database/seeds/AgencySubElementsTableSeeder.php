@@ -41,7 +41,7 @@ class AgencySubElementsTableSeeder extends Seeder
 
             if($this->guardAgainstAgencyWide($data)) continue;
 
-            Droplister\JobCore\App\AgencySubElements::firstOrCreate($data);
+            \Droplister\JobCore\App\AgencySubElements::firstOrCreate($data);
         }
     }
 

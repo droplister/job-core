@@ -63,6 +63,6 @@ class AgencySubElementsDataTableSeeder extends Seeder
      */
     private function guardAgainstNonAgencies($data)
     {
-        return Droplister\JobCore\App\AgencySubElements::whereValue($data['name'])->first();
+        return \Droplister\JobCore\App\AgencySubElements::whereValue($data['name'])->first();
     }
 }

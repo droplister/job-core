@@ -24,7 +24,7 @@ class PositionSchedulesTableSeeder extends Seeder
 
         foreach($schedules as $code => $value)
         {
-            Droplister\JobCore\App\PositionSchedule::firstOrCreate([
+            \Droplister\JobCore\App\PositionSchedule::firstOrCreate([
                 'code' => $code,
                 'value' => $value,
             ]);

@@ -39,7 +39,7 @@ class PayPlansTableSeeder extends Seeder
         {
             $data = $this->fetchDataArray($result);
 
-            Droplister\JobCore\App\PayPlans::firstOrCreate($data);
+            \Droplister\JobCore\App\PayPlans::firstOrCreate($data);
         }
     }
 

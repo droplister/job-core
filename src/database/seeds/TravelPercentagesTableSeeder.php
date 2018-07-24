@@ -43,7 +43,7 @@ class TravelPercentagesTableSeeder extends Seeder
 
         foreach($percentages as $code => $value)
         {
-            Droplister\JobCore\App\TravelPercentage::firstOrCreate([
+            \Droplister\JobCore\App\TravelPercentage::firstOrCreate([
                 'code' => $code,
                 'value' => $value,
             ]);

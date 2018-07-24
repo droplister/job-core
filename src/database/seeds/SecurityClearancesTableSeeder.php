@@ -48,7 +48,7 @@ class SecurityClearancesTableSeeder extends Seeder
 
         foreach($clearances as $code => $value)
         {
-            Droplister\JobCore\App\SecurityClearances::firstOrCreate([
+            \Droplister\JobCore\App\SecurityClearances::firstOrCreate([
                 'code' => $code,
                 'value' => $value,
             ]);
