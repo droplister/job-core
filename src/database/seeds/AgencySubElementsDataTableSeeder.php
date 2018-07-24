@@ -42,7 +42,7 @@ class AgencySubElementsDataTableSeeder extends Seeder
 
             if($this->guardAgainstNonAgencies($data)) continue;
 
-            $agency = \Droplister\JobCore\App\AgencySubElements::whereValue($result->name)->first();
+            $agency = \Droplister\JobCore\App\AgencySubElements::whereValue($result->value)->first();
 
             $agency->update($data);
         }
@@ -67,12 +67,12 @@ class AgencySubElementsDataTableSeeder extends Seeder
      */
     private function fetchDataArray($result)
     {
-        $name = trim($result->name);
+        $value = trim($result->name);
         $description = $this->urlsToHtml(trim($result->description));
         $url = property_exists($result, 'agency_url') ? trim($result->agency_url) : null;
         $logo_url = property_exists($result, 'logo') && $result->logo ? trim($result->logo->thumb_url) : null;
 
-        return compact('name', 'description', 'url', 'logo_url');
+        return compact('value', 'description', 'url', 'logo_url');
     }
 
     /**
@@ -82,6 +82,6 @@ class AgencySubElementsDataTableSeeder extends Seeder
      */
     private function guardAgainstNonAgencies($data)
     {
-        return \Droplister\JobCore\App\AgencySubElements::whereValue($data['name'])->doesntExist();
+        return \Droplister\JobCore\App\AgencySubElements::whereValue($data['value'])->doesntExist();
     }
 }
