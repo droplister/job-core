@@ -11,6 +11,23 @@ class AgencySubElementsDataTableSeeder extends Seeder
     use LinksUrls;
 
     /**
+     * USAJobs.gov API
+     *
+     * @var Curl
+     */
+    protected $curl;
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->curl = new \Curl\Curl();
+    }
+
+    /**
      * Run the database seeds.
      *
      * @return void
