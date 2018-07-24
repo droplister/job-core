@@ -1,6 +1,6 @@
 <p class="text-muted pt-3 pb-3 mb-0 small lh-135 border-bottom border-gray bg-light">
     <a href="{{ $job->getUrl() }}" class="d-block font-weight-bold" target="_blank">
-        {{ $job->getName() }}
+        {{ strip_tags($job->getName()) }}
     </a>
     <span class="d-block">
         {{ $job->getCompany() }}
@@ -8,7 +8,7 @@
         {{ $job->getLocation() }}
     </span>
     <span class="d-block text-success">
-        Sponsored Job Listing
+        Sponsored Listing
     </span>
     <span class="d-block mt-1">
         {!! $job->getDescription() !!}
