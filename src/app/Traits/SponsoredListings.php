@@ -12,21 +12,35 @@ trait SponsoredListings
      */
     public function sponsoredListings()
     {
-        $keyword = isset($this->value) ? $this->value : $this->name;
-
-        $keyword = $keyword . ' ' . config('job-core.keyword_root');
-
         $query = new \JobApis\Jobs\Client\Queries\JujuQuery([
             'partnerid' => config('job-core.partner_id')
         ]);
 
-        $query->set('k', $keyword);
+        if($this instanceof \Droplister\JobCore\App\Location)
+        {
+            $query->set('k', config('job-core.keyword_root'))
+                  ->set('highlight', '0')
+                  ->set('l', $this->title);
+        }
+        elseif($this instanceof \Droplister\JobCore\App\AgencySubElements)
+        {
+            $query->set('k', $this->value)
+                  ->set('highlight', '0');
+        }
+        else
+        {
+            $keyword = $keyword->value . ' ' . config('job-core.keyword_root');
+
+            $query->set('k', $keyword)
+                  ->set('highlight', '0');
+        }
 
         $client = new \JobApis\Jobs\Client\Providers\JujuProvider($query);
 
+        return \Cache::get()
         try
         {
-            return $client->getJobs();
+            return $client->getJobs()->orderBy('datePosted');
         }
         catch(\Exception $e)
         {

@@ -1,6 +1,6 @@
 <p class="text-muted pt-3 pb-3 mb-0 small lh-135 border-bottom border-gray">
     <a href="{{ $job->getUrl() }}" class="d-block font-weight-bold" target="_blank">
-        {{ strip_tags($job->getName()) }}
+        {{ $job->getName() }}
     </a>
     <span class="d-block">
         {{ $job->getCompany() }}
@@ -11,7 +11,7 @@
         Sponsored Listing
     </span>
     <span class="d-block mt-1">
-        {!! $job->getDescription() !!}
+        {{ $job->getDescription() }}
     </span>
     <span class="d-block mt-1">
         Published {{ \Carbon\Carbon::instance($job->getDatePosted())->diffForHumans() }}
