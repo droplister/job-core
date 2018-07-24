@@ -13,10 +13,11 @@
                 {{ ucfirst(strtolower(str_singular(config('job-core.keyword_root')))) }} insights.
             </p>
             <p class="lead text-muted mb-1">
-                <a href="{{ route('register') }}" class="btn {{ config('job-core.button_class') }}">
-                    Get Newsletter
+                <a href="{{ route('alerts.index') }}" class="btn {{ config('job-core.button_class') }}">
+                    Coming Soon
                 </a>
             </p>
+            <p class="lead text-muted small"><em>Join the waiting list</em></p>
         </div>
     </section>
 @endsection
