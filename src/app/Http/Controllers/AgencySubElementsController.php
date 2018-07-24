@@ -65,7 +65,7 @@ class AgencySubElementsController extends Controller
 
         $client = new \JobApis\Jobs\Client\Providers\JujuProvider($query);
 
-        return $client->getJobs();
+        return dd($client->getJobs());
 
         return view('job-core::agencies.show', compact('agency', 'listings', 'parent', 'children', 'jobs'));
     }
