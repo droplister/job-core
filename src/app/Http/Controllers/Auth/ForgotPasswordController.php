@@ -37,6 +37,6 @@ class ForgotPasswordController extends Controller
      */
     public function showLinkRequestForm()
     {
-        return view('job-core::passwords.email');
+        return view('job-core::auth.passwords.email');
     }
 }
