@@ -19,16 +19,16 @@ class JobCoreServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole())
         {
             $this->commands([
-                Droplister\JobCore\App\Console\Commands\CoreCacheCommand::class,
-                Droplister\JobCore\App\Console\Commands\CoreClearCommand::class,
-                Droplister\JobCore\App\Console\Commands\CoreInstallCommand::class,
-                Droplister\JobCore\App\Console\Commands\CoreReinstallCommand::class,
-                Droplister\JobCore\App\Console\Commands\CoreUpdateCommand::class,
-                Droplister\JobCore\App\Console\Commands\UsaJobsFetchDaily::class,
-                Droplister\JobCore\App\Console\Commands\UsaJobsFetchTravel::class,
-                Droplister\JobCore\App\Console\Commands\UsaJobsFetchInterns::class,
-                Droplister\JobCore\App\Console\Commands\UsaJobsFetchMilitary::class,
-                Droplister\JobCore\App\Console\Commands\UsaJobsFetchSecurity::class,
+                App\Console\Commands\CoreCacheCommand::class,
+                App\Console\Commands\CoreClearCommand::class,
+                App\Console\Commands\CoreInstallCommand::class,
+                App\Console\Commands\CoreReinstallCommand::class,
+                App\Console\Commands\CoreUpdateCommand::class,
+                App\Console\Commands\UsaJobsFetchDaily::class,
+                App\Console\Commands\UsaJobsFetchTravel::class,
+                App\Console\Commands\UsaJobsFetchInterns::class,
+                App\Console\Commands\UsaJobsFetchMilitary::class,
+                App\Console\Commands\UsaJobsFetchSecurity::class,
             ]);
         }
 
