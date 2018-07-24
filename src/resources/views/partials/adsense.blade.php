@@ -8,3 +8,7 @@
         </div>
     </div>
 @endif
+
+1. {{ config('job-core.monetized') }}<br />
+2. {{ empty($_GET) }}<br />
+3. {{ substr(\Request::route()->getName(), 0, 5) !== 'pages' }}<br />

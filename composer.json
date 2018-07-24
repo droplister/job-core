@@ -12,7 +12,9 @@
         "php": "^7.1.3",
         "curl/curl": "^1.9",
         "cviebrock/eloquent-sluggable": "^4.5",
-        "znck/belongs-to-through": "^2.3"
+        "znck/belongs-to-through": "^2.3",
+        "jobapis/jobs-juju": "dev-master"
+
     },
     "autoload": {
         "psr-4": {

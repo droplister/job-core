@@ -84,7 +84,7 @@ class OccupationalSeries extends Model
     {
         return $query->has('listings', '>=', config('job-core.min_listings'))
             ->orderBy('job_family', 'asc')
-            ->orderBy('code', 'asc');
+            ->orderBy('value', 'asc');
     }
 
     /**
