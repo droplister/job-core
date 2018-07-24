@@ -12,6 +12,7 @@
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="row">
             <div class="col-12 col-md-9">
+                @include('job-core::listings.partials.jobs')
                 @include('job-core::listings.partials.listings')
             </div>
             <div class="col-12 col-md-3">
