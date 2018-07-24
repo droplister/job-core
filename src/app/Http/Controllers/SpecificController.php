@@ -19,7 +19,7 @@ class SpecificController extends Controller
         $parent = null;
 
         $children = \Droplister\JobCore\App\OccupationalSeries::whereHas('listings', function($listing) {
-                $listing->most();
+                $listing->specific();
             })
             ->withCount('listings')
             ->orderBy('listings_count', 'desc')
