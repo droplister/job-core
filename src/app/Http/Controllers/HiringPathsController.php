@@ -42,6 +42,9 @@ class HiringPathsController extends Controller
         // Get Children
         $children = \Droplister\JobCore\App\HiringPaths::related()->get();
 
-        return view('job-core::paths.show', compact('path', 'listings', 'parent', 'children'));
+        // Sponsored Jobs
+        $sponsored = $path->sponsoredListings();
+
+        return view('job-core::paths.show', compact('path', 'listings', 'parent', 'children', 'sponsored'));
     }
 }

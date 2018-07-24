@@ -1,4 +1,4 @@
-<p class="text-muted pt-3 pb-3 mb-0 small lh-135 border-bottom border-gray bg-warning">
+<p class="text-muted pt-3 pb-3 mb-0 small lh-135 border-bottom border-gray bg-light">
     <a href="{{ $job->getUrl() }}" class="d-block font-weight-bold" target="_blank">
         {{ $job->getName() }}
     </a>
@@ -11,7 +11,7 @@
         Sponsored Job Listing
     </span>
     <span class="d-block mt-1">
-        {{ $job->getDescription() }}
+        {!! $job->getDescription() !!}
     </span>
     <span class="d-block mt-1">
         Published {{ \Carbon\Carbon::instance($job->getDatePosted())->diffForHumans() }}
@@ -19,4 +19,4 @@
             <i class="fa fa-external-link"></i> Apply Now
         </a>
     </span>
-  </p>
+</p>

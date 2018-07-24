@@ -57,6 +57,9 @@ class LocationsController extends Controller
             $children = $location->related()->get();
         }
 
-        return view('job-core::locations.show', compact('location', 'listings', 'parent', 'children'));
+        // Sponsored Jobs
+        $sponsored = $location->sponsoredListings();
+
+        return view('job-core::locations.show', compact('location', 'listings', 'parent', 'children', 'sponsored'));
     }
 }

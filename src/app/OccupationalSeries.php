@@ -2,6 +2,7 @@
 
 namespace Droplister\JobCore\App;
 
+use Droplister\JobCore\App\Traits\SponsoredListings;
 use Znck\Eloquent\Traits\BelongsToThrough;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OccupationalSeries extends Model
 {
-    use Sluggable, SluggableScopeHelpers, BelongsToThrough;
+    use BelongsToThrough, Sluggable, SluggableScopeHelpers, SponsoredListings;
 
     /**
      * The attributes that are mass assignable.

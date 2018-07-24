@@ -45,6 +45,9 @@ class OccupationalSeriesController extends Controller
         // Get Children
         $children = \Droplister\JobCore\App\OccupationalSeries::related($career)->get();
 
-        return view('job-core::careers.show', compact('career', 'listings', 'parent', 'children'));
+        // Sponsored Jobs
+        $sponsored = $career->sponsoredListings();
+
+        return view('job-core::careers.show', compact('career', 'listings', 'parent', 'children', 'sponsored'));
     }
 }

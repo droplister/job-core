@@ -42,6 +42,9 @@ class PayPlansController extends Controller
         // Get Children
         $children = \Droplister\JobCore\App\PayPlans::related()->get();
 
-        return view('job-core::plans.show', compact('plan', 'listings', 'parent', 'children'));
+        // Sponsored Jobs
+        $sponsored = $plan->sponsoredListings();
+
+        return view('job-core::plans.show', compact('plan', 'listings', 'parent', 'children', 'sponsored'));
     }
 }

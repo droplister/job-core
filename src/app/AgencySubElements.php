@@ -3,6 +3,7 @@
 namespace Droplister\JobCore\App;
 
 use Droplister\JobCore\App\Traits\ChunksParagraphs;
+use Droplister\JobCore\App\Traits\SponsoredListings;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AgencySubElements extends Model
 {
-    use ChunksParagraphs, Sluggable, SluggableScopeHelpers;
+    use ChunksParagraphs, Sluggable, SluggableScopeHelpers, SponsoredListings;
 
     /**
      * The attributes that are mass assignable.
