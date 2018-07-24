@@ -39,7 +39,7 @@ class AgencySubElementsTableSeeder extends Seeder
         {
             $data = $this->fetchDataArray($result);
 
-            if($this->guardAgainstAgencyWide($data)) continue;
+            // if($this->guardAgainstAgencyWide($data)) continue;
 
             \Droplister\JobCore\App\AgencySubElements::firstOrCreate($data);
         }
@@ -72,13 +72,13 @@ class AgencySubElementsTableSeeder extends Seeder
         return compact('parent_code', 'code', 'value', 'disabled');
     }
 
-    /**
-     * Guard Against Data
-     *
-     * @return boolean
-     */
-    private function guardAgainstAgencyWide($data)
-    {
-        return substr($data['value'], -11) === 'Agency Wide';
-    }
+    // /**
+    //  * Guard Against Data
+    //  *
+    //  * @return boolean
+    //  */
+    // private function guardAgainstAgencyWide($data)
+    // {
+    //     return substr($data['value'], -11) === 'Agency Wide';
+    // }
 }
