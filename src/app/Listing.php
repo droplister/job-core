@@ -359,8 +359,9 @@ class Listing extends Model
         {
             case 'federal': 
                 return $query->listingFilter()
-                    ->where('maximum_range', '>', 99999)
-                    ->orderBy('maximum_range', 'desc');
+                    ->whereHas('careers', function($career){
+                        $career->where('job_family', '=', '0800');
+                    });
             case 'internship': 
                 return $query->listingFilter()
                     ->where('minimum_range', '>', 0)
