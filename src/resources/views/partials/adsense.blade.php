@@ -3,7 +3,7 @@
         <div class="col">
             <Adsense
                 data-ad-client="{{ config('job-core.google_ad_client') }}"
-                data-ad-slot="{{ config('job-core.google_ad_slot') }} ">
+                data-ad-slot="{{ config('job-core.google_ad_slot') }}">
             </Adsense>
         </div>
     </div>

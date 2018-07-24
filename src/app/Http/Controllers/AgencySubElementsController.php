@@ -57,13 +57,13 @@ class AgencySubElementsController extends Controller
         }
 
         // Sponsored Jobs
-        $query = new JobApis\Jobs\Client\Queries\JujuQuery([
+        $query = new \JobApis\Jobs\Client\Queries\JujuQuery([
             'partnerid' => config('job-core.partner_id')
         ]);
 
         $query->set('k', $agency->value);
 
-        $client = new JobApis\Jobs\Client\Providers\JujuProvider($query);
+        $client = new \JobApis\Jobs\Client\Providers\JujuProvider($query);
 
         return $client->getJobs();
 
