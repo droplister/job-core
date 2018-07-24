@@ -18,13 +18,26 @@ class SpecificController extends Controller
 
         $parent = null;
 
-        $children = \Droplister\JobCore\App\AgencySubElements::whereHas('listings', function($listing) {
-                $listing->specific();
-            })
-            ->withCount('listings')
-            ->orderBy('listings_count', 'desc')
-            ->take(config('job-core.max_relations'))
-            ->get();
+        if(config('job-core.filter') === 'security_clearance')
+        {
+            $children = \Droplister\JobCore\App\AgencySubElements::whereHas('listings', function($listing) {
+                    $listing->specific();
+                })
+                ->withCount('listings')
+                ->orderBy('listings_count', 'desc')
+                ->take(config('job-core.max_relations'))
+                ->get();
+        }
+        else
+        {
+            $children = \Droplister\JobCore\App\OccupationalSeries::whereHas('listings', function($listing) {
+                    $listing->most();
+                })
+                ->withCount('listings')
+                ->orderBy('listings_count', 'desc')
+                ->take(config('job-core.max_relations'))
+                ->get();
+        }
 
         return view('job-core::specific.index', compact('listings', 'parent', 'children'));
     }
