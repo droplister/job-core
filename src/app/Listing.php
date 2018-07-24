@@ -315,6 +315,7 @@ class Listing extends Model
         {
             case 'federal': 
                 return $query->isActive()
+                    ->offMilitaryBase()
                     ->notInternship()
                     ->latest('publication_start_date');
             case 'internship': 
@@ -482,6 +483,14 @@ class Listing extends Model
     }
 
     /**
+     * Off Military Base
+     */
+    public function scopeOffMilitaryBase($query)
+    {
+        return $query->where('military_base_flag', 0);
+    }
+
+    /**
      * Not Cleared
      */
     public function scopeNotCleared($query)
@@ -511,6 +520,16 @@ class Listing extends Model
     public function scopeIsSeniorExecutive($query)
     {
         return $query->whereHas('hiringPaths', function($path) {
+            return $path->where('slug', '=', 'senior-executives');
+        });
+    }
+
+    /**
+     * Not Senior Executive
+     */
+    public function scopeNotSeniorExecutive($query)
+    {
+        return $query->whereDoesntHave('hiringPaths', function($path) {
             return $path->where('slug', '=', 'senior-executives');
         });
     }
