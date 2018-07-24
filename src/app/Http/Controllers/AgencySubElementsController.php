@@ -56,6 +56,17 @@ class AgencySubElementsController extends Controller
             $children = $agency->related()->get();
         }
 
-        return view('job-core::agencies.show', compact('agency', 'listings', 'parent', 'children'));
+        // Sponsored Jobs
+        $query = new JobApis\Jobs\Client\Queries\JujuQuery([
+            'partnerid' => config('job-core.partner_id')
+        ]);
+
+        $query->set('k', $agency->value);
+
+        $client = new JobApis\Jobs\Client\Providers\JujuProvider($query);
+
+        return $client->getJobs();
+
+        return view('job-core::agencies.show', compact('agency', 'listings', 'parent', 'children', 'jobs'));
     }
 }
