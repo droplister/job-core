@@ -39,7 +39,5 @@ class CoreReinstallCommand extends Command
     {
         $this->call('migrate:refresh');
         $this->call('core:install');
-        $this->call('core:clear');
-        $this->call('core:cache');
     }
 }
