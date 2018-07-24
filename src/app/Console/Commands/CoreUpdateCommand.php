@@ -37,6 +37,8 @@ class CoreUpdateCommand extends Command
      */
     public function handle()
     {
+        $this->call('core:clear');
+        $this->call('core:cache');
         $this->call('usajobs:daily');
         $this->call('usajobs:interns');
         $this->call('usajobs:military');

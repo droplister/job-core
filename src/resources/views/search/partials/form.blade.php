@@ -37,7 +37,3 @@
         </div>
     </div>
 </div>
-<p class="text-muted text-center small lh-135 py-4 mb-0">
-    {{ number_format(\App\Listing::listingFilter()->count()) }}
-    {{ config('job-core.keyword') }}
-</p>
