@@ -20,7 +20,7 @@ class SecurityClearancesController extends Controller
         // Get Chunks
         $chunks = null;
 
-        return view('job-core::levels.index', compact('levels', 'chunks'));
+        return view('levels.index', compact('levels', 'chunks'));
     }
 
     /**
@@ -42,6 +42,6 @@ class SecurityClearancesController extends Controller
         // Get Children
         $children = \Droplister\JobCore\App\SecurityClearances::related()->get();
 
-        return view('job-core::levels.show', compact('level', 'listings', 'parent', 'children'));
+        return view('levels.show', compact('level', 'listings', 'parent', 'children'));
     }
 }

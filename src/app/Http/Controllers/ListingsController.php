@@ -20,7 +20,7 @@ class ListingsController extends Controller
         // Get Children
         $children = \Droplister\JobCore\App\SecurityClearances::related()->get();
 
-        return view('job-core::listings.index', compact('listings', 'children'));
+        return view('listings.index', compact('listings', 'children'));
     }
 
     /**
@@ -42,6 +42,6 @@ class ListingsController extends Controller
         // Get Listings
         $listings = \Droplister\JobCore\App\Listing::related($listing)->get();
         
-        return view('job-core::listings.show', compact('listing', 'listings'));
+        return view('listings.show', compact('listing', 'listings'));
     }
 }

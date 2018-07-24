@@ -26,6 +26,6 @@ class SpecificController extends Controller
             ->take(config('job-core.max_relations'))
             ->get();
 
-        return view('job-core::specific.index', compact('listings', 'parent', 'children'));
+        return view('specific.index', compact('listings', 'parent', 'children'));
     }
 }

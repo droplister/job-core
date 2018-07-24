@@ -20,7 +20,7 @@ class PositionSchedulesController extends Controller
         // Get Chunks
         $chunks = null;
 
-        return view('job-core::schedules.index', compact('schedules', 'chunks'));
+        return view('schedules.index', compact('schedules', 'chunks'));
     }
 
     /**
@@ -42,6 +42,6 @@ class PositionSchedulesController extends Controller
         // Get Children
         $children = \Droplister\JobCore\App\PositionSchedule::related()->get();
 
-        return view('job-core::schedules.show', compact('schedule', 'listings', 'parent', 'children'));
+        return view('schedules.show', compact('schedule', 'listings', 'parent', 'children'));
     }
 }

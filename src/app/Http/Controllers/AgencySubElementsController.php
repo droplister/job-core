@@ -25,7 +25,7 @@ class AgencySubElementsController extends Controller
         // Get Chunks
         $chunks = $agencies->chunk($chunk_size);
 
-        return view('job-core::agencies.index', compact('agencies', 'chunks'));
+        return view('agencies.index', compact('agencies', 'chunks'));
     }
 
     /**
@@ -56,6 +56,6 @@ class AgencySubElementsController extends Controller
             $children = $agency->related()->get();
         }
 
-        return view('job-core::agencies.show', compact('agency', 'listings', 'parent', 'children'));
+        return view('agencies.show', compact('agency', 'listings', 'parent', 'children'));
     }
 }

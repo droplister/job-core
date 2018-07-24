@@ -28,7 +28,7 @@ class AlertsController extends Controller
 
         $alerts = [];
 
-    	return view('job-core::alerts.index', compact('user', 'alerts'));
+    	return view('alerts.index', compact('user', 'alerts'));
     }
 
     /**
@@ -38,7 +38,7 @@ class AlertsController extends Controller
      */
     public function show()
     {
-    	return view('job-core::alerts.show');
+    	return view('alerts.show');
     }
 
     /**
@@ -48,6 +48,6 @@ class AlertsController extends Controller
      */
     public function create()
     {
-        return view('job-core::alerts.create');
+        return view('alerts.create');
     }
 }
