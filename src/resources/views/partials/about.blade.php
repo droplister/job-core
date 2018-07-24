@@ -1,1 +1,1 @@
-{{ config('job-core.domain') }} is a free {{ strtolower(condig('job-core.keyword')) }} search tool.
+{{ config('job-core.domain') }} is a free {{ strtolower(config('job-core.keyword')) }} search tool.
