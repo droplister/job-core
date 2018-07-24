@@ -90,7 +90,12 @@
             </div>
         </nav>
 
-        @include('job-core::partials.subnav')
+        <div class="nav-scroller box-shadow {{ config('job-core.subnav_class') }}">
+            <nav class="nav nav-underline">
+                @include('job-core::partials.subnav-left')
+                @include('job-core::partials.subnav-right')
+            </nav>
+        </div>
 
         <main role="main" class="container">
             @yield('content')
