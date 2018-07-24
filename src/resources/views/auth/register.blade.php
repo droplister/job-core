@@ -59,7 +59,7 @@
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="newsletter" id="newsletter" {{ old('newsletter') ? 'checked' : '' }}>
+                                <input class="form-check-input" type="checkbox" name="newsletter" id="newsletter" checked>
 
                                 <label class="form-check-label" for="newsletter">
                                     {{ __('Subscribe to the') }}
