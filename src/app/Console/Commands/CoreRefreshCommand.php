@@ -4,21 +4,21 @@ namespace Droplister\JobCore\App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class CoreInstallCommand extends Command
+class CoreRefreshCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'core:install';
+    protected $signature = 'core:refresh';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Install Job Core';
+    protected $description = 'Refresh Job Core';
 
     /**
      * Create a new command instance.
@@ -37,8 +37,9 @@ class CoreInstallCommand extends Command
      */
     public function handle()
     {
-        $this->call('core:refresh');
-        $this->call('db:seed', ['--class' => 'Droplister\\JobCore\\Database\\Seeds\\DatabaseSeeder']);
-        $this->call('core:update');
+        $this->call('core:clear');
+        $this->call('vendor:publish', ['--provider' => 'Droplister\\JobCore\\JobCoreServiceProvider']);
+        $this->call('vendor:publish', ['--tag' => 'job-core']);
+        $this->call('core:cache');
     }
 }
