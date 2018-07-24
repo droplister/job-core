@@ -71,8 +71,7 @@
 
                                 <label class="form-check-label" for="newsletter">
                                     {{ __('Subscribe to ') }}
-                                    <a href="route('pages.newsletter')">{{ config('job-core.keyword_root') }}</a>
-                                    newsletter
+                                    <a href="{{ route('pages.newsletter') }}">{{ config('job-core.keyword') }} Newsletter</a>.
                                 </label>
                             </div>
                         </div>
@@ -85,7 +84,7 @@
 
                                 <label class="form-check-label" for="remember">
                                     {{ __('I agree to the ') }}
-                                    <a href="{{ route('pages.terms') }}">{{ __('Terms of Service') }}</a>
+                                    <a href="{{ route('pages.terms') }}">{{ __('Terms of Service') }}</a>.
                                 </label>
                             </div>
                         </div>
