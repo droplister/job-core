@@ -3,7 +3,7 @@
 @section('title', __('Register'))
 
 @section('content')
-<div class="row justify-content-center small mt-5">
+<div class="row justify-content-center small{{ session('success') || session('warning') ? '' : ' mt-5' }}">
     <div class="col-md-8">
         @include('job-core::partials.session')
         <div class="card">
