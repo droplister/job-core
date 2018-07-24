@@ -14,7 +14,7 @@
         {{ $job->getDescription() }}
     </span>
     <span class="d-block mt-1">
-        Published {{ $job->getDatePosted() }}
+        Published {{ \Carbon\Carbon::instance($job->getDatePosted())->diffForHumans() }}
         <a href="{{ $job->getUrl() }}" class="ml-1" target="_blank">
             <i class="fa fa-external-link"></i> Apply Now
         </a>
