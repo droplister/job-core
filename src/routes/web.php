@@ -34,3 +34,5 @@ Route::get('/disclaimer', 'PagesController@disclaimer')->name('pages.disclaimer'
 Route::get('/newsletter', 'PagesController@newsletter')->name('pages.newsletter');
 Route::get('/privacy', 'PagesController@privacy')->name('pages.privacy');
 Route::get('/terms', 'PagesController@terms')->name('pages.terms');
+
+Auth::routes();
