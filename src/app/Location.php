@@ -157,20 +157,32 @@ class Location extends Model
     {
         return $query->where('name', 'like', 'Military %')
             ->orWhere('name', 'like', 'Fort %')
+            ->orWhere('name', 'like', 'Camp %')
             ->orWhere('name', 'like', 'Air %')
             ->orWhere('name', 'like', 'Army %')
+            ->orWhere('name', 'like', 'Pentagon, %')
             ->orWhere('name', 'like', 'Navy %')
             ->orWhere('name', 'like', 'Army %')
             ->orWhere('name', 'like', 'Joint %')
             ->orWhere('name', 'like', 'Marine Corps Air Station %')
             ->orWhere('name', 'like', '% Military %')
+            ->orWhere('name', 'like', '% Army %')
+            ->orWhere('name', 'like', '% Navy %')
+            ->orWhere('name', 'like', '% Naval %')
             ->orWhere('name', 'like', '% AFB')
             ->orWhere('name', 'like', '% ANG')
             ->orWhere('name', 'like', '% Air Reserve Base')
             ->orWhere('name', 'like', '% Airfield')
             ->orWhere('name', 'like', '% Arsenal')
+            ->orWhere('name', 'like', '% Barracks')
+            ->orWhere('name', 'like', '% Base')
+            ->orWhere('name', 'like', '% Defense Logistics Center')
             ->orWhere('name', 'like', '% Field')
-            ->orWhere('name', 'like', '% Proving Ground');
+            ->orWhere('name', 'like', '% Missile Range')
+            ->orWhere('name', 'like', '% Ordnance Depot')
+            ->orWhere('name', 'like', '% Proving Ground')
+            ->orWhere('name', 'like', '% Submarine Base')
+            ->orWhere('name', 'like', 'Twentynine Palms');
     }
     /**
      * Return the sluggable configuration array for this model.
