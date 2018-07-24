@@ -37,7 +37,6 @@ trait SponsoredListings
 
         $client = new \JobApis\Jobs\Client\Providers\JujuProvider($query);
 
-        return \Cache::get()
         try
         {
             return $client->getJobs()->orderBy('datePosted');
