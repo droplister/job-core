@@ -1,4 +1,4 @@
-<p class="text-muted pt-3 pb-3 mb-0 small lh-135 border-bottom border-gray">
+<p class="text-muted pt-3 pb-3 mb-0 small lh-135 border-bottom border-gray bg-sponsored">
     <a href="{{ $job->getUrl() }}" class="d-block font-weight-bold" target="_blank">
         {{ $job->getName() }}
     </a>
