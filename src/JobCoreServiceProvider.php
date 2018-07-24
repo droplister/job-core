@@ -37,7 +37,7 @@ class JobCoreServiceProvider extends ServiceProvider
          */
         $this->publishes([
             __DIR__.'/config' => config_path('job-core.php'),
-        ]);
+        ], 'job-core');
 
         /**
          * Migrations
@@ -59,7 +59,7 @@ class JobCoreServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/resources/views', 'job-core');
         $this->publishes([
             __DIR__.'/resources/views' => resource_path('views/vendor/job-core'),
-        ]);
+        ], 'job-core');
     }
 
     /**
