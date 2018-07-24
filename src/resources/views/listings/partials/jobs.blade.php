@@ -1,5 +1,3 @@
-@foreach($jobs as $job)
+@foreach($jobs->items as $job)
     @include('job-core::listings.partials.job')
 @endforeach
-
-{{ dd($jobs) }}
