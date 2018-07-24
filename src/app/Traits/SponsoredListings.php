@@ -29,7 +29,7 @@ trait SponsoredListings
         }
         else
         {
-            $keyword = $keyword->value . ' ' . config('job-core.keyword_root');
+            $keyword = $this->value . ' ' . config('job-core.keyword_root');
 
             $query->set('k', $keyword)
                   ->set('highlight', '0');
