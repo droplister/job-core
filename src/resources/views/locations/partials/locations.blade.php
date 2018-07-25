@@ -3,7 +3,7 @@
         'tag' => 'h6',
         'title' => 'Related Searches',
     ])
-    @if($parent && $parent->type !== 'country')
+    @if(isset($parent) && $parent->type !== 'country')
         @include('job-core::partials.p-tag', [
             'text' => 'United States',
             'link' => route('locations.index'),
@@ -16,7 +16,7 @@
             'pt' => 'pt-2',
             'pb' => '',
         ])
-    @elseif($parent && $parent->type === 'country')
+    @elseif(isset($parent) && $parent->type === 'country')
         @include('job-core::partials.p-tag', [
             'text' => 'United States',
             'link' => route('locations.index'),
@@ -33,7 +33,7 @@
         @include('job-core::partials.p-tag', [
             'text' => $child->name,
             'link' => $child->slug === $location->slug ? null : route('locations.show', ['location' => $child->slug]),
-            'pt' => $loop->first && ! $parent ? 'pt-3' : 'pt-2',
+            'pt' => $loop->first && ! isset($parent) ? 'pt-3' : 'pt-2',
             'pb' => ''
         ])
     @endforeach

@@ -11,7 +11,11 @@ trait NarrowsListings
      */
     public function scopeNarrow($query, $keyword)
     {
-        $listings = Listing::search($keyword)->pluck('id');
+        $listings = Cache::remember('narrow_listings_by_' . $keyword, 1440,
+            function () use ($keyword) {
+                return Listing::search($keyword)->pluck('id');
+            }
+        );
 
         return $query->whereHas('listings',
             function ($listing) use ($listings) {
