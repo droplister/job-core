@@ -77,7 +77,7 @@
 
                                 <label class="form-check-label" for="terms">
                                     {{ __('I agree to the') }}
-                                    <a href="{{ route('pages.terms') }}">{{ __('Terms of Service') }}</a>.
+                                    <a href="{{ route('pages.terms') }}" target="_blank">{{ __('Terms of Service') }}</a>.
                                 </label>
                             </div>
                         </div>
