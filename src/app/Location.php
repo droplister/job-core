@@ -191,6 +191,45 @@ class Location extends Model
     }
 
     /**
+     * Not Military Base
+     */
+    public function scopeNotMilitaryBase($query)
+    {
+        return $query->where('name', 'not like', 'Military %')
+            ->where('name', 'not like', 'Fort %')
+            ->where('name', 'not like', 'Camp %')
+            ->where('name', 'not like', 'Air %')
+            ->where('name', 'not like', 'Army %')
+            ->where('name', 'not like', 'Naval %')
+            ->where('name', 'not like', 'Pentagon, %')
+            ->where('name', 'not like', 'Navy %')
+            ->where('name', 'not like', 'Army %')
+            ->where('name', 'not like', 'Joint %')
+            ->where('name', 'not like', 'Marine Corps Air Station %')
+            ->where('name', 'not like', '% Military %')
+            ->where('name', 'not like', '% Army %')
+            ->where('name', 'not like', '% Navy %')
+            ->where('name', 'not like', '% Naval %')
+            ->where('name', 'not like', '% Defense Logistics Center %')
+            ->where('name', 'not like', '% AFB')
+            ->where('name', 'not like', '% AFS')
+            ->where('name', 'not like', '% ANG')
+            ->where('name', 'not like', '% Air Reserve Base')
+            ->where('name', 'not like', '% Airfield')
+            ->where('name', 'not like', '% Arsenal')
+            ->where('name', 'not like', '% Barracks')
+            ->where('name', 'not like', '% Base')
+            ->where('name', 'not like', '% Center')
+            ->where('name', 'not like', '% Defense Logistics Center')
+            ->where('name', 'not like', '% Field')
+            ->where('name', 'not like', '% Missile Range')
+            ->where('name', 'not like', '% Ordnance Depot')
+            ->where('name', 'not like', '% Proving Ground')
+            ->where('name', 'not like', '% Submarine Base')
+            ->where('name', 'not like', 'Twentynine Palms');
+    }
+
+    /**
      * 
      */
     public function scopeMilitaryBaseEdgeCase($query)
