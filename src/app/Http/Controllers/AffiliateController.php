@@ -14,6 +14,6 @@ class AffiliateController extends Controller
      */
     public function index()
     {
-           return redirect(config('job-core.affiliate_url'));
+        return redirect(config('job-core.affiliate_url'));
     }
 }

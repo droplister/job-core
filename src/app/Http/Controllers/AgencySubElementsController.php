@@ -15,15 +15,20 @@ class AgencySubElementsController extends Controller
     public function index()
     {
         // Get Agencies
-        $agencies = \Cache::remember('agencies_index', 1440, function () {
-            return \Droplister\JobCore\App\AgencySubElements::index()->get();
-        });
-
-        // Chunk Size
-        $chunk_size = ceil(count($agencies) / 3);
+        $agencies = \Cache::remember('agencies_index', 1440,
+            function () {
+                return \Droplister\JobCore\App\AgencySubElements::index()->get();
+            }
+        );
 
         // Get Chunks
-        $chunks = $agencies->chunk($chunk_size);
+        $chunks = \Cache::remember('agencies_index_chunks', 1440,
+            function () use ($agencies) {
+                $chunk_size = ceil(count($agencies) / 3);
+
+                return $agencies->chunk($chunk_size);
+            }
+        );
 
         return view('job-core::agencies.index', compact('agencies', 'chunks'));
     }
@@ -36,29 +41,49 @@ class AgencySubElementsController extends Controller
     public function show(\Illuminate\Http\Request $request, $agency)
     {
         // Get Agency
-        $agency = \Droplister\JobCore\App\AgencySubElements::findBySlugOrFail($agency);
+        $agency = \Cache::remember('agencies_show_' . $agency->id, 1440,
+            function () use ($agency) {
+                return \Droplister\JobCore\App\AgencySubElements::findBySlugOrFail($agency);
+            }
+        );
 
         // Get Listings
-        $listings = $agency->listings()->paginate(config('job-core.per_page'));
-
-        // Get Parent
-        $parent = $agency->parent;
-
-        // Get Children
-        if($agency->parent_code && ! $agency->children()->exists())
-        {
-            // Parent Children
-            $children = $parent->related()->get();
-        }
-        else
-        {
-            // Agency Children
-            $children = $agency->related()->get();
-        }
+        $listings = \Cache::remember('agencies_show_' . $agency->id . '_listings_' . $request->input('page', 1), 1440,
+            function () use ($agency) {
+                return $agency->listings()->paginate(config('job-core.per_page'));
+            }
+        );
 
         // Sponsored Jobs
-        $sponsored = $agency->sponsoredListings();
+        $sponsored = \Cache::remember('agencies_show_' . $agency->id . '_sponsored', 1440,
+            function () use ($agency) {
+                return $agency->sponsoredListings();
+            }
+        );
 
-        return view('job-core::agencies.show', compact('agency', 'listings', 'parent', 'children', 'sponsored'));
+        // Get Parent
+        $parent = \Cache::remember('agencies_show_' . $agency->id . '_parent', 1440,
+            function () use ($agency) {
+                return $agency->parent;
+            }
+        );
+
+        // Get Children
+        $children = \Cache::remember('agencies_show_' . $agency->id . '_children', 1440,
+            function () use ($agency, $parent) {
+                if($parent && ! $agency->children()->exists())
+                {
+                    // Parent Children
+                    return $parent->related()->get();
+                }
+                else
+                {
+                    // Agency Children
+                    return $agency->related()->get();
+                }
+            }
+        );
+
+        return view('job-core::agencies.show', compact('agency', 'listings', 'sponsored', 'parent', 'children'));
     }
 }
