@@ -75,7 +75,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="terms" id="terms" {{ old('terms') ? 'checked' : '' }}>
 
-                                <label class="form-check-label" for="remember">
+                                <label class="form-check-label" for="terms">
                                     {{ __('I agree to the') }}
                                     <a href="{{ route('pages.terms') }}">{{ __('Terms of Service') }}</a>.
                                 </label>
