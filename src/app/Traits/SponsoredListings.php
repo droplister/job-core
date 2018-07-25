@@ -17,6 +17,8 @@ trait SponsoredListings
      */
     public function sponsoredListings()
     {
+        if(! config('job-core.montized')) return null;
+
         // Sponsored Listings
         try
         {
