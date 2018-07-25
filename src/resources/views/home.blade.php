@@ -17,6 +17,12 @@
                     Browse
                 </a>
             </p>
+            @guest
+                <p class="lead text-muted small font-italic">
+                    <a href="{{ route('login') }}">Login</a> or
+                    <a href="{{ route('register') }}">Register</a>
+                </p>
+            @endguest
         </div>
     </section>
     <div class="my-3 p-3 bg-white rounded box-shadow">
