@@ -121,12 +121,12 @@ class UsaJobsFetchDaily extends Command
         // Create Listing
         $listing = $this->firstOrCreateListing($data);
 
-        // If New Listing
+        // Always Sync Agency
+        $this->syncAgency($listing, $agency);
+
+        // Handle New Listing
         if($listing->wasRecentlyCreated)
         {
-            // Sync Agency
-            $this->syncAgency($listing, $agency);
-
             // Sync Locations
             $this->syncLocations($listing, $result);
 
