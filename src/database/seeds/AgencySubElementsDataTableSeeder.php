@@ -2,7 +2,9 @@
 
 namespace Droplister\JobCore\Database\Seeds;
 
+use Curl\Curl;
 use Droplister\JobCore\App\Traits\LinksUrls;
+use Droplister\JobCore\App\AgencySubElements;
 
 use Illuminate\Database\Seeder;
 
@@ -24,7 +26,7 @@ class AgencySubElementsDataTableSeeder extends Seeder
      */
     public function __construct()
     {
-        $this->curl = new \Curl\Curl();
+        $this->curl = new Curl();
     }
 
     /**
@@ -42,7 +44,7 @@ class AgencySubElementsDataTableSeeder extends Seeder
 
             if($this->guardAgainstNonAgencies($data)) continue;
 
-            $agency = \Droplister\JobCore\App\AgencySubElements::whereValue($data['value'])->first();
+            $agency = AgencySubElements::whereValue($data['value'])->first();
 
             $agency->update($data);
         }
@@ -82,6 +84,6 @@ class AgencySubElementsDataTableSeeder extends Seeder
      */
     private function guardAgainstNonAgencies($data)
     {
-        return \Droplister\JobCore\App\AgencySubElements::whereValue($data['value'])->doesntExist();
+        return AgencySubElements::whereValue($data['value'])->doesntExist();
     }
 }

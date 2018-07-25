@@ -2,8 +2,10 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
+use Cache;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Droplister\JobCore\App\HiringPaths;
 
 class HiringPathsController extends Controller
 {
@@ -12,15 +14,16 @@ class HiringPathsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // Get Hiring Paths
-        $paths = \Droplister\JobCore\App\HiringPaths::index()->get();
+        $paths = Cache::remember('paths_index', 1440,
+            function () {
+                return HiringPaths::index()->get();
+            }
+        );
 
-        // Get Chunks
-        $chunks = null;
-
-        return view('job-core::paths.index', compact('paths', 'chunks'));
+        return view('job-core::paths.index', compact('paths'));
     }
 
     /**
@@ -28,23 +31,36 @@ class HiringPathsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(\Illuminate\Http\Request $request, $hiring)
+    public function show(Request $request, $path)
     {
         // Get Hiring Path
-        $path = \Droplister\JobCore\App\HiringPaths::findBySlugOrFail($hiring);
+        $path = Cache::remember('paths_show_' . $path, 1440,
+            function () use ($path) {
+                return HiringPaths::findBySlugOrFail($path);
+            }
+        );
 
         // Get Listings
-        $listings = $path->listings()->paginate(config('job-core.per_page'));
-
-        // Get Parent
-        $parent = null;
-
-        // Get Children
-        $children = \Droplister\JobCore\App\HiringPaths::related()->get();
+        $listings = Cache::remember('paths_show_' . $path->slug . '_listings_' . $request->input('page', 1), 1440,
+            function () use ($request, $path) {
+                return $path->listings()->paginate(config('job-core.per_page'));
+            }
+        );
 
         // Sponsored Jobs
-        $sponsored = $path->sponsoredListings();
+        $sponsored = Cache::remember('paths_show_' . $path->slug . '_sponsored', 1440,
+            function () use ($path) {
+                return $path->sponsoredListings();
+            }
+        );
 
-        return view('job-core::paths.show', compact('path', 'listings', 'parent', 'children', 'sponsored'));
+        // Get Children
+        $children = Cache::remember('paths_show_children', 1440,
+            function () {
+                return HiringPaths::related()->get();
+            }
+        );
+
+        return view('job-core::paths.show', compact('path', 'listings', 'sponsored', 'children'));
     }
 }

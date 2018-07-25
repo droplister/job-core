@@ -2,6 +2,13 @@
 
 namespace Droplister\JobCore\App\Console\Commands;
 
+use Curl\Curl;
+use Droplister\JobCore\App\Listing;
+use Droplister\JobCore\App\Location;
+use Droplister\JobCore\App\PayPlans;
+use Droplister\JobCore\App\HiringPaths;
+use Droplister\JobCore\App\AgencySubElements;
+use Droplister\JobCore\App\OccupationalSeries;
 use Droplister\JobCore\App\Traits\LinksUrls;
 
 use Illuminate\Console\Command;
@@ -40,7 +47,7 @@ class UsaJobsFetchDaily extends Command
     {
         parent::__construct();
 
-        $this->curl = new \Curl\Curl();
+        $this->curl = new Curl\Curl();
         $this->curl->setHeader('Host', config('job-core.usajobs_host'));
         $this->curl->setHeader('User-Agent', config('job-core.usajobs_email'));
         $this->curl->setHeader('Authorization-Key', config('job-core.usajobs_key'));
@@ -53,7 +60,7 @@ class UsaJobsFetchDaily extends Command
      */
     public function handle()
     {
-        \Droplister\JobCore\App\AgencySubElements::chunk(25, function ($agencies)
+        AgencySubElements::chunk(25, function ($agencies)
         {
             foreach ($agencies as $agency)
             {
@@ -182,7 +189,7 @@ class UsaJobsFetchDaily extends Command
      */
     private function firstOrCreateListing($data)
     {
-        return \Droplister\JobCore\App\Listing::firstOrCreate(
+        return Listing::firstOrCreate(
             array_only($data, ['control_number']),
             array_except($data, ['control_number'])
         );
@@ -197,7 +204,7 @@ class UsaJobsFetchDaily extends Command
     {
         if($location)
         {
-            return \Droplister\JobCore\App\Location::firstOrCreate([
+            return Location::firstOrCreate([
                 'parent_id' => $parent_id,
                 'type' => $type,
                 'name' => trim($name),
@@ -209,7 +216,7 @@ class UsaJobsFetchDaily extends Command
         }
         else
         {
-            return \Droplister\JobCore\App\Location::firstOrCreate([
+            return Location::firstOrCreate([
                 'parent_id' => $parent_id,
                 'type' => $type,
                 'name' => trim($name),
@@ -278,7 +285,7 @@ class UsaJobsFetchDaily extends Command
 
         foreach($result->MatchedObjectDescriptor->UserArea->Details->HiringPath as $hiring_path)
         {
-            $path = \Droplister\JobCore\App\HiringPaths::whereCode($hiring_path)->first();
+            $path = HiringPaths::whereCode($hiring_path)->first();
 
             $paths[] = $path->id;
         }
@@ -297,7 +304,7 @@ class UsaJobsFetchDaily extends Command
 
         foreach($result->MatchedObjectDescriptor->JobCategory as $job_category)
         {
-            $category = \Droplister\JobCore\App\OccupationalSeries::whereCode($job_category->Code)->first();
+            $category = OccupationalSeries::whereCode($job_category->Code)->first();
 
             $careers[] = $category->id;
         }
@@ -316,7 +323,7 @@ class UsaJobsFetchDaily extends Command
         {
             $code = trim($result->MatchedObjectDescriptor->JobGrade[0]->Code);
 
-            $payplan = \Droplister\JobCore\App\PayPlans::whereCode($code)->first();
+            $payplan = PayPlans::whereCode($code)->first();
 
             $listing->payplans()->sync([$payplan->id], false);
         }
@@ -388,7 +395,7 @@ class UsaJobsFetchDaily extends Command
      */
     private function guardAgainstTrashed($data)
     {
-        return \Droplister\JobCore\App\Listing::whereControlNumber($data['control_number'])
+        return Listing::whereControlNumber($data['control_number'])
             ->onlyTrashed()
             ->exists();
     }

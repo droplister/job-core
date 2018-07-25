@@ -2,6 +2,11 @@
 
 namespace Droplister\JobCore\App\Traits;
 
+use Droplister\JobCore\App\Location;
+use Droplister\JobCore\App\AgencySubElements;
+use JobApis\Jobs\Client\Queries\JujuQuery;
+use JobApis\Jobs\Client\Providers\JujuProvider;
+
 trait SponsoredListings
 {
     /**
@@ -12,38 +17,55 @@ trait SponsoredListings
      */
     public function sponsoredListings()
     {
-        $query = new \JobApis\Jobs\Client\Queries\JujuQuery([
-            'partnerid' => config('job-core.partner_id')
-        ]);
-
-        if($this instanceof \Droplister\JobCore\App\Location)
-        {
-            $query->set('k', config('job-core.keyword_root'))
-                  ->set('highlight', '0')
-                  ->set('l', $this->title);
-        }
-        elseif($this instanceof \Droplister\JobCore\App\AgencySubElements)
-        {
-            $query->set('k', $this->value)
-                  ->set('highlight', '0');
-        }
-        else
-        {
-            $keyword = $this->value . ' ' . config('job-core.keyword_root');
-
-            $query->set('k', $keyword)
-                  ->set('highlight', '0');
-        }
-
-        $client = new \JobApis\Jobs\Client\Providers\JujuProvider($query);
-
+        // Sponsored Listings
         try
         {
+            // Query
+            $query = $this->queryKeyword();
+
+            // Client
+            $client = new JujuProvider($query);
+
+            // Get Jobs
             return $client->getJobs()->orderBy('datePosted');
         }
         catch(\Exception $e)
         {
             return null;
         }
+    }
+
+    /**
+     * Build Query
+     */
+    private function queryKeyword()
+    {
+        $query = new JujuQuery([
+            'partnerid' => config('job-core.partner_id')
+        ]);
+
+        $query = $this->keywordFilter($query);
+
+        return $query->set('highlight', '0');
+    }
+
+    /**
+     * Set Filters
+     */
+    private function keywordFilter($query)
+    {
+        $keywords = [$this->value, config('job-core.keyword_root')];
+
+        if($this instanceof AgencySubElements)
+        {
+            return $query->set('k', $keywords[0]);
+        }
+        elseif($this instanceof Location)
+        {
+            return $query->set('k', $keywords[1])
+                ->set('l', $this->title);
+        }
+
+        return $query->set('k', implode(' ', $keywords));
     }
 }

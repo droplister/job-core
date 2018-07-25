@@ -2,6 +2,7 @@
 
 namespace Droplister\JobCore\App;
 
+use Droplister\JobCore\App\Traits\SponsoredListings;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TravelPercentage extends Model
 {
-    use Sluggable, SluggableScopeHelpers;
+    use Sluggable, SluggableScopeHelpers, SponsoredListings;
 
     /**
      * The attributes that are mass assignable.

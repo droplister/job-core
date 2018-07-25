@@ -2,6 +2,10 @@
 
 namespace Droplister\JobCore\App\Console\Commands;
 
+use Curl\Curl;
+use Droplister\JobCore\App\Listing;
+use Droplister\JobCore\App\SecurityClearances;
+
 use Illuminate\Console\Command;
 
 class UsaJobsFetchSecurity extends Command
@@ -36,7 +40,7 @@ class UsaJobsFetchSecurity extends Command
     {
         parent::__construct();
 
-        $this->curl = new \Curl\Curl();
+        $this->curl = new Curl();
         $this->curl->setHeader('Host', config('job-core.usajobs_host'));
         $this->curl->setHeader('User-Agent', config('job-core.usajobs_email'));
         $this->curl->setHeader('Authorization-Key', config('job-core.usajobs_key'));
@@ -49,7 +53,7 @@ class UsaJobsFetchSecurity extends Command
      */
     public function handle()
     {
-        $clearances = \Droplister\JobCore\App\SecurityClearances::get();
+        $clearances = SecurityClearances::get();
 
         foreach ($clearances as $clearance)
         {
@@ -106,7 +110,7 @@ class UsaJobsFetchSecurity extends Command
     private function processResult($clearance, $result)
     {
         // Find Listing
-        $listing = \Droplister\JobCore\App\Listing::whereControlNumber(trim($result->MatchedObjectId))->first();
+        $listing = Listing::whereControlNumber(trim($result->MatchedObjectId))->first();
 
         if(! $listing) return false;
 

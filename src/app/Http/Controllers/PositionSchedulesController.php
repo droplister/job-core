@@ -2,8 +2,10 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
+use Cache;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Droplister\JobCore\App\PositionSchedule;
 
 class PositionSchedulesController extends Controller
 {
@@ -12,15 +14,16 @@ class PositionSchedulesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // Get Schedules
-        $schedules = \Droplister\JobCore\App\PositionSchedule::index()->get();
+        $schedules = Cache::remember('schedules_index', 1440,
+            function () {
+                return PositionSchedule::index()->get();
+            }
+        );
 
-        // Get Chunks
-        $chunks = null;
-
-        return view('job-core::schedules.index', compact('schedules', 'chunks'));
+        return view('job-core::schedules.index', compact('schedules'));
     }
 
     /**
@@ -28,20 +31,36 @@ class PositionSchedulesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(\Illuminate\Http\Request $request, $schedule)
+    public function show(Request $request, $schedule)
     {
         // Get Schedule
-        $schedule = \Droplister\JobCore\App\PositionSchedule::findBySlugOrFail($schedule);
+        $schedule = Cache::remember('schedules_show_' . $schedule, 1440,
+            function () use ($schedule) {
+                return PositionSchedule::findBySlugOrFail($schedule);
+            }
+        );
 
         // Get Listings
-        $listings = $schedule->listings()->paginate(config('job-core.per_page'));
+        $listings = Cache::remember('schedules_show_' . $schedule->slug . '_listings_' . $request->input('page', 1), 1440,
+            function () use ($request, $schedule) {
+                return $schedule->listings()->paginate(config('job-core.per_page'));
+            }
+        );
 
-        // Get Parent
-        $parent = null;
+        // Sponsored Jobs
+        $sponsored = Cache::remember('schedules_show_' . $schedule->slug . '_sponsored', 1440,
+            function () use ($schedule) {
+                return $schedule->sponsoredListings();
+            }
+        );
 
         // Get Children
-        $children = \Droplister\JobCore\App\PositionSchedule::related()->get();
+        $children = Cache::remember('schedules_show_children', 1440,
+            function () {
+                return PositionSchedule::related()->get();
+            }
+        );
 
-        return view('job-core::schedules.show', compact('schedule', 'listings', 'parent', 'children'));
+        return view('job-core::schedules.show', compact('schedule', 'listings', 'sponsored', 'children'));
     }
 }

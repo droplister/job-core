@@ -2,6 +2,9 @@
 
 namespace Droplister\JobCore\Database\Seeds;
 
+use Curl\Curl;
+use Droplister\JobCore\App\PayPlans;
+
 use Illuminate\Database\Seeder;
 
 class PayPlansTableSeeder extends Seeder
@@ -20,7 +23,7 @@ class PayPlansTableSeeder extends Seeder
      */
     public function __construct()
     {
-        $this->curl = new \Curl\Curl();
+        $this->curl = new Curl();
         $this->curl->setHeader('Host', config('job-core.usajobs_host'));
         $this->curl->setHeader('User-Agent', config('job-core.usajobs_email'));
         $this->curl->setHeader('Authorization-Key', config('job-core.usajobs_key'));
@@ -39,7 +42,7 @@ class PayPlansTableSeeder extends Seeder
         {
             $data = $this->fetchDataArray($result);
 
-            \Droplister\JobCore\App\PayPlans::firstOrCreate($data);
+            PayPlans::firstOrCreate($data);
         }
     }
 

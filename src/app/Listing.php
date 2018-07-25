@@ -358,9 +358,11 @@ class Listing extends Model
         {
             case 'federal': 
                 return $query->listingFilter()
-                    ->whereHas('careers', function($career){
-                        $career->where('job_family', '=', '0800');
-                    });
+                    ->whereHas('careers',
+                        function ($career) {
+                            $career->where('job_family', '=', '0800');
+                        }
+                    );
             case 'internship': 
                 return $query->listingFilter()
                     ->where('minimum_range', '>', 0)
@@ -387,23 +389,29 @@ class Listing extends Model
         {
             case 'federal': 
                 return $query->listingFilter()
-                    ->whereHas('careers', function($career){
-                        $career->where('job_family', '=', '0600');
-                    });
+                    ->whereHas('careers',
+                        function ($career) {
+                            $career->where('job_family', '=', '0600');
+                        }
+                    );
             case 'internship': 
                 return $query->listingFilter()
                     ->where('minimum_range', '=', 0)
                     ->where('maximum_range', '=', 0);
             case 'military_base': 
                 return $query->listingFilter()
-                    ->whereHas('hiringPaths', function($path){
-                        $path->where('code', '=', 'VET');
-                    });
+                    ->whereHas('hiringPaths',
+                        function ($path) {
+                            $path->where('code', '=', 'VET');
+                        }
+                    );
             case 'security_clearance': 
                 return $query->listingFilter()
-                    ->whereHas('hiringPaths', function($path){
-                        $path->where('code', '=', 'VET');
-                    });
+                    ->whereHas('hiringPaths',
+                        function ($path) {
+                            $path->where('code', '=', 'VET');
+                        }
+                    );
             default:
                 return $query->listingFilter();
         }
@@ -423,9 +431,11 @@ class Listing extends Model
      */
     public function scopeNarrow($query, $relationship, $slug)
     {
-        return $query->whereHas($relationship, function($q) use ($slug) {
-            $q->where('slug', '=', $slug);
-        });
+        return $query->whereHas($relationship,
+            function ($q) use ($slug) {
+                $q->where('slug', '=', $slug);
+            }
+        );
     }
 
     /**
@@ -434,18 +444,22 @@ class Listing extends Model
     public function scopeRelated($query, $listing)
     {
         return $query->whereNotIn('id', [$listing->id])
-            ->whereHas('careers', function($career) use($listing) {
-                $career->whereIn('id', $listing->careers()->pluck('id')->all());
-            })
+            ->whereHas('careers',
+                function ($career) use ($listing) {
+                    $career->whereIn('id', $listing->careers()->pluck('id')->all());
+                }
+            )
             ->whereJobGradeCode($listing->job_grade_code)
             ->where('low_grade', '>=', $listing->low_grade)
             ->where('high_grade', '<=', $listing->high_grade)
             ->inRandomOrder()
             ->listingFilter()
             ->orWhereNotIn('id', [$listing->id])
-            ->whereHas('careers', function($career) use($listing) {
-                $career->whereIn('id', $listing->careers()->pluck('id')->all());
-            })
+            ->whereHas('careers',
+                function ($career) use ($listing) {
+                    $career->whereIn('id', $listing->careers()->pluck('id')->all());
+                }
+            )
             ->inRandomOrder()
             ->listingFilter()
             ->take(config('job-core.max_related'));
@@ -528,9 +542,11 @@ class Listing extends Model
      */
     public function scopeIsSeniorExecutive($query)
     {
-        return $query->whereHas('hiringPaths', function($path) {
-            return $path->where('slug', '=', 'senior-executives');
-        });
+        return $query->whereHas('hiringPaths',
+            function ($path) {
+                return $path->where('slug', '=', 'senior-executives');
+            }
+        );
     }
 
     /**
@@ -538,9 +554,11 @@ class Listing extends Model
      */
     public function scopeNotSeniorExecutive($query)
     {
-        return $query->whereDoesntHave('hiringPaths', function($path) {
-            return $path->where('slug', '=', 'senior-executives');
-        });
+        return $query->whereDoesntHave('hiringPaths',
+            function ($path) {
+                return $path->where('slug', '=', 'senior-executives');
+            }
+        );
     }
 
     /**

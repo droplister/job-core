@@ -2,6 +2,9 @@
 
 namespace Droplister\JobCore\Database\Seeds;
 
+use Curl\Curl;
+use Droplister\JobCore\App\SecurityClearances;
+
 use Illuminate\Database\Seeder;
 
 class SecurityClearancesTableSeeder extends Seeder
@@ -20,7 +23,7 @@ class SecurityClearancesTableSeeder extends Seeder
      */
     public function __construct()
     {
-        $this->curl = new \Curl\Curl();
+        $this->curl = new Curl();
         $this->curl->setHeader('Host', config('job-core.usajobs_host'));
         $this->curl->setHeader('User-Agent', config('job-core.usajobs_email'));
         $this->curl->setHeader('Authorization-Key', config('job-core.usajobs_key'));
@@ -48,7 +51,7 @@ class SecurityClearancesTableSeeder extends Seeder
 
         foreach($clearances as $code => $value)
         {
-            \Droplister\JobCore\App\SecurityClearances::firstOrCreate([
+            SecurityClearances::firstOrCreate([
                 'code' => $code,
                 'value' => $value,
             ]);

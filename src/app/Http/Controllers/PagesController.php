@@ -13,7 +13,7 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function about()
+    public function about(Request $request)
     {
         return view('job-core::pages.about');
     }
@@ -23,7 +23,7 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function advertise()
+    public function advertise(Request $request)
     {
         return view('job-core::pages.advertise');
     }
@@ -33,7 +33,7 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function disclaimer()
+    public function disclaimer(Request $request)
     {
         return view('job-core::pages.disclaimer');
     }
@@ -43,7 +43,7 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function newsletter()
+    public function newsletter(Request $request)
     {
         return view('job-core::pages.newsletter');
     }
@@ -53,7 +53,7 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function privacy()
+    public function privacy(Request $request)
     {
         return view('job-core::pages.privacy');
     }
@@ -63,7 +63,7 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function terms()
+    public function terms(Request $request)
     {
         return view('job-core::pages.terms');
     }

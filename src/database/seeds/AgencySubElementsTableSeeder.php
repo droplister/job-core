@@ -2,6 +2,9 @@
 
 namespace Droplister\JobCore\Database\Seeds;
 
+use Curl\Curl;
+use Droplister\JobCore\App\AgencySubElements;
+
 use Illuminate\Database\Seeder;
 
 class AgencySubElementsTableSeeder extends Seeder
@@ -20,7 +23,7 @@ class AgencySubElementsTableSeeder extends Seeder
      */
     public function __construct()
     {
-        $this->curl = new \Curl\Curl();
+        $this->curl = new Curl();
         $this->curl->setHeader('Host', config('job-core.usajobs_host'));
         $this->curl->setHeader('User-Agent', config('job-core.usajobs_email'));
         $this->curl->setHeader('Authorization-Key', config('job-core.usajobs_key'));
@@ -39,9 +42,7 @@ class AgencySubElementsTableSeeder extends Seeder
         {
             $data = $this->fetchDataArray($result);
 
-            // if($this->guardAgainstAgencyWide($data)) continue;
-
-            \Droplister\JobCore\App\AgencySubElements::firstOrCreate($data);
+            AgencySubElements::firstOrCreate($data);
         }
     }
 
@@ -71,14 +72,4 @@ class AgencySubElementsTableSeeder extends Seeder
 
         return compact('parent_code', 'code', 'value', 'disabled');
     }
-
-    // /**
-    //  * Guard Against Data
-    //  *
-    //  * @return boolean
-    //  */
-    // private function guardAgainstAgencyWide($data)
-    // {
-    //     return substr($data['value'], -11) === 'Agency Wide';
-    // }
 }

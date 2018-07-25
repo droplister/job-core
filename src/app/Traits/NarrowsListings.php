@@ -2,6 +2,8 @@
 
 namespace Droplister\JobCore\App\Traits;
 
+use Droplister\JobCore\App\Listing;
+
 trait NarrowsListings
 {
     /**
@@ -9,10 +11,12 @@ trait NarrowsListings
      */
     public function scopeNarrow($query, $keyword)
     {
-        $listings = \Droplister\JobCore\App\Listing::search($keyword)->pluck('id');
+        $listings = Listing::search($keyword)->pluck('id');
 
-        return $query->whereHas('listings', function($listing) use($listings) {
+        return $query->whereHas('listings',
+            function ($listing) use ($listings) {
                 $listing->whereIn('id', $listings);
-            })->take(config('job-core.max_relations'));
+            }
+        )->take(config('job-core.max_relations'));
     }
 }

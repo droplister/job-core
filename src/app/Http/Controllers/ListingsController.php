@@ -2,8 +2,11 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
+use Cache;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Droplister\JobCore\App\Listing;
+use Droplister\JobCore\App\SecurityClearances;
 
 class ListingsController extends Controller
 {
@@ -12,14 +15,21 @@ class ListingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // Get Listings
-        $listings = \Droplister\JobCore\App\Listing::index()->paginate(config('job-core.per_page'));
+        $listings = Cache::remember('listings_index', 1440,
+            function () use ($request) {
+                return Listing::index()->paginate(config('job-core.per_page'));
+            }
+        );
 
         // Get Children
-        $children = \Droplister\JobCore\App\SecurityClearances::related()->get();
-
+        $children = Cache::remember('listings_index_children', 1440,
+            function () {
+                return SecurityClearances::related()->get();
+            }
+        );
         return view('job-core::listings.index', compact('listings', 'children'));
     }
 
@@ -28,20 +38,28 @@ class ListingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(\Illuminate\Http\Request $request, $listing)
+    public function show(Request $request, $listing)
     {
         // Get Listing
-        $listing = \Droplister\JobCore\App\Listing::findBySlugOrFail($listing);
+        $listing = Cache::remember('listings_show_' . $listing, 1440,
+            function () use ($listing) {
+                return Listing::findBySlugOrFail($listing);
+            }
+        );
 
         // Filter Show
-        if(! \Droplister\JobCore\App\Listing::listingFilter()->get()->contains($listing))
+        if(! Listing::listingFilter()->get()->contains($listing))
         {
             return abort(404);
         }
 
         // Get Listings
-        $listings = \Droplister\JobCore\App\Listing::related($listing)->get();
-        
+        $listings = Cache::remember('listings_show_' . $listing->slug . '_listings', 1440,
+            function () use ($listing) {
+                return Listing::related($listing)->get();
+            }
+        );
+
         return view('job-core::listings.show', compact('listing', 'listings'));
     }
 }

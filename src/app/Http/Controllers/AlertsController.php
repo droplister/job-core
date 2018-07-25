@@ -2,6 +2,7 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -22,9 +23,9 @@ class AlertsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         $alerts = [];
 
@@ -36,7 +37,7 @@ class AlertsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request)
     {
     	return view('job-core::alerts.show');
     }
@@ -46,7 +47,7 @@ class AlertsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         return view('job-core::alerts.create');
     }

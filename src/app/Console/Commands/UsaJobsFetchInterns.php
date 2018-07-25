@@ -2,6 +2,10 @@
 
 namespace Droplister\JobCore\App\Console\Commands;
 
+use Droplister\JobCore\App\Listing;
+use Droplister\JobCore\App\HiringPaths;
+use Droplister\JobCore\App\OccupationalSeries;
+
 use Illuminate\Console\Command;
 
 class UsaJobsFetchInterns extends Command
@@ -38,7 +42,7 @@ class UsaJobsFetchInterns extends Command
     public function handle()
     {
         // Method 1
-        $listings = \Droplister\JobCore\App\Listing::where('who_may_apply', 'like', '%student%')
+        $listings = Listing::where('who_may_apply', 'like', '%student%')
             ->orWhere('position_offering_type', 'like', '%intern%')
             ->orWhere('position_title', 'like', '% internship %')
             ->orWhere('position_title', 'like', 'internship %')
@@ -51,7 +55,7 @@ class UsaJobsFetchInterns extends Command
         $this->flagInternships($listings);
 
         // Method 2
-        $careers = \Droplister\JobCore\App\OccupationalSeries::where('value', 'like', '% Student Trainee')->get();
+        $careers = OccupationalSeries::where('value', 'like', '% Student Trainee')->get();
 
         foreach ($careers as $career)
         {
@@ -59,7 +63,7 @@ class UsaJobsFetchInterns extends Command
         }
 
         // Method 3
-        $path = \Droplister\JobCore\App\HiringPaths::findBySlug('students');
+        $path = HiringPaths::findBySlug('students');
 
         $this->flagInternships($path->listings);
 

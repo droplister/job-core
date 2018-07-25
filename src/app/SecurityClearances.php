@@ -3,6 +3,7 @@
 namespace Droplister\JobCore\App;
 
 use Droplister\JobCore\App\Traits\NarrowsListings;
+use Droplister\JobCore\App\Traits\SponsoredListings;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SecurityClearances extends Model
 {
-    use NarrowsListings, Sluggable, SluggableScopeHelpers;
+    use NarrowsListings, Sluggable, SluggableScopeHelpers, SponsoredListings;
 
     /**
      * The attributes that are mass assignable.

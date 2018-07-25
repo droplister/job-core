@@ -2,8 +2,8 @@
 
 namespace Droplister\JobCore\App;
 
-use Droplister\JobCore\App\Traits\SponsoredListings;
 use Droplister\JobCore\App\Traits\NarrowsListings;
+use Droplister\JobCore\App\Traits\SponsoredListings;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
