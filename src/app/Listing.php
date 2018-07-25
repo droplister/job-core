@@ -315,7 +315,6 @@ class Listing extends Model
         {
             case 'federal': 
                 return $query->isActive()
-                    ->offMilitaryBase()
                     ->notInternship()
                     ->latest('publication_start_date');
             case 'internship': 
