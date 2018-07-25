@@ -41,9 +41,9 @@ class AgencySubElementsController extends Controller
     public function show(\Illuminate\Http\Request $request, $agency)
     {
         // Get Agency
-        $agency = \Cache::remember('agencies_show_' . $agency->id, 1440,
-            function () use ($agency) {
-                return \Droplister\JobCore\App\AgencySubElements::findBySlugOrFail($agency);
+        $agency = \Cache::remember('agencies_show_' . $agency, 1440,
+            function () use ($slug) {
+                return \Droplister\JobCore\App\AgencySubElements::findBySlugOrFail($slug);
             }
         );
 
