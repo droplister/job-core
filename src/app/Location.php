@@ -87,6 +87,11 @@ class Location extends Model
     {
         switch(config('job-core.filter'))
         {
+            case 'federal':
+                return $query->isState()
+                    ->has('listings', '>=', config('job-core.min_listings'))
+                    ->where('name', 'not like', '% County')
+                    ->orderBy('title', 'asc');
             case 'military_base': 
                 return $query->isState()
                     ->has('listings', '>=', config('job-core.min_listings'))
