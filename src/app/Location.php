@@ -112,7 +112,7 @@ class Location extends Model
         {
             case 'federal': 
                 return $query->notMilitaryBase()
-                    ->militaryBaseEdgeCase(true)
+                    ->militaryBaseEdgeCaseInverse()
                     ->has('listings', '>=', config('job-core.min_listings'))
                     ->where('name', 'not like', '% County')
                     ->orderBy('title', 'asc');
@@ -243,54 +243,55 @@ class Location extends Model
     /**
      * 
      */
-    public function scopeMilitaryBaseEdgeCase($query, $include=false)
+    public function scopeMilitaryBaseEdgeCase($query)
     {
-        if($include)
-        {
-            return $query->where('name', '=', 'Fort Defiance')
-                ->orWhere('name', '=', 'Fort Smith')
-                ->orWhere('name', '=', 'Fort Collins')
-                ->orWhere('name', '=', 'Fort Morgan')
-                ->orWhere('name', '=', 'Fort Lauderdale')
-                ->orWhere('name', '=', 'Fort Myers')
-                ->orWhere('name', '=', 'Fort Wayne')
-                ->orWhere('name', '=', 'Fort Dodge')
-                ->orWhere('name', '=', 'Fort Washington')
-                ->orWhere('name', '=', 'Fort Benton')
-                ->orWhere('name', '=', 'Fort Peck')
-                ->orWhere('name', '=', 'Fort Yates')
-                ->orWhere('name', '=', 'Fort Thompson')
-                ->orWhere('name', '=', 'Fort Stockton')
-                ->orWhere('name', '=', 'Fort Worth')
-                ->orWhere('name', '=', 'Fort Duchesne')
-                ->orWhere('name', '=', 'Fort Washakie')
-                ->orWhere('name', '=', 'Camp Douglas')
-                ->orWhere('name', '=', 'Camp Hill')
-                ->orWhere('name', '=', 'Clay Center');
-        }
-        else
-        {
-            return $query->where('name', '!=', 'Fort Defiance')
-                ->where('name', '!=', 'Fort Smith')
-                ->where('name', '!=', 'Fort Collins')
-                ->where('name', '!=', 'Fort Morgan')
-                ->where('name', '!=', 'Fort Lauderdale')
-                ->where('name', '!=', 'Fort Myers')
-                ->where('name', '!=', 'Fort Wayne')
-                ->where('name', '!=', 'Fort Dodge')
-                ->where('name', '!=', 'Fort Washington')
-                ->where('name', '!=', 'Fort Benton')
-                ->where('name', '!=', 'Fort Peck')
-                ->where('name', '!=', 'Fort Yates')
-                ->where('name', '!=', 'Fort Thompson')
-                ->where('name', '!=', 'Fort Stockton')
-                ->where('name', '!=', 'Fort Worth')
-                ->where('name', '!=', 'Fort Duchesne')
-                ->where('name', '!=', 'Fort Washakie')
-                ->where('name', '!=', 'Camp Douglas')
-                ->where('name', '!=', 'Camp Hill')
-                ->where('name', '!=', 'Clay Center');
-        }
+        return $query->where('name', '!=', 'Fort Defiance')
+            ->where('name', '!=', 'Fort Smith')
+            ->where('name', '!=', 'Fort Collins')
+            ->where('name', '!=', 'Fort Morgan')
+            ->where('name', '!=', 'Fort Lauderdale')
+            ->where('name', '!=', 'Fort Myers')
+            ->where('name', '!=', 'Fort Wayne')
+            ->where('name', '!=', 'Fort Dodge')
+            ->where('name', '!=', 'Fort Washington')
+            ->where('name', '!=', 'Fort Benton')
+            ->where('name', '!=', 'Fort Peck')
+            ->where('name', '!=', 'Fort Yates')
+            ->where('name', '!=', 'Fort Thompson')
+            ->where('name', '!=', 'Fort Stockton')
+            ->where('name', '!=', 'Fort Worth')
+            ->where('name', '!=', 'Fort Duchesne')
+            ->where('name', '!=', 'Fort Washakie')
+            ->where('name', '!=', 'Camp Douglas')
+            ->where('name', '!=', 'Camp Hill')
+            ->where('name', '!=', 'Clay Center');
+    }
+
+    /**
+     * 
+     */
+    public function scopeMilitaryBaseEdgeCaseInverse($query)
+    {
+        return $query->where('name', '=', 'Fort Defiance')
+            ->orWhere('name', '=', 'Fort Smith')
+            ->orWhere('name', '=', 'Fort Collins')
+            ->orWhere('name', '=', 'Fort Morgan')
+            ->orWhere('name', '=', 'Fort Lauderdale')
+            ->orWhere('name', '=', 'Fort Myers')
+            ->orWhere('name', '=', 'Fort Wayne')
+            ->orWhere('name', '=', 'Fort Dodge')
+            ->orWhere('name', '=', 'Fort Washington')
+            ->orWhere('name', '=', 'Fort Benton')
+            ->orWhere('name', '=', 'Fort Peck')
+            ->orWhere('name', '=', 'Fort Yates')
+            ->orWhere('name', '=', 'Fort Thompson')
+            ->orWhere('name', '=', 'Fort Stockton')
+            ->orWhere('name', '=', 'Fort Worth')
+            ->orWhere('name', '=', 'Fort Duchesne')
+            ->orWhere('name', '=', 'Fort Washakie')
+            ->orWhere('name', '=', 'Camp Douglas')
+            ->orWhere('name', '=', 'Camp Hill')
+            ->orWhere('name', '=', 'Clay Center');
     }
 
     /**
