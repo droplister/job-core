@@ -59,12 +59,43 @@
                         </a>
                     </li>
                     @guest
-                        <li class="nav-item">
-                            <a class="nav-link mr-3" href="{{ route('login') }}">
-                                <i class="fa fa-sign-in"></i>
-                                {{ __('Login') }}
-                            </a>
-                        </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{{ route('home.index') }}" id="dropdown-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Explore
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown-menu">
+                            @if(config('job-core.domain') !== 'FedHire.com')
+                                <a class="dropdown-item" href="https://fedhire.com/">
+                                    <i class="fa fa-university text-primary"></i>
+                                    FedHire.com
+                                </a>
+                            @endif
+                            @if(config('job-core.domain') !== 'GovAdmin.com')
+                                <a class="dropdown-item" href="https://govadmin.com/">
+                                    <i class="fa fa-briefcase text-danger"></i>
+                                    GovAdmin.com
+                                </a>
+                            @endif
+                            @if(config('job-core.domain') !== 'SecurityClearance.io')
+                                <a class="dropdown-item" href="https://securityclearance.io/">
+                                    <i class="fa fa-address-card text-warning"></i>
+                                    SecurityClearance.io
+                                </a>
+                            @endif
+                            @if(config('job-core.domain') !== 'MilitaryBaseJobs.com')
+                                <a class="dropdown-item" href="https://militarybasejobs.com/">
+                                    <i class="fa fa-globe text-info"></i>
+                                    MilitaryBaseJobs.com
+                                </a>
+                            @endif
+                            @if(config('job-core.domain') !== 'GovernmentInternships.org')
+                                <a class="dropdown-item" href="https://governmentinternships.org/">
+                                    <i class="fa fa-university text-success"></i>
+                                    GovernmentInternships.org
+                                </a>
+                            @endif
+                        </div>
+                    </li>
                     @else
                         <li class="nav-item">
                             <a class="nav-link mr-3" href="{{ route('logout') }}"
