@@ -172,7 +172,7 @@ class Listing extends Model
             function () {
                 if($this->position_location_display !== 'Multiple Locations')
                 {
-                    return $listing->position_location_display;
+                    return $this->position_location_display;
                 }
     
                 if($this->locations()->isCity()->count() === 1)
