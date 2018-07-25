@@ -28,13 +28,14 @@ class MostController extends Controller
         $children = Cache::remember('most_index_children', 1440,
             function () {
                 return OccupationalSeries::whereHas('listings',
-                function ($listing) {
-                    $listing->most();
-                })
-                ->withCount('listings')
-                ->orderBy('listings_count', 'desc')
-                ->has('listings', '>=', config('job-core.min_listings'))
-                ->get();
+                        function ($listing) {
+                            $listing->most();
+                        }
+                    )
+                    ->withCount('listings')
+                    ->orderBy('listings_count', 'desc')
+                    ->has('listings', '>=', config('job-core.min_listings'))
+                    ->get();
             }
         );
 

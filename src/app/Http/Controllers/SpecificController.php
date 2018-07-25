@@ -28,13 +28,14 @@ class SpecificController extends Controller
         $children = Cache::remember('specific_index_children', 1440,
             function () {
                 return OccupationalSeries::whereHas('listings',
-                function ($listing) {
-                    $listing->specific();
-                })
-                ->withCount('listings')
-                ->orderBy('listings_count', 'desc')
-                ->has('listings', '>=', config('job-core.min_listings'))
-                ->get();
+                        function ($listing) {
+                            $listing->specific();
+                        }
+                    )
+                    ->withCount('listings')
+                    ->orderBy('listings_count', 'desc')
+                    ->has('listings', '>=', config('job-core.min_listings'))
+                    ->get();
             }
         );
 

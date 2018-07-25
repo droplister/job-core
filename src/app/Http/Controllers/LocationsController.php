@@ -75,12 +75,12 @@ class LocationsController extends Controller
                 if($location->type === 'city')
                 {
                     // Parent Children
-                    $children = $parent->related()->get();
+                    return $parent->related()->get();
                 }
                 else
                 {
                     // Location Children
-                    $children = $location->related()->get();
+                    return $location->related()->get();
                 }
             }
         );
