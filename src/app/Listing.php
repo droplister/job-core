@@ -2,6 +2,8 @@
 
 namespace Droplister\JobCore\App;
 
+use Cache;
+use Carbon\Carbon;
 use Droplister\JobCore\App\Traits\ChunksParagraphs;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
@@ -546,7 +548,7 @@ class Listing extends Model
      */
     public function scopeIsFresh($query)
     {
-        return $query->where('publication_start_date', '>', \Carbon\Carbon::now()->subDays(7));
+        return $query->where('publication_start_date', '>', Carbon::now()->subDays(7));
     }
 
     /**
@@ -554,7 +556,7 @@ class Listing extends Model
      */
     public function scopeIsActive($query)
     {
-        return $query->where('application_close_date', '>', \Carbon\Carbon::now()->toDateString());
+        return $query->where('application_close_date', '>', Carbon::now()->toDateString());
     }
 
     /**
@@ -562,7 +564,7 @@ class Listing extends Model
      */
     public function scopeNotActive($query)
     {
-        return $query->where('application_close_date', '<', \Carbon\Carbon::now()->toDateString());
+        return $query->where('application_close_date', '<', Carbon::now()->toDateString());
     }
 
     /**
