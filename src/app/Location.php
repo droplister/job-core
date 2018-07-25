@@ -87,11 +87,6 @@ class Location extends Model
     {
         switch(config('job-core.filter'))
         {
-            case 'federal':
-                return $query->isState()
-                    ->has('listings', '>=', config('job-core.min_listings'))
-                    ->where('name', 'not like', '% County')
-                    ->orderBy('title', 'asc');
             case 'military_base': 
                 return $query->isState()
                     ->has('listings', '>=', config('job-core.min_listings'))
@@ -110,12 +105,6 @@ class Location extends Model
     {
         switch(config('job-core.filter'))
         {
-            case 'federal': 
-                return $query->notMilitaryBase()
-                    ->militaryBaseEdgeCaseInverse()
-                    ->has('listings', '>=', config('job-core.min_listings'))
-                    ->where('name', 'not like', '% County')
-                    ->orderBy('title', 'asc');
             case 'military_base': 
                 return $query->isMilitaryBase()
                     ->militaryBaseEdgeCase()
@@ -202,45 +191,6 @@ class Location extends Model
     }
 
     /**
-     * Not Military Base
-     */
-    public function scopeNotMilitaryBase($query)
-    {
-        return $query->where('name', 'not like', 'Military %')
-            ->where('name', 'not like', 'Fort %')
-            ->where('name', 'not like', 'Camp %')
-            ->where('name', 'not like', 'Air %')
-            ->where('name', 'not like', 'Army %')
-            ->where('name', 'not like', 'Naval %')
-            ->where('name', 'not like', 'Pentagon, %')
-            ->where('name', 'not like', 'Navy %')
-            ->where('name', 'not like', 'Army %')
-            ->where('name', 'not like', 'Joint %')
-            ->where('name', 'not like', 'Marine Corps Air Station %')
-            ->where('name', 'not like', '% Military %')
-            ->where('name', 'not like', '% Army %')
-            ->where('name', 'not like', '% Navy %')
-            ->where('name', 'not like', '% Naval %')
-            ->where('name', 'not like', '% Defense Logistics Center %')
-            ->where('name', 'not like', '% AFB')
-            ->where('name', 'not like', '% AFS')
-            ->where('name', 'not like', '% ANG')
-            ->where('name', 'not like', '% Air Reserve Base')
-            ->where('name', 'not like', '% Airfield')
-            ->where('name', 'not like', '% Arsenal')
-            ->where('name', 'not like', '% Barracks')
-            ->where('name', 'not like', '% Base')
-            ->where('name', 'not like', '% Center')
-            ->where('name', 'not like', '% Defense Logistics Center')
-            ->where('name', 'not like', '% Field')
-            ->where('name', 'not like', '% Missile Range')
-            ->where('name', 'not like', '% Ordnance Depot')
-            ->where('name', 'not like', '% Proving Ground')
-            ->where('name', 'not like', '% Submarine Base')
-            ->where('name', 'not like', 'Twentynine Palms');
-    }
-
-    /**
      * 
      */
     public function scopeMilitaryBaseEdgeCase($query)
@@ -265,33 +215,6 @@ class Location extends Model
             ->where('name', '!=', 'Camp Douglas')
             ->where('name', '!=', 'Camp Hill')
             ->where('name', '!=', 'Clay Center');
-    }
-
-    /**
-     * 
-     */
-    public function scopeMilitaryBaseEdgeCaseInverse($query)
-    {
-        return $query->where('name', '=', 'Fort Defiance')
-            ->orWhere('name', '=', 'Fort Smith')
-            ->orWhere('name', '=', 'Fort Collins')
-            ->orWhere('name', '=', 'Fort Morgan')
-            ->orWhere('name', '=', 'Fort Lauderdale')
-            ->orWhere('name', '=', 'Fort Myers')
-            ->orWhere('name', '=', 'Fort Wayne')
-            ->orWhere('name', '=', 'Fort Dodge')
-            ->orWhere('name', '=', 'Fort Washington')
-            ->orWhere('name', '=', 'Fort Benton')
-            ->orWhere('name', '=', 'Fort Peck')
-            ->orWhere('name', '=', 'Fort Yates')
-            ->orWhere('name', '=', 'Fort Thompson')
-            ->orWhere('name', '=', 'Fort Stockton')
-            ->orWhere('name', '=', 'Fort Worth')
-            ->orWhere('name', '=', 'Fort Duchesne')
-            ->orWhere('name', '=', 'Fort Washakie')
-            ->orWhere('name', '=', 'Camp Douglas')
-            ->orWhere('name', '=', 'Camp Hill')
-            ->orWhere('name', '=', 'Clay Center');
     }
 
     /**
