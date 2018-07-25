@@ -70,12 +70,59 @@ class Listing extends Model
      * @var array
      */
     protected $appends = [
-        'job_grade',
+        'agency',
+        'career',
         'description',
-        'title',
-        'subtitle',
+        'job_grade',
+        'location',
         'pay_range',
+        'subtitle',
+        'summary',
+        'title',
     ];
+
+    /**
+     * Agency
+     *
+     * @return string
+     */
+    public function getAgencyAttribute()
+    {
+        return Cache::rememberForever('listing_' . $this->slug . '_agency',
+            function () {
+                if($this->agencies()->isChild()->count() === 1)
+                {
+                    $agency = $this->agencies()->isChild()->first();
+                }
+                elseif($this->agencies()->isChild()->count() > 1)
+                {
+                    $agency = $this->agencies()->doesntHave('children')->first();
+                }
+                else
+                {
+                    $agency = $this->agencies()->first();
+                }
+
+                return $agency ? $agency->value : null;
+            }
+        );
+    }
+
+    /**
+     * Career
+     *
+     * @return string
+     */
+    public function getCareerAttribute()
+    {
+        return Cache::rememberForever('listing_' . $this->slug . '_career',
+            function () {
+                $career = $this->careers()->isChild()->first();
+
+                return $career ? $career->value : null;
+            }
+        );
+    }
 
     /**
      * Description
@@ -84,73 +131,11 @@ class Listing extends Model
      */
     public function getDescriptionAttribute()
     {
-        $display_preview = $this->qualification_summary ? str_limit(strip_tags($this->qualification_summary), 252) : str_limit(strip_tags($this->job_summary), 252);
-        
-        return $this->subtitle . '. ' . $display_preview;
-    }
-
-    /**
-     * Title
-     *
-     * @return string
-     */
-    public function getTitleAttribute()
-    {
-        $display_title = $this->position_title . ' (' . $this->position_id . ')';
-
-        $display_agency = \Cache::rememberForever('listings_' . $this->id . '_display_agency', function () {
-            $agency = $this->agencies()->isChild()->first();
-
-            return $agency ? $agency->value : 'Federal Government';
-        });
-
-        return "{$display_title} - {$display_agency}";
-    }
-
-    /**
-     * Subitle
-     *
-     * @return string
-     */
-    public function getSubtitleAttribute()
-    {
-        $display_career = \Cache::rememberForever('listings_' . $this->id . '_display_career', function () {
-            $career = $this->careers()->isChild()->first();
-
-            return $career ? $career->value . ' Job' : 'Job';
-        });
-
-        $display_agency = \Cache::rememberForever('listings_' . $this->id . '_display_agency', function () {
-            if($this->agencies()->isChild()->count() === 1)
-            {
-                $agency = $this->agencies()->isChild()->first();
+        return Cache::rememberForever('listing_' . $this->slug . '_description',
+            function () {               
+                return "{$this->subtitle}. {$this->summary}";
             }
-            elseif($this->agencies()->isChild()->count() > 1)
-            {
-                $agency = $this->agencies()->doesntHave('children')->first();
-            }
-            else
-            {
-                $agency = $this->agencies()->first();
-            }
-
-            return $agency ? $agency->value : 'Federal Government';
-        });
-
-        $display_location = \Cache::rememberForever('listings_' . $this->id . '_display_location', function () {
-            if($this->locations()->isCity()->count() === 1)
-            {
-                $location = $this->locations()->isCity()->first();
-            }
-            elseif($this->locations()->isState()->count() === 1)
-            {
-                $location = $this->locations()->isState()->first();
-            }
-
-            return isset($location) ? ' in ' . $location->title : '';
-        });
-
-        return "{$display_career} for the {$display_agency}{$display_location}";
+        );
     }
 
     /**
@@ -160,14 +145,46 @@ class Listing extends Model
      */
     public function getJobGradeAttribute()
     {
-        $grade = $this->low_grade === $this->high_grade ? $this->low_grade : "{$this->low_grade}/{$this->high_grade}";
+        return Cache::rememberForever('listing_' . $this->slug . '_job_grade',
+            function () {               
+                $grade = $this->low_grade === $this->high_grade ? $this->low_grade : "{$this->low_grade}/{$this->high_grade}";
 
-        if($this->careers()->exists())
-        {
-            return "{$this->job_grade_code}-{$this->careers()->first()->code}-{$grade}";
-        }
+                if($this->careers()->exists())
+                {
+                    return "{$this->job_grade_code}-{$this->careers()->first()->code}-{$grade}";
+                }
 
-        return "{$this->job_grade_code}-{$grade}";
+                return "{$this->job_grade_code}-{$grade}";
+            }
+        );
+    }
+
+    /**
+     * Location
+     *
+     * @return string
+     */
+    public function getLocationAttribute()
+    {
+        return Cache::rememberForever('listing_' . $this->slug . '_location',
+            function () {
+                if($this->position_location_display !== 'Multiple Locations')
+                {
+                    return $listing->position_location_display;
+                }
+    
+                if($this->locations()->isCity()->count() === 1)
+                {
+                    $location = $this->locations()->isCity()->first();
+                }
+                elseif($this->locations()->isState()->count() === 1)
+                {
+                    $location = $this->locations()->isState()->first();
+                }
+
+                return isset($location) ? $location->title : null;
+            }
+        );
     }
 
     /**
@@ -177,11 +194,70 @@ class Listing extends Model
      */
     public function getPayRangeAttribute()
     {
-        $minimum = number_format($this->minimum_range);
-        $maximum = number_format($this->maximum_range);
-        $rate = $this->rate_interval_code;
+        return Cache::rememberForever('listing_' . $this->slug . '_pay_range',
+            function () {               
+                if($this->minimum_range + $this->maximum_range > 0)
+                {
+                    $minimum = str_replace('.00', '', number_format($this->minimum_range, 2));
+                    $maximum = str_replace('.00', '', number_format($this->maximum_range, 2));
 
-        return '$' . $minimum . '-$' . $maximum . ' ' . $rate;
+                    return '$' . $minimum . '-$' . $maximum . ' ' . $this->rate_interval_code;
+                }
+                else
+                {
+                    return 'Without Compensation';
+                }
+            }
+        );
+    }
+
+    /**
+     * Subitle
+     *
+     * @return string
+     */
+    public function getSubtitleAttribute()
+    {
+        return Cache::rememberForever('listing_' . $this->slug . '_subtitle',
+            function () {               
+                $career = $this->career ? $this->career . ' Job' : 'Job';
+                $agency = $this->agency ? $this->agency : 'Federal Government';
+
+                return $this->location ? "{$career} for the {$agency} in {$this->location}" : "{$career} for the {$agency}";
+            }
+        );
+    }
+
+    /**
+     * Summary
+     *
+     * @return string
+     */
+    public function getSummaryAttribute()
+    {
+        return Cache::rememberForever('listing_' . $this->slug . '_summary',
+            function () {               
+                $summary = $this->qualification_summary ? $this->qualification_summary : $this->job_summary;
+
+                return str_limit(strip_tags($summary));
+            }
+        );
+    }
+
+    /**
+     * Title
+     *
+     * @return string
+     */
+    public function getTitleAttribute()
+    {
+        return Cache::rememberForever('listing_' . $this->slug . '_title',
+            function () {               
+                $title = "{$this->position_title} ({$this->position_id})";
+
+                return $this->agency ? "{$title} - {$this->agency}" : $title;
+            }
+        );
     }
 
     /**
