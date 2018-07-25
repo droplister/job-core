@@ -48,28 +48,28 @@ class AgencySubElementsController extends Controller
         );
 
         // Get Listings
-        $listings = \Cache::remember('agencies_show_' . $agency->id . '_listings_' . $request->input('page', 1), 1440,
+        $listings = \Cache::remember('agencies_show_' . $agency->slug . '_listings_' . $request->input('page', 1), 1440,
             function () use ($agency) {
                 return $agency->listings()->paginate(config('job-core.per_page'));
             }
         );
 
         // Sponsored Jobs
-        $sponsored = \Cache::remember('agencies_show_' . $agency->id . '_sponsored', 1440,
+        $sponsored = \Cache::remember('agencies_show_' . $agency->slug . '_sponsored', 1440,
             function () use ($agency) {
                 return $agency->sponsoredListings();
             }
         );
 
         // Get Parent
-        $parent = \Cache::remember('agencies_show_' . $agency->id . '_parent', 1440,
+        $parent = \Cache::remember('agencies_show_' . $agency->slug . '_parent', 1440,
             function () use ($agency) {
                 return $agency->parent;
             }
         );
 
         // Get Children
-        $children = \Cache::remember('agencies_show_' . $agency->id . '_children', 1440,
+        $children = \Cache::remember('agencies_show_' . $agency->slug . '_children', 1440,
             function () use ($agency, $parent) {
                 if($parent && ! $agency->children()->exists())
                 {
