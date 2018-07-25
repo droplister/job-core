@@ -11,6 +11,7 @@ class PagesController extends Controller
     /**
      * About Page
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function about(Request $request)
@@ -21,6 +22,7 @@ class PagesController extends Controller
     /**
      * Advertise Page
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function advertise(Request $request)
@@ -31,6 +33,7 @@ class PagesController extends Controller
     /**
      * Disclaimer Page
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function disclaimer(Request $request)
@@ -41,6 +44,7 @@ class PagesController extends Controller
     /**
      * Newsletter Page
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function newsletter(Request $request)
@@ -51,6 +55,7 @@ class PagesController extends Controller
     /**
      * Privacy Page
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function privacy(Request $request)
@@ -61,6 +66,7 @@ class PagesController extends Controller
     /**
      * Terms Page
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function terms(Request $request)

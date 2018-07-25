@@ -12,6 +12,7 @@ class LocationsController extends Controller
     /**
      * Locations Index
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -38,6 +39,8 @@ class LocationsController extends Controller
     /**
      * Show Location
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $location
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $location)

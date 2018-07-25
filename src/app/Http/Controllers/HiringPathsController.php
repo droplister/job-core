@@ -12,6 +12,7 @@ class HiringPathsController extends Controller
     /**
      * Hiring Path Index
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -29,6 +30,8 @@ class HiringPathsController extends Controller
     /**
      * Show Hiring Path
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $path
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $path)

@@ -12,6 +12,7 @@ class PayPlansController extends Controller
     /**
      * Pay Plan Index
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -29,6 +30,8 @@ class PayPlansController extends Controller
     /**
      * Show Pay Plan
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $plan
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $plan)

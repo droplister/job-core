@@ -13,6 +13,7 @@ class SpecificController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -33,8 +34,8 @@ class SpecificController extends Controller
                         }
                     )
                     ->withCount('listings')
-                    ->orderBy('listings_count', 'desc')
                     ->has('listings', '>=', config('job-core.min_listings'))
+                    ->orderBy('listings_count', 'desc')
                     ->get();
             }
         );

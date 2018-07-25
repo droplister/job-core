@@ -10,6 +10,7 @@ class ContactController extends Controller
     /**
      * Contact Create
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
@@ -20,6 +21,7 @@ class ContactController extends Controller
     /**
      * Handle Contact
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)

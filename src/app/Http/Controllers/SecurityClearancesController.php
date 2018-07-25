@@ -12,6 +12,7 @@ class SecurityClearancesController extends Controller
     /**
      * Security Clearance Index
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -29,6 +30,8 @@ class SecurityClearancesController extends Controller
     /**
      * Show Security Clearance
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $level
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $level)

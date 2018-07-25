@@ -12,6 +12,7 @@ class AgencySubElementsController extends Controller
     /**
      * Ageny Sub Elements Index
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -37,7 +38,8 @@ class AgencySubElementsController extends Controller
 
     /**
      * Show Ageny Sub Elements
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $agency
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $agency)

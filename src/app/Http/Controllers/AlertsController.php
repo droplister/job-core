@@ -21,6 +21,7 @@ class AlertsController extends Controller
     /**
      * Alerts Index
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -35,6 +36,7 @@ class AlertsController extends Controller
     /**
      * Alerts Show
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request)
@@ -45,6 +47,7 @@ class AlertsController extends Controller
     /**
      * Alerts Create
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)

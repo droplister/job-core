@@ -12,6 +12,7 @@ class PositionSchedulesController extends Controller
      /**
      * Schedules Index
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -29,6 +30,8 @@ class PositionSchedulesController extends Controller
     /**
      * Show Schedule
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $schedule
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $schedule)

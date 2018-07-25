@@ -13,6 +13,7 @@ class ListingsController extends Controller
     /**
      * Listings Index
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -35,7 +36,9 @@ class ListingsController extends Controller
 
     /**
      * Show Listing
-     *
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $listing
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $listing)
@@ -48,7 +51,7 @@ class ListingsController extends Controller
         );
 
         // Filter Show
-        if(! Listing::listingFilter()->get()->contains($listing))
+        if($this->guardAgainstDisabledListings($listing))
         {
             return abort(404);
         }
@@ -61,5 +64,20 @@ class ListingsController extends Controller
         );
 
         return view('job-core::listings.show', compact('listing', 'listings'));
+    }
+
+    /**
+     * Check Filter Applies
+     * 
+     * @param  \Droplister\JobCore\App\Listing  $listing
+     * @return boolean
+     */
+    private function guardAgainstDisabledListings(Listing $listing)
+    {
+        return Cache::remember('listing_is_enabled_' . $listing->slug, 1440,
+            function () use ($listing) {
+                return ! Listing::listingFilter()->get()->contains($listing);
+            }
+        );
     }
 }

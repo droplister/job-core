@@ -12,6 +12,7 @@ class TravelPercentagesController extends Controller
     /**
      * Travel % Index
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -29,6 +30,8 @@ class TravelPercentagesController extends Controller
     /**
      * Show Travel %
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $travel
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $travel)

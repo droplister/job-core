@@ -12,6 +12,7 @@ class OccupationalSeriesController extends Controller
     /**
      * Occupational Series Index
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -38,6 +39,8 @@ class OccupationalSeriesController extends Controller
     /**
      * Show Occupational Series
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $career
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $career)
