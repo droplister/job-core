@@ -105,7 +105,7 @@
             <div class="row text-center my-3">
                 <div class="col">
                     <p class="text-muted pt-3 pb-0 mb-0 small lh-135">
-                        <a href="{{ route('pages.about') }}" class="mr-2">About</a>
+                        <a href="{{ route('pages.advertise') }}" class="mr-2">Advertise</a>
                         <a href="{{ route('pages.disclaimer') }}" class="mr-2">Disclaimer</a>
                         <a href="{{ route('pages.privacy') }}" class="mr-2">Privacy</a>
                         <a href="{{ route('pages.terms') }}">Terms</a>

@@ -1,5 +1,6 @@
-<a class="nav-link ml-auto mr-0 d-none d-md-inline-block" href="{{ route('pages.advertise') }}">
-    Advertise
+<a class="nav-link ml-auto mr-0 d-none d-md-inline-block" href="{{ route('pages.about') }}">
+    <i class="fa fa-question-circle"></i>
+    About
 </a>
 <a class="nav-link d-none d-md-inline-block" href="{{ route('affiliate.index') }}" target="_blank">
     <i class="fa fa-book"></i>
