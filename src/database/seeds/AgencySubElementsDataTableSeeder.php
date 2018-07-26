@@ -3,8 +3,8 @@
 namespace Droplister\JobCore\Database\Seeds;
 
 use Curl\Curl;
-use Droplister\JobCore\App\Traits\LinksUrls;
 use Droplister\JobCore\App\AgencySubElements;
+use Droplister\JobCore\App\Traits\LinksUrls;
 
 use Illuminate\Database\Seeder;
 

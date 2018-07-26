@@ -12,8 +12,11 @@ trait LinksRelations
      */
     public function linkRelations($listing)
     {
-        $locations = Location::get();
-        $agencies = AgencySubElements::get();
+        $locations = Location::where('type', '!=', 'country')
+            ->has('listings', '>=', config('job-core.min_listings'))
+            ->get();
+
+        $agencies = AgencySubElements::has('listings', '>=', config('job-core.min_listings'))->get();
 
         foreach($locations as $location)
         {
