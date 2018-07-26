@@ -13,7 +13,7 @@
                 {{ ucfirst(strtolower(str_singular(config('job-core.keyword_root')))) }} insights.
             </p>
             <p class="lead text-muted mb-1">
-                <a href="{{ route('alerts.index') }}" class="btn {{ config('job-core.button_class') }}">
+                <a href="{{ route('alerts.index') }}" class="btn btn-lg {{ config('job-core.button_class') }}">
                     Coming Soon
                 </a>
             </p>
