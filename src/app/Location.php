@@ -73,11 +73,22 @@ class Location extends Model
      */
     public function scopeHome($query)
     {
-        return $query->isCity()
-            ->has('listings', '>=', config('job-core.min_listings'))
-            ->withCount('listings')
-            ->orderBy('listings_count', 'desc')
-            ->take(config('job-core.max_relations'));
+        switch(config('job-core.filter'))
+        {
+            case 'federal': 
+                return $query->isCity()
+                    ->notMilitaryBase()
+                    ->has('listings', '>=', config('job-core.min_listings'))
+                    ->withCount('listings')
+                    ->orderBy('listings_count', 'desc')
+                    ->take(config('job-core.max_relations'));
+            default:
+                return $query->isCity()
+                    ->has('listings', '>=', config('job-core.min_listings'))
+                    ->withCount('listings')
+                    ->orderBy('listings_count', 'desc')
+                    ->take(config('job-core.max_relations'));
+        }
     }
 
     /**
@@ -105,6 +116,12 @@ class Location extends Model
     {
         switch(config('job-core.filter'))
         {
+            case 'federal': 
+                return $query->notMilitaryBase()
+                    ->militaryBaseEdgeCaseReverse()
+                    ->has('listings', '>=', config('job-core.min_listings'))
+                    ->where('name', 'not like', '% County')
+                    ->orderBy('title', 'asc');
             case 'military_base': 
                 return $query->isMilitaryBase()
                     ->militaryBaseEdgeCase()
@@ -254,6 +271,33 @@ class Location extends Model
             ->where('name', '!=', 'Camp Douglas')
             ->where('name', '!=', 'Camp Hill')
             ->where('name', '!=', 'Clay Center');
+    }
+
+    /**
+     * 
+     */
+    public function scopeMilitaryBaseEdgeCaseReverse($query)
+    {
+        return $query->where('name', '=', 'Fort Defiance')
+            ->orWhere('name', '=', 'Fort Smith')
+            ->orWhere('name', '=', 'Fort Collins')
+            ->orWhere('name', '=', 'Fort Morgan')
+            ->orWhere('name', '=', 'Fort Lauderdale')
+            ->orWhere('name', '=', 'Fort Myers')
+            ->orWhere('name', '=', 'Fort Wayne')
+            ->orWhere('name', '=', 'Fort Dodge')
+            ->orWhere('name', '=', 'Fort Washington')
+            ->orWhere('name', '=', 'Fort Benton')
+            ->orWhere('name', '=', 'Fort Peck')
+            ->orWhere('name', '=', 'Fort Yates')
+            ->orWhere('name', '=', 'Fort Thompson')
+            ->orWhere('name', '=', 'Fort Stockton')
+            ->orWhere('name', '=', 'Fort Worth')
+            ->orWhere('name', '=', 'Fort Duchesne')
+            ->orWhere('name', '=', 'Fort Washakie')
+            ->orWhere('name', '=', 'Camp Douglas')
+            ->orWhere('name', '=', 'Camp Hill')
+            ->orWhere('name', '=', 'Clay Center');
     }
 
     /**
