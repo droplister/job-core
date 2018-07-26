@@ -6,10 +6,10 @@
         {{ $listing->agency }} - {{ $listing->position_location_display }}
     </span>
     <span class="d-block text-success">
-        {{ $listing->job_grade }} - {{ $listing->pay_range }}
+        {{ $listing->pay_range }}
     </span>
     <span class="d-block mt-1">
-        {{ $listing->description }}
+        {{ $listing->job_grade }} - {{ $listing->description }}
     </span>
     <span class="d-block mt-1">
         Published {{ $listing->publication_start_date->diffForHumans() }}
