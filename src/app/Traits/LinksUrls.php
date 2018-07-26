@@ -12,6 +12,7 @@ trait LinksUrls
      */
     public function urlsToHtml($str, $attributes=array())
     {
+        $str = trim($str);
         $attrs = '';
         foreach ($attributes as $attribute => $value) {
             $attrs .= " {$attribute}=\"{$value}\"";

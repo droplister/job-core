@@ -70,7 +70,7 @@ class AgencySubElementsDataTableSeeder extends Seeder
     private function fetchDataArray($result)
     {
         $value = trim($result->name);
-        $description = $this->urlsToHtml(trim($result->description));
+        $description = $this->urlsToHtml($result->description);
         $url = property_exists($result, 'agency_url') ? trim($result->agency_url) : null;
         $logo_url = property_exists($result, 'logo') && $result->logo ? trim($result->logo->thumb_url) : null;
 

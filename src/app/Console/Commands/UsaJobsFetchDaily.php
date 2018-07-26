@@ -10,12 +10,13 @@ use Droplister\JobCore\App\HiringPaths;
 use Droplister\JobCore\App\AgencySubElements;
 use Droplister\JobCore\App\OccupationalSeries;
 use Droplister\JobCore\App\Traits\LinksUrls;
+use Droplister\JobCore\App\Traits\LinksRelations;
 
 use Illuminate\Console\Command;
 
 class UsaJobsFetchDaily extends Command
 {
-    use LinksUrls;
+    use LinksRelations, LinksUrls;
 
     /**
      * USAJobs.gov API
@@ -134,6 +135,9 @@ class UsaJobsFetchDaily extends Command
         // Handle New Listing
         if($listing->wasRecentlyCreated)
         {
+            // Link Relations
+            $this->linkRelations($listing);
+
             // Sync Locations
             $this->syncLocations($listing, $result);
 
@@ -171,9 +175,9 @@ class UsaJobsFetchDaily extends Command
         $job_grade_code = $result->MatchedObjectDescriptor->JobGrade[0]->Code;
         $low_grade = $result->MatchedObjectDescriptor->UserArea->Details->LowGrade;
         $high_grade = $result->MatchedObjectDescriptor->UserArea->Details->HighGrade;
-        $job_summary = $this->urlsToHtml(trim($result->MatchedObjectDescriptor->UserArea->Details->JobSummary));
-        $who_may_apply = $this->urlsToHtml(trim($result->MatchedObjectDescriptor->UserArea->Details->WhoMayApply->Name));
-        $qualification_summary = $this->urlsToHtml(trim($result->MatchedObjectDescriptor->QualificationSummary));
+        $job_summary = $this->urlsToHtml($result->MatchedObjectDescriptor->UserArea->Details->JobSummary);
+        $who_may_apply = $this->urlsToHtml($result->MatchedObjectDescriptor->UserArea->Details->WhoMayApply->Name);
+        $qualification_summary = $this->urlsToHtml($result->MatchedObjectDescriptor->QualificationSummary);
         $position_start_date = substr(trim($result->MatchedObjectDescriptor->PositionStartDate), 0, 10);
         $position_end_date = substr(trim($result->MatchedObjectDescriptor->PositionEndDate), 0, 10);
         $publication_start_date = substr(trim($result->MatchedObjectDescriptor->PublicationStartDate), 0, 10);
