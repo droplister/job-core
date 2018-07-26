@@ -98,6 +98,11 @@ class Location extends Model
     {
         switch(config('job-core.filter'))
         {
+            case 'federal': 
+                return $query->isState()
+                    ->has('listings', '>=', config('job-core.min_listings'))
+                    ->where('name', 'not like', '% County')
+                    ->orderBy('title', 'asc');
             case 'military_base': 
                 return $query->isState()
                     ->has('listings', '>=', config('job-core.min_listings'))
@@ -185,6 +190,7 @@ class Location extends Model
             ->orWhere('name', 'like', 'Joint %')
             ->orWhere('name', 'like', 'Marine Corps Air Station %')
             ->orWhere('name', 'like', '% Military %')
+            ->orWhere('name', 'like', '% Air Force %')
             ->orWhere('name', 'like', '% Army %')
             ->orWhere('name', 'like', '% Navy %')
             ->orWhere('name', 'like', '% Naval %')
@@ -224,6 +230,7 @@ class Location extends Model
             ->where('name', 'not like', 'Joint %')
             ->where('name', 'not like', 'Marine Corps Air Station %')
             ->where('name', 'not like', '% Military %')
+            ->where('name', 'not like', '% Air Force %')
             ->where('name', 'not like', '% Army %')
             ->where('name', 'not like', '% Navy %')
             ->where('name', 'not like', '% Naval %')
