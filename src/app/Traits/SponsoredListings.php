@@ -17,6 +17,8 @@ trait SponsoredListings
      */
     public function sponsoredListings()
     {
+        if(auth()->user()) return null;
+
         // Sponsored Listings
         try
         {

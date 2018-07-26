@@ -12,7 +12,7 @@
                 </h1>
                 <p class="lead text-muted">Get instantly notified of new jobs.</p>
                 <p class="lead text-muted mb-1">
-                    <a href="{{ route('alerts.create') }}" class="btn {{ config('job-core.button_class') }}">
+                    <a href="{{ route('alerts.create') }}" class="btn btn-lg {{ config('job-core.button_class') }}">
                         Create an Alert
                     </a>
                 </p>

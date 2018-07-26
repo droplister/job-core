@@ -62,7 +62,7 @@
                                 <input class="form-check-input" type="checkbox" name="newsletter" id="newsletter" checked>
 
                                 <label class="form-check-label" for="newsletter">
-                                    {{ __('Join our') }}
+                                    {{ __('Get our') }}
                                     <a href="{{ route('pages.newsletter') }}">{{ config('job-core.keyword_root') }}</a>
                                     newsletter.
                                 </label>
