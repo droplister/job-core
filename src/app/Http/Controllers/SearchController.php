@@ -2,11 +2,14 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Droplister\JobCore\App\Listing;
 use Droplister\JobCore\App\PositionSchedule;
 use Droplister\JobCore\App\SecurityClearances;
+use JobApis\Jobs\Client\Queries\JujuQuery;
+use JobApis\Jobs\Client\Providers\JujuProvider;
 
 class SearchController extends Controller
 {
@@ -53,6 +56,24 @@ class SearchController extends Controller
             // And Paginate
             $listings = $listings->paginate(config('job-core.per_page'));
 
+            // Sponsored Listings
+            try
+            {
+                $query = new JujuQuery([
+                    'partnerid' => config('job-core.partner_id')
+                ]);
+
+                $query->set('k', $keyword)->set('highlight', '0');
+
+                $client = new JujuProvider($query);
+
+                $sponsored = $client->getJobs()->orderBy('datePosted');
+            }
+            catch(Exception $e)
+            {
+                $sponsored = null;
+            }
+
             // Get Schedules
             $schedules = PositionSchedule::narrow($keyword)
                 ->withCount('listings')
@@ -67,10 +88,11 @@ class SearchController extends Controller
         {
             $subtitle = null;
             $listings = null;
+            $sponsored = null;
             $schedules = null;
             $locations = null;
         }
 
-        return view('job-core::search.index', compact('request', 'subtitle', 'listings', 'schedules', 'levels'));
+        return view('job-core::search.index', compact('request', 'subtitle', 'listings', 'sponsored' 'schedules', 'levels'));
     }
 }
