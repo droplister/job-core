@@ -76,7 +76,6 @@ class Listing extends Model
         'career',
         'description',
         'job_grade',
-        'location',
         'pay_range',
         'subtitle',
         'summary',
@@ -162,34 +161,6 @@ class Listing extends Model
     }
 
     /**
-     * Location
-     *
-     * @return string
-     */
-    public function getLocationAttribute()
-    {
-        return Cache::rememberForever('listing_' . $this->slug . '_location',
-            function () {
-                if($this->position_location_display !== 'Multiple Locations')
-                {
-                    return $this->position_location_display;
-                }
-    
-                if($this->locations()->isCity()->count() === 1)
-                {
-                    $location = $this->locations()->isCity()->first();
-                }
-                elseif($this->locations()->isState()->count() === 1)
-                {
-                    $location = $this->locations()->isState()->first();
-                }
-
-                return isset($location) ? $location->title : null;
-            }
-        );
-    }
-
-    /**
      * Pay Range
      *
      * @return string
@@ -225,7 +196,7 @@ class Listing extends Model
                 $career = $this->career ? $this->career . ' Job' : 'Job';
                 $agency = $this->agency ? $this->agency : 'Federal Government';
 
-                return $this->location ? "{$career} for the {$agency} in {$this->location}" : "{$career} for the {$agency}";
+                return "{$career} for the {$agency} in {$this->position_location_display}";
             }
         );
     }
