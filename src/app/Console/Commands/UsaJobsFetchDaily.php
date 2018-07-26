@@ -10,13 +10,12 @@ use Droplister\JobCore\App\HiringPaths;
 use Droplister\JobCore\App\AgencySubElements;
 use Droplister\JobCore\App\OccupationalSeries;
 use Droplister\JobCore\App\Traits\LinksUrls;
-use Droplister\JobCore\App\Traits\LinksRelations;
 
 use Illuminate\Console\Command;
 
 class UsaJobsFetchDaily extends Command
 {
-    use LinksRelations, LinksUrls;
+    use LinksUrls;
 
     /**
      * USAJobs.gov API
@@ -135,9 +134,6 @@ class UsaJobsFetchDaily extends Command
         // Handle New Listing
         if($listing->wasRecentlyCreated)
         {
-            // Link Relations
-            $this->linkRelations($listing);
-
             // Sync Locations
             $this->syncLocations($listing, $result);
 
