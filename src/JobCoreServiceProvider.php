@@ -17,7 +17,7 @@ class JobCoreServiceProvider extends ServiceProvider
          * Assets
          */
         $this->publishes([
-            __DIR__ . '/../resources/assets' => resource_path('assets/vendor/job-core'),
+            __DIR__ . '/resources/assets' => resource_path('assets/vendor/job-core'),
         ], 'job-core');
 
         /**
