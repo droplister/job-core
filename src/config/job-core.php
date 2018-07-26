@@ -146,7 +146,12 @@ return [
      * Listings Per Page
      */
     'per_page' => env('JOB_CORE_PER_PAGE', 30),
-    
+
+    /**
+     * Max Sponsored Listings
+     */
+    'max_sponsored' => env('JOB_CORE_MAX_SPONSORED', 1),
+
     /**
      * Max Model Relations
      */
