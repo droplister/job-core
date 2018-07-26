@@ -85,7 +85,7 @@
 
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn {{ config('job-core.button_class') }}">
+                            <button type="submit" class="btn btn-lg {{ config('job-core.button_class') }}">
                                 {{ __('Register') }}
                             </button>
                         </div>
