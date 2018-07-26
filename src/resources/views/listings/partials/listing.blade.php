@@ -6,7 +6,7 @@
         {{ $listing->agency }} - {{ $listing->position_location_display }}
     </span>
     <span class="d-block text-success">
-        {{ $listing->pay_range }}
+        {{ $listing->job_grade }} - {{ $listing->pay_range }}
     </span>
     <span class="d-block mt-1">
         {{ $listing->description }}

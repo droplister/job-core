@@ -192,7 +192,7 @@ class Listing extends Model
     public function getSubtitleAttribute()
     {
         return Cache::rememberForever('listing_' . $this->slug . '_subtitle',
-            function () {               
+            function () {
                 $career = $this->career ? $this->career . ' Job' : 'Job';
                 $agency = $this->agency ? $this->agency : 'Federal Government';
 
