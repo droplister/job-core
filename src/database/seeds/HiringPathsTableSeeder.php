@@ -3,7 +3,7 @@
 namespace Droplister\JobCore\Database\Seeds;
 
 use Curl\Curl;
-use Droplister\JobCore\App\HiringPath;
+use Droplister\JobCore\App\HiringPaths;
 
 use Illuminate\Database\Seeder;
 
