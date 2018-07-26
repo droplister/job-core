@@ -33,7 +33,10 @@ class LocationsController extends Controller
             }
         );
 
-        return view('job-core::locations.index', compact('locations', 'chunks'));
+        // Get Coordinates
+        $google_map = config('job-core.google_map');
+
+        return view('job-core::locations.index', compact('locations', 'chunks', 'google_map'));
     }
 
     /**

@@ -8,6 +8,14 @@
         'title' => 'Browse by State',
         'link' => route('locations.index')
     ])
+    <div class="my-3">
+        <google-map
+            v-bind:lat="{{ $google_map['lat'] }}"
+            v-bind:lng="{{ $google_map['lng'] }}"
+            v-bind:zoom="{{ $google_map['zoom'] }}"
+        >
+        </google-map>
+    </div>
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="row">
             @foreach($chunks as $chunk)

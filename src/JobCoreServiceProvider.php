@@ -14,6 +14,13 @@ class JobCoreServiceProvider extends ServiceProvider
     public function boot()
     {
         /**
+         * Assets
+         */
+        $this->publishes([
+            __DIR__ . '/../resources/assets' => resource_path('assets/droplister/job-core',
+        )], 'job-core');
+
+        /**
          * Commands
          */
         if ($this->app->runningInConsole())
@@ -44,6 +51,15 @@ class JobCoreServiceProvider extends ServiceProvider
          * Migrations
          */
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+
+        /**
+        * Routes
+        */
+        $this->app->router->group(['namespace' => 'Droplister\JobCore\App\Http\Controllers'],
+            function() {
+                require __DIR__.'/routes/api.php';
+            }
+        );
 
         /**
         * Routes
