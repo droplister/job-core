@@ -123,7 +123,6 @@ class Location extends Model
         {
             case 'federal': 
                 return $query->notMilitaryBase()
-                    ->militaryBaseEdgeCaseReverse()
                     ->has('listings', '>=', config('job-core.min_listings'))
                     ->where('name', 'not like', '% County')
                     ->orderBy('title', 'asc');
@@ -254,7 +253,7 @@ class Location extends Model
     }
 
     /**
-     * 
+     * Military Base Edge Case
      */
     public function scopeMilitaryBaseEdgeCase($query)
     {
@@ -278,33 +277,6 @@ class Location extends Model
             ->where('name', '!=', 'Camp Douglas')
             ->where('name', '!=', 'Camp Hill')
             ->where('name', '!=', 'Clay Center');
-    }
-
-    /**
-     * 
-     */
-    public function scopeMilitaryBaseEdgeCaseReverse($query)
-    {
-        return $query->where('name', '=', 'Fort Defiance')
-            ->orWhere('name', '=', 'Fort Smith')
-            ->orWhere('name', '=', 'Fort Collins')
-            ->orWhere('name', '=', 'Fort Morgan')
-            ->orWhere('name', '=', 'Fort Lauderdale')
-            ->orWhere('name', '=', 'Fort Myers')
-            ->orWhere('name', '=', 'Fort Wayne')
-            ->orWhere('name', '=', 'Fort Dodge')
-            ->orWhere('name', '=', 'Fort Washington')
-            ->orWhere('name', '=', 'Fort Benton')
-            ->orWhere('name', '=', 'Fort Peck')
-            ->orWhere('name', '=', 'Fort Yates')
-            ->orWhere('name', '=', 'Fort Thompson')
-            ->orWhere('name', '=', 'Fort Stockton')
-            ->orWhere('name', '=', 'Fort Worth')
-            ->orWhere('name', '=', 'Fort Duchesne')
-            ->orWhere('name', '=', 'Fort Washakie')
-            ->orWhere('name', '=', 'Camp Douglas')
-            ->orWhere('name', '=', 'Camp Hill')
-            ->orWhere('name', '=', 'Clay Center');
     }
 
     /**
