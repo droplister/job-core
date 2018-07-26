@@ -7,5 +7,8 @@
     @endguest
 </a>
 <a class="nav-link" href="{{ route('listings.index') }}">
-        Latest Jobs
+    Latest Jobs
+    <span class="badge badge-pill bg-light align-text-bottom">
+        {{ \Droplister\JobCore\App\Listing::listingFilter()->count() }}
+    </span>
 </a>
