@@ -21,9 +21,9 @@
                     </div>
 
                     <div class="form-group mb-0">
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-lg btn-success">
                             <i class="fa fa-search"></i>
-                            {{ __('Search Jobs') }}
+                            {{ __('Search') }}
                         </button>
                         @if($request->has('q'))
                         <a class="btn btn-link" href="{{ route('locations.index') }}">

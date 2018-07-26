@@ -29,6 +29,7 @@ class JobCoreServiceProvider extends ServiceProvider
                 App\Console\Commands\CoreCacheCommand::class,
                 App\Console\Commands\CoreClearCommand::class,
                 App\Console\Commands\CoreInstallCommand::class,
+                App\Console\Commands\CorePublishCommand::class,
                 App\Console\Commands\CoreReinstallCommand::class,
                 App\Console\Commands\CoreRefreshCommand::class,
                 App\Console\Commands\CoreUpdateCommand::class,
