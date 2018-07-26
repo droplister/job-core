@@ -2,6 +2,7 @@
     @include('job-core::partials.h-tag', [
         'tag' => 'h6',
         'title' => 'Related Listings',
+        'mt' => isset($sponsored) ? 'mt-4' : '',
     ])
 @elseif($listings->currentPage() === 1)
     @include('job-core::partials.h-tag', [
