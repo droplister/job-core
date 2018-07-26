@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -12,5 +14,5 @@
 */
 
 Route::group(['middleware' => ['api']], function () {
-	Route::get('/map', 'Api\GoogleMapController@index')->name('api.map.index');
+	Route::get('/api/map', 'Api\GoogleMapController@index')->name('api.map.index');
 });
