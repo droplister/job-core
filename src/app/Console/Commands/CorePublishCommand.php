@@ -38,6 +38,5 @@ class CorePublishCommand extends Command
     public function handle()
     {
         $this->call('vendor:publish', ['--provider' => 'Droplister\\JobCore\\JobCoreServiceProvider']);
-        $this->call('vendor:publish', ['--tag' => 'job-core']);
     }
 }

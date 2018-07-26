@@ -38,6 +38,7 @@ class CoreRefreshCommand extends Command
     public function handle()
     {
         $this->call('core:clear');
+        $this->call('core:publish');
         $this->call('core:cache');
     }
 }
