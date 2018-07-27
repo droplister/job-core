@@ -10,14 +10,17 @@
                 Newsletter
             </h1>
             <p class="lead text-muted">
-                {{ ucfirst(strtolower(str_singular(config('job-core.keyword_root')))) }} insights.
+                Best {{ strtolower(str_singular(config('job-core.keyword_root'))) }} jobs.
             </p>
             <p class="lead text-muted mb-1">
                 <a href="{{ route('alerts.index') }}" class="btn btn-lg {{ config('job-core.button_class') }}">
-                    Coming Soon
+                    <i class="fa fa-edit mr-2"></i>
+                    Register for FREE
                 </a>
             </p>
-            <p class="lead text-muted small"><em>Join the waiting list</em></p>
+            <p class="lead text-muted small font-italic">
+                No spam & one-click unsubscribe
+            </p>
         </div>
     </section>
 @endsection
