@@ -234,6 +234,20 @@ class Listing extends Model
     }
 
     /**
+     * Mutate Position Title
+     *
+     * @return string
+     */
+    public function getPositionTitleAttribute($value)
+    {
+        if (strpos($this->position_title, $this->job_grade) === false) {
+            return trim($this->position_title) . ', ' . $this->job_grade;
+        }
+
+        return $this->position_title;
+    }
+
+    /**
      * Mutate Position Location Display
      *
      * @return string
