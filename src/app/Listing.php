@@ -240,11 +240,11 @@ class Listing extends Model
      */
     public function getPositionTitleAttribute($value)
     {
-        if (strpos($this->position_title, $this->job_grade) === false) {
-            return trim($this->position_title) . ', ' . $this->job_grade;
+        if (strpos($value, $this->job_grade) === false) {
+            return trim($value) . ', ' . $this->job_grade;
         }
 
-        return $this->position_title;
+        return $value;
     }
 
     /**
