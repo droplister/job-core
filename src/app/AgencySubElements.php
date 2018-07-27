@@ -83,7 +83,7 @@ class AgencySubElements extends Model
 
                     $description = "including {$careers[0]}, {$careers[1]}, and {$careers[2]}";
 
-                    return "{listings_count} {$this->pageTitle}, {$description}.";
+                    return "{$listings_count} {$this->pageTitle}, {$description}.";
 
                 }
                 else
