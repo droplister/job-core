@@ -60,7 +60,7 @@
                     </li>
                     @guest
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{{ route('home.index') }}" id="dropdown-menu" data-toggle="dropdown-menu" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="{{ route('home.index') }}" id="dropdown-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Explore
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-menu">
