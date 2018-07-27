@@ -2,6 +2,7 @@
 
 namespace Droplister\JobCore\App;
 
+use Cache;
 use Droplister\JobCore\App\Traits\ChunksParagraphs;
 use Droplister\JobCore\App\Traits\SponsoredListings;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -27,6 +28,74 @@ class AgencySubElements extends Model
         'logo_url',
         'disabled',
     ];
+
+    /**
+     * The attributes that are appended.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'pageTitle',
+        'pageDescription',
+    ];
+
+    /**
+     * Page Title
+     *
+     * @return string
+     */
+    public function getPageTitleAttribute()
+    {
+        return Cache::rememberForever('agency_' . $this->slug . '_page_title',
+            function () {
+                return config('job-core.keyword') . ' for the ' . $this->value;
+            }
+        );
+    }
+
+    /**
+     * Page Description
+     *
+     * @return string
+     */
+    public function getPageDescriptionAttribute()
+    {
+        return Cache::remember('agency_' . $this->slug . '_page_description', 1440,
+            function () {               
+                $listings = $this->listings()->paginate(3);
+                $listings_count = $listings->total();
+
+                if($this->description)
+                {
+                    $description = str_limit(strip_tags($this->description), 150);
+
+                    return  "{$listings_count} {$this->pageTitle} - {$description}";
+                }
+                elseif($listings_count > 2)
+                {
+                    foreach($listings as $listing)
+                    {
+                        $position = explode(', ', $listing->position_title);
+                        $careers[] = $position[0];
+                    }
+
+                    $careers = array_map('title_case', $careers);
+
+                    $description = "including {$careers[0]}, {$careers[1]}, and {$careers[2]}".
+
+                    return  "{listings_count} {$this->pageTitle}, {$description}";
+
+                }
+                else
+                {
+                    $domain = config('job-core.domain');
+                    $description = "Find the one that is best suited to you on {$domain}.";
+
+                    return  "{$listings_count} {$this->pageTitle} - {$description}";
+                }
+            }
+        );
+    }
 
     /**
      * Child Agencies
@@ -73,9 +142,9 @@ class AgencySubElements extends Model
      */
     public function scopeHome($query)
     {
-        return $query->withCount('listings')
+        return $query->relatedFilter()
+            ->withCount('listings')
             ->orderBy('listings_count', 'desc')
-            ->relatedFilter()
             ->take(config('job-core.max_relations'));
     }
 
@@ -84,10 +153,9 @@ class AgencySubElements extends Model
      */
     public function scopeIndex($query)
     {
-        return $query->isEnabled()
-            ->isParent()
-            ->with('related')
-            ->relatedFilter();
+        return $query->isParent()
+            ->relatedFilter()
+            ->with('related');
     }
 
     /**
@@ -95,7 +163,8 @@ class AgencySubElements extends Model
      */
     public function scopeRelatedFilter($query)
     {
-        return $query->has('listings', '>=', config('job-core.min_listings'))
+        return $query->isEnabled()
+            ->has('listings', '>=', config('job-core.min_listings'))
             ->orderBy('value', 'asc');
     }
 

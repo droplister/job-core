@@ -27,6 +27,47 @@ class OccupationalSeries extends Model
     ];
 
     /**
+     * The attributes that are appended.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'pageTitle',
+        'pageDescription',
+    ];
+
+    /**
+     * Page Title
+     *
+     * @return string
+     */
+    public function getPageTitleAttribute()
+    {
+        return Cache::rememberForever('career_' . $this->slug . '_page_title',
+            function () {
+                return $this->value . ' (' . $this->code . ') - ' . config('job-core.keyword');
+            }
+        );
+    }
+
+    /**
+     * Page Description
+     *
+     * @return string
+     */
+    public function getPageDescriptionAttribute()
+    {
+        return Cache::remember('career_' . $this->slug . '_page_description', 1440,
+            function () {               
+                $listings_count = number_format($this->listings()->count());
+                $keyword = strtolower(config('job-core.keyword'));
+
+                return "Browse {$listings_count} {$this->value} career opportunities within the federal government, especially {$keyword}.";
+            }
+        );
+    }
+
+    /**
      * Parent Occupational Series
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

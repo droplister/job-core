@@ -1,7 +1,7 @@
 @extends('job-core::layouts.app')
 
-@section('title', $career->value . ' (' . $career->code . ') - ' . config('job-core.keyword'))
-@section('description', 'Browse from the over ' . number_format($listings->total()) . ' ' . $career->value . ' career opportunities available today within the U.S. Federal Government.')
+@section('title', $career->pageTitle)
+@section('description', $career->pageDescription)
 
 @section('content')
     @include('job-core::partials.title', [
