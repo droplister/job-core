@@ -8,6 +8,6 @@
         </a>
     </small>
 @endif
-@if(\Request::route()->getName() !== 'listings.show')
+@if(\Request::route()->getName() !== 'listings.show' && isset($children) && count($children) > 0)
     <br class="d-md-none" />
 @endif
