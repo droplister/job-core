@@ -5,7 +5,7 @@
     ])
 	@foreach($sponsored->all() as $job)
 	    @include('job-core::listings.partials.listing-sponsored')
-	    @if($loop->iteration === config('job-core.max_sponsored')) @break @endif
+	    @if($loop->iteration == config('job-core.max_sponsored')) @break @endif
 	@endforeach
 @endif
 

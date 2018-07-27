@@ -40,6 +40,24 @@ class MostController extends Controller
             }
         );
 
-        return view('job-core::most.index', compact('listings', 'children'));
+        // Sponsored Listings
+        try
+        {
+            $query = new JujuQuery([
+                'partnerid' => config('job-core.partner_id')
+            ]);
+
+            $query->set('k', config('job-core.keyword'))->set('highlight', '0');
+
+            $client = new JujuProvider($query);
+
+            $sponsored = $client->getJobs()->orderBy('datePosted');
+        }
+        catch(Exception $e)
+        {
+            $sponsored = null;
+        }
+
+        return view('job-core::most.index', compact('listings', 'sponsored', 'children'));
     }
 }
