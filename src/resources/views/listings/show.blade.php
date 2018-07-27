@@ -1,7 +1,7 @@
 @extends('job-core::layouts.app')
 
-@section('title', $listing->title)
-@section('description', $listing->description)
+@section('title', $listing->pageTitle)
+@section('description', $listing->pageDescription)
 
 @section('content')
     @include('job-core::partials.title', [

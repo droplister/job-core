@@ -1,6 +1,7 @@
 @extends('job-core::layouts.app')
 
-@section('title', 'Latest')
+@section('title', 'Latest ' . config('job-core.keyword'))
+@section('description', 'We track the latest ' . number_format($listings->total()) . ' ' . strtolower(config('job_core.keyword')) . ' posted on USAJobs.gov and other job boards. Find out more at ' . config('job-core.domain') . '.')
 
 @section('content')
     @include('job-core::partials.title', [

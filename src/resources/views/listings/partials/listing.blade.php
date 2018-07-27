@@ -9,7 +9,7 @@
         {{ $listing->pay_range }}
     </span>
     <span class="d-block mt-1">
-        {{ $listing->description }}
+        {{ $listing->pageDescription }}
     </span>
     <span class="d-block mt-1">
         Published {{ $listing->publication_start_date->diffForHumans() }}

@@ -72,15 +72,45 @@ class Listing extends Model
      * @var array
      */
     protected $appends = [
+        'pageTitle',
+        'pageDescription',
         'agency',
         'career',
-        'description',
         'job_grade',
         'pay_range',
         'subtitle',
         'summary',
-        'title',
     ];
+
+    /**
+     * Page Title
+     *
+     * @return string
+     */
+    public function getPageTitleAttribute()
+    {
+        return Cache::rememberForever('listing_' . $this->slug . '_page_title',
+            function () {               
+                $title = "{$this->position_title} ({$this->position_id})";
+
+                return $this->agency ? "{$title} - {$this->agency}" : $title;
+            }
+        );
+    }
+    
+    /**
+     * Page Description
+     *
+     * @return string
+     */
+    public function getPageDescriptionAttribute()
+    {
+        return Cache::rememberForever('listing_' . $this->slug . '_page_description',
+            function () {               
+                return "{$this->subtitle}. {$this->summary}";
+            }
+        );
+    }
 
     /**
      * Agency
@@ -121,20 +151,6 @@ class Listing extends Model
                 $career = $this->careers()->isChild()->first();
 
                 return $career ? $career->value : null;
-            }
-        );
-    }
-
-    /**
-     * Description
-     *
-     * @return string
-     */
-    public function getDescriptionAttribute()
-    {
-        return Cache::rememberForever('listing_' . $this->slug . '_description',
-            function () {               
-                return "{$this->subtitle}. {$this->summary}";
             }
         );
     }
@@ -213,22 +229,6 @@ class Listing extends Model
                 $summary = $this->qualification_summary ? $this->qualification_summary : $this->job_summary;
 
                 return str_limit(strip_tags($summary), config('job-core.str_limit'));
-            }
-        );
-    }
-
-    /**
-     * Title
-     *
-     * @return string
-     */
-    public function getTitleAttribute()
-    {
-        return Cache::rememberForever('listing_' . $this->slug . '_title',
-            function () {               
-                $title = "{$this->position_title} ({$this->position_id})";
-
-                return $this->agency ? "{$title} - {$this->agency}" : $title;
             }
         );
     }
