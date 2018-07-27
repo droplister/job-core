@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Droplister\JobCore\App\Listing;
 use Droplister\JobCore\App\SecurityClearances;
+use JobApis\Jobs\Client\Queries\JujuQuery;
+use JobApis\Jobs\Client\Providers\JujuProvider;
 
 class ListingsController extends Controller
 {
@@ -31,7 +33,26 @@ class ListingsController extends Controller
                 return SecurityClearances::related()->get();
             }
         );
-        return view('job-core::listings.index', compact('listings', 'children'));
+
+        // Sponsored Listings
+        try
+        {
+            $query = new JujuQuery([
+                'partnerid' => config('job-core.partner_id')
+            ]);
+
+            $query->set('k', config('job-core.keyword'))->set('highlight', '0');
+
+            $client = new JujuProvider($query);
+
+            $sponsored = $client->getJobs()->orderBy('datePosted');
+        }
+        catch(Exception $e)
+        {
+            $sponsored = null;
+        }
+
+        return view('job-core::listings.index', compact('listings', 'sponsored', 'children'));
     }
 
     /**
