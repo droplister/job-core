@@ -472,6 +472,7 @@ class Listing extends Model
     public function scopeSearch($query, $keyword)
     {
         return $query->where('position_title', 'like', '%' . $keyword . '%')
+            ->orWhere('job_summary', 'like', '%' . $keyword . '%')
             ->listingFilter();
     }
 
