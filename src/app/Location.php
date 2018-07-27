@@ -78,7 +78,7 @@ class Location extends Model
                     return "Search {$listings_count} {$this->pageTitle}, {$description}.";
                 }
 
-                $description = "Find a full or part-time role with a federal agency near you";
+                $description = "Find a full or part-time role with a federal agency in {$this->name}";
 
                 return "Search {$listings_count} {$this->pageTitle}. {$description}.";
             }

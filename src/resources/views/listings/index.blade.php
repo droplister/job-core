@@ -1,13 +1,13 @@
 @extends('job-core::layouts.app')
 
 @section('title', 'Latest ' . config('job-core.keyword'))
-@section('description', 'We track the latest ' . number_format($listings->total()) . ' ' . strtolower(config('job_core.keyword')) . ' posted on USAJobs.gov and other job boards. Find out more at ' . config('job-core.domain') . '.')
+@section('description', 'We track the latest ' . number_format($listings->total()) . ' ' . config('job_core.keyword') . ' posted on USAJobs.gov and other job boards. Find out more at ' . config('job-core.domain') . '.')
 
 @section('content')
     @include('job-core::partials.title', [
         'fa' => 'fa-calendar',
         'title' => 'Latest',
-        'subtitle' => config('job-core.keyword_root'),
+        'subtitle' => config('job-core.keyword'),
         'link' => route('listings.index')
     ])
     <div class="my-3 p-3 bg-white rounded box-shadow">
