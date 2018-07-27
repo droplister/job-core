@@ -1,6 +1,7 @@
 @extends('job-core::layouts.app')
 
 @section('title', config('job-core.keyword_root') . ' Careers')
+@section('description', 'Explore the different kinds of ' . strtolower(config('job-core.keyword')) . ' and careers exist within the federal government.')
 
 @section('content')
     @include('job-core::partials.title', [
