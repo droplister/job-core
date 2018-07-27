@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Droplister\JobCore\App\Listing;
 use Droplister\JobCore\App\OccupationalSeries;
+use JobApis\Jobs\Client\Queries\JujuQuery;
+use JobApis\Jobs\Client\Providers\JujuProvider;
 
 class SpecificController extends Controller
 {
