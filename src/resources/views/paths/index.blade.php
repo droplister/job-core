@@ -1,6 +1,6 @@
 @extends('job-core::layouts.app')
 
-@section('title', 'Hiring for ' . config('job-core.keyword'))
+@section('title', 'Hiring Paths for ' . config('job-core.keyword'))
 
 @section('content')
     @include('job-core::partials.title', [
