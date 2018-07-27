@@ -31,7 +31,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+            <div class="navbar-collapse offcanvas-collapse {{ config('job-core.nav_class') }}">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item d-none d-md-inline-block">
                         <a class="nav-link" href="{{ route('home.index') }}">
