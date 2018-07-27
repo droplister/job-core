@@ -1,6 +1,7 @@
 @extends('job-core::layouts.app')
 
 @section('title', 'Privacy Policy')
+@section('description', 'This notice describes our privacy policy. By visiting us, you are accepting the privacy policy described below.')
 
 @section('content')
     @include('job-core::partials.title', [

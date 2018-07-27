@@ -1,6 +1,7 @@
 @extends('job-core::layouts.app')
 
 @section('title', 'About ' . config('job-core.domain'))
+@section('description', 'Who we are and what we do at ' . config('job-core.domain') . '.')
 
 @section('content')
     @include('job-core::partials.title', [

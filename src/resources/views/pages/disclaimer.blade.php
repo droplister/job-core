@@ -1,6 +1,7 @@
 @extends('job-core::layouts.app')
 
 @section('title', 'Disclaimer')
+@section('description', 'This website is not endorsed by, or associated with, any government agency. Family Media publishes free internet resources for niche audiences online.')
 
 @section('content')
     @include('job-core::partials.title', [

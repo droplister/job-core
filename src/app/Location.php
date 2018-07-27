@@ -2,6 +2,7 @@
 
 namespace Droplister\JobCore\App;
 
+use Cache;
 use Droplister\JobCore\App\Traits\NarrowsListings;
 use Droplister\JobCore\App\Traits\SponsoredListings;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -27,6 +28,62 @@ class Location extends Model
         'longitude',
         'latitude',
     ];
+
+    /**
+     * The attributes that are appended.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'pageTitle',
+        'pageDescription',
+    ];
+
+    /**
+     * Page Title
+     *
+     * @return string
+     */
+    public function getPageTitleAttribute()
+    {
+        return Cache::rememberForever('location_' . $this->slug . '_page_title',
+            function () {               
+                return config('job-core.keyword') . ' in ' . $this->title;
+            }
+        );
+    }
+    
+    /**
+     * Page Description
+     *
+     * @return string
+     */
+    public function getPageDescriptionAttribute()
+    {
+        return Cache::remember('location_' . $this->slug . '_page_description', 1440,
+            function () {
+                $listings_count = number_format($this->listings()->count());
+                $children = $this->related()->paginate(3);
+
+                if($this->type === 'state' && $children->total() > 2)
+                {
+                    foreach($children as $child)
+                    {
+                        $name = explode(', ', $child->name);
+                        $cities[] = $name[0];
+                    }
+
+                    $description = "including opportunities in {$cities[0]}, {$cities[1]}, and {$cities[2]}";
+
+                    return "Search {$listings_count} {$this->pageTitle}, {$description}.";
+                }
+
+                $description = "Find a full or part-time role with a federal agency near you";
+
+                return "Search {$listings_count} {$this->pageTitle}. {$description}.";
+            }
+        );
+    }
 
     /**
      * Parent Location

@@ -1,6 +1,7 @@
 @extends('job-core::layouts.app')
 
 @section('title', 'Terms of Service')
+@section('description', 'This is an agreement between Family Media LLC and you. This Agreement is legally binding and governs your use of our Site and Service.')
 
 @section('content')
     @include('job-core::partials.title', [

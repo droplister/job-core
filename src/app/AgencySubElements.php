@@ -81,17 +81,17 @@ class AgencySubElements extends Model
 
                     $careers = array_map('title_case', $careers);
 
-                    $description = "including {$careers[0]}, {$careers[1]}, and {$careers[2]}".
+                    $description = "including {$careers[0]}, {$careers[1]}, and {$careers[2]}"
 
-                    return  "{listings_count} {$this->pageTitle}, {$description}";
+                    return  "{listings_count} {$this->pageTitle}, {$description}.";
 
                 }
                 else
                 {
                     $domain = config('job-core.domain');
-                    $description = "Find the one that is best suited to you on {$domain}.";
+                    $description = "Find the one that is best suited to you on {$domain}";
 
-                    return  "{$listings_count} {$this->pageTitle} - {$description}";
+                    return  "{$listings_count} {$this->pageTitle} - {$description}.";
                 }
             }
         );

@@ -1,6 +1,7 @@
 @extends('job-core::layouts.app')
 
-@section('title', config('job-core.keyword') . ' in ' . $location->title)
+@section('title', $location->pageTitle)
+@section('description', $location->pageDescription)
 
 @section('content')
     @include('job-core::partials.title', [

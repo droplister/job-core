@@ -1,6 +1,7 @@
 @extends('job-core::layouts.app')
 
 @section('title', config('job-core.keyword') . ' in the United States')
+@section('description', 'Are you willing to relocate for your next career opportunity? Search for a ' . strtolower(config('job-core.keyword')) . ' anywhere in the United States.')
 
 @section('content')
     @include('job-core::partials.title', [

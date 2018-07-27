@@ -241,7 +241,7 @@ class Listing extends Model
     public function getPositionTitleAttribute($value)
     {
         return Cache::rememberForever('listing_' . $this->slug . '_position_title',
-            function () {
+            function () use ($value) {
                 if (strpos($value, $this->job_grade) === false) {
                     return trim($value) . ', ' . $this->job_grade;
                 }

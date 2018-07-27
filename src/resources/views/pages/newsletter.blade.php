@@ -1,6 +1,7 @@
 @extends('job-core::layouts.app')
 
 @section('title', config('job-core.keyword_root') . ' Newsletter')
+@section('Occassional emails guaranteed to be worth your time about ' . strtolower(config('job-core.keyword_root')) . ' and ' . strtolower(config('job-core.keyword')) . '.')
 
 @section('content')
     <section class="jumbotron text-center mt-3 {{ config('job-core.body_class') }}">
