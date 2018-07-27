@@ -15,6 +15,7 @@
     ])
     <div class="my-3 p-3 bg-white rounded box-shadow">
         @include('job-core::listings.partials.attributes')
+        @include('job-core::partials.adsense', ['class' => 'd-block d-md-none'])
         <div class="row">
             <div class="col-12 col-md-9">
                 @include('job-core::listings.partials.content')
