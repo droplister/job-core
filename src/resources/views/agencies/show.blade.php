@@ -1,6 +1,11 @@
 @extends('job-core::layouts.app')
 
 @section('title', config('job-core.keyword') . ' for the ' . $agency->value)
+@if($agency->description)
+    @section('description', $listings->total() . ' ' . config('job-core.keyword') . ' for the ' . $agency->value . '. ' . str_limit(strip_tags($agency->description), 250))
+@else
+    @section('description', $listings->total() . ' ' . config('job-core.keyword') . ' for the ' . $agency->value . '. Find the one best suited to you on ' . config('job-core.domain') . '.')
+@endif
 
 @section('content')
     @include('job-core::partials.title', [

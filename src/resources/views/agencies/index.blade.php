@@ -1,6 +1,7 @@
 @extends('job-core::layouts.app')
 
-@section('title', config('job-core.keyword') . ' by Agency')
+@section('title', config('job-core.keyword') . ' by Government Agency')
+@section('description', 'Which federal government agencies have ' . strtolower(config('job-core.keyword')) . '? Browse available opportunities by agency on our website.')
 
 @section('content')
     @include('job-core::partials.title', [
