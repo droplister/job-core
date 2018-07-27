@@ -1,6 +1,6 @@
 @extends('job-core::layouts.app')
 
-@section('title', config('job-core.keyword') . ' for Veterans')
+@section('title', config('job-core.specific_page_title'))
 
 @section('content')
     @include('job-core::partials.title', [

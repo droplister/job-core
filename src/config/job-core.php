@@ -72,10 +72,16 @@ return [
      */
     'most_icon' => env('JOB_CORE_MOST_ICON', 'fa-money'),
 
+
     /**
      * Most Title
      */
     'most_title' => env('JOB_CORE_MOST_TITLE', 'Six Figure'),
+
+    /**
+     * Most Page Title
+     */
+    'most_page_title' => env('JOB_CORE_MOST_PAGE_TITLE', 'Six Figure Security Clearance Jobs'),
 
     /**
      * Most Slug
@@ -91,6 +97,11 @@ return [
      * Specific Title
      */
     'specific_title' => env('JOB_CORE_SPECIFIC_TITLE', 'Veterans'),
+
+    /**
+     * Specific Page Title
+     */
+    'specific_page_title' => env('JOB_CORE_SPECIFIC_PAGE_TITLE', 'Security Clearance Jobs for Veterans'),
 
     /**
      * Specific Slug

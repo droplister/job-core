@@ -1,6 +1,6 @@
 @extends('job-core::layouts.app')
 
-@section('title', 'Six Figure ' . config('job-core.keyword'))
+@section('title', config('job-core.most_page_title'))
 
 @section('content')
     @include('job-core::partials.title', [
