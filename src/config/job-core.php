@@ -150,7 +150,12 @@ return [
     /**
      * Max Sponsored Listings
      */
-    'max_sponsored' => env('JOB_CORE_MAX_SPONSORED', 1),
+    'max_sponsored' => env('JOB_CORE_MAX_SPONSORED', 2),
+
+    /**
+     * Listing String Limit
+     */
+    'str_limit' => env('JOB_CORE_STR_LIMIT', 300),
 
     /**
      * Max Model Relations

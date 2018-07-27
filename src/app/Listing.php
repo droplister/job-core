@@ -212,7 +212,7 @@ class Listing extends Model
             function () {               
                 $summary = $this->qualification_summary ? $this->qualification_summary : $this->job_summary;
 
-                return str_limit(strip_tags($summary));
+                return str_limit(strip_tags($summary), config('job-core.str_limit'));
             }
         );
     }
