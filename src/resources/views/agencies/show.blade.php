@@ -2,9 +2,11 @@
 
 @section('title', config('job-core.keyword') . ' for the ' . $agency->value)
 @if($agency->description)
-    @section('description', $listings->total() . ' ' . config('job-core.keyword') . ' for the ' . $agency->value . '. ' . str_limit(strip_tags($agency->description), 250))
+    @section('description', $listings->total() . ' ' . config('job-core.keyword') . ' for the ' . $agency->value . '. ' . str_limit(strip_tags($agency->description), 150))
+@elseif($listings->total() > 3)
+    @section('description', $listings->total() . ' ' . config('job-core.keyword') . ' for the ' . $agency->value . ', including ' . explode(', ', $listings[0]->position_title)[0] . ', ' . explode(', ', $listings[1]->position_title)[0] . ', and ' . explode(', ', $listings[2]->position_title)[0] . '. Find the one that is best suited to you on ' . config('job-core.domain') . '.')
 @else
-    @section('description', $listings->total() . ' ' . config('job-core.keyword') . ' for the ' . $agency->value . '. Find the one best suited to you on ' . config('job-core.domain') . '.')
+    @section('description', $listings->total() . ' ' . config('job-core.keyword') . ' for the ' . $agency->value . '. Find the one that is best suited to you on ' . config('job-core.domain') . '.')
 @endif
 
 @section('content')
