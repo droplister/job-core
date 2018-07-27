@@ -240,11 +240,15 @@ class Listing extends Model
      */
     public function getPositionTitleAttribute($value)
     {
-        if (strpos($value, $this->job_grade) === false) {
-            return trim($value) . ', ' . $this->job_grade;
-        }
+        return Cache::rememberForever('listing_' . $this->slug . '_position_title',
+            function () {
+                if (strpos($value, $this->job_grade) === false) {
+                    return trim($value) . ', ' . $this->job_grade;
+                }
 
-        return $value;
+                return $value;
+            }
+        );
     }
 
     /**
