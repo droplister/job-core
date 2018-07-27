@@ -2,6 +2,7 @@
 
 namespace Droplister\JobCore\App;
 
+use Cache;
 use Droplister\JobCore\App\Traits\SponsoredListings;
 use Znck\Eloquent\Traits\BelongsToThrough;
 use Cviebrock\EloquentSluggable\Sluggable;

@@ -2,6 +2,7 @@
 
 namespace Droplister\JobCore\App;
 
+use Cache;
 use Droplister\JobCore\App\Traits\NarrowsListings;
 use Droplister\JobCore\App\Traits\SponsoredListings;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -23,6 +24,47 @@ class SecurityClearances extends Model
         'value',
         'description',
     ];
+
+    /**
+     * The attributes that are appended.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'pageTitle',
+        'pageDescription',
+    ];
+
+    /**
+     * Page Title
+     *
+     * @return string
+     */
+    public function getPageTitleAttribute()
+    {
+        return Cache::rememberForever('level_' . $this->slug . '_page_title',
+            function () {
+                return $this->value . ' ' . config('job-core.keyword');
+            }
+        );
+    }
+
+    /**
+     * Page Description
+     *
+     * @return string
+     */
+    public function getPageDescriptionAttribute()
+    {
+        return Cache::remember('level_' . $this->slug . '_page_description', 1440,
+            function () {               
+                $listings_count = number_format($this->listings()->count());
+                $keyword = strtolower(config('job-core.keyword'));
+
+                return "Search from the {$listings_count} {$keyword} that require {$this->value} security clearance as a basic qualification for government employment.";
+            }
+        );
+    }
 
     /**
      * Securty Clearance Careers
