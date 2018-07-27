@@ -286,10 +286,24 @@ class Location extends Model
      */
     public function sluggable()
     {
-        return [
-            'slug' => [
-                'source' => 'title',
-            ]
-        ];
+        if(config('job-core.domain') === 'FedHire.com')
+        {
+            return [
+                'slug' => [
+                    'source' => 'title',
+                    'method' => function ($string, $separator) {
+                        return rtrim(preg_replace('/[^a-zA-Z0-9]+/i', $separator, $string), "-") . '-jobs';
+                    },
+                ]
+            ];
+        }
+        else
+        {
+            return [
+                'slug' => [
+                    'source' => 'title',
+                ]
+            ];
+        }
     }
 }

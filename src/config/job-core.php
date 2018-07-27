@@ -72,7 +72,6 @@ return [
      */
     'most_icon' => env('JOB_CORE_MOST_ICON', 'fa-money'),
 
-
     /**
      * Most Title
      */
