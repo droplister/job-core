@@ -62,7 +62,7 @@ class AgencySubElements extends Model
     {
         return Cache::remember('agency_' . $this->slug . '_page_description', 1440,
             function () {               
-                $listings = $this->listings()->paginate(3);
+                $listings = $this->listings()->paginate(10);
                 $listings_count = $listings->total();
 
                 if($this->description)
@@ -80,8 +80,22 @@ class AgencySubElements extends Model
                     }
 
                     $careers = array_map('title_case', $careers);
+                    $careers = array_unique($careers);
+                    $careers = array_slice($careers, 0, 3);
 
-                    $description = "including {$careers[0]}, {$careers[1]}, and {$careers[2]}";
+                    if(count($careers) === 3)
+                    {
+                        $description = "including roles like {$careers[0]}, {$careers[1]}, and {$careers[2]}";
+                    }
+                    elseif(count($careers) === 2)
+                    {
+                        $description = "including roles like {$careers[0]} and {$careers[1]}";
+
+                    }
+                    else
+                    {
+                        $description = "including roles like {$careers[0]}";
+                    }
 
                     return "{$listings_count} {$this->pageTitle}, {$description}.";
 
