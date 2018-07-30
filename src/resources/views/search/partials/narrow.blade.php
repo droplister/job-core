@@ -14,7 +14,7 @@
     'tag' => 'h6',
     'title' => 'Narrow by Clearance',
 ])
-@foreach($clearances as $child)
+@foreach($levels as $child)
     @include('job-core::partials.p-tag', [
         'text' => $child->value,
         'link' => $request->has('l') && $child->slug === $request->l ? null : route('search.index', ['q' => $request->q, 'l' => $child->slug]),
