@@ -14,11 +14,6 @@ class ListingFilter extends ModelFilter
     */
     public $relations = [];
 
-    public function setup($query)
-    {
-        return $query->listingsFilter();
-    }
-
     public function q($keyword)
     {
 	    $this->whereLike($keyword);
