@@ -1,3 +1,13 @@
+@if(isset($sponsored))
+    @include('job-core::partials.h-tag', [
+        'tag' => 'h6',
+        'title' => 'Featured',
+    ])
+    @foreach($sponsored->all() as $job)
+        @include('job-core::listings.partials.listing-sponsored')
+        @if($loop->iteration == config('job-core.max_sponsored')) @break @endif
+    @endforeach
+@endif
 @if(\Request::route()->getName() === 'listings.show')
     @include('job-core::partials.h-tag', [
         'tag' => 'h6',

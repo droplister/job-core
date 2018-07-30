@@ -552,7 +552,7 @@ class Listing extends Model
     /**
      * Not Active
      */
-    public function scopeNotActive($query)
+    public function scopeIsNotActive($query)
     {
         return $query->where('application_close_date', '<', Carbon::now()->toDateString());
     }
