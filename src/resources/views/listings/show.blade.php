@@ -41,13 +41,15 @@
             </div>
         </div>
     @elseif($location = $listing->relatedLocations()->hasDescription()->first())
-        <div class="my-3 p-3 bg-white rounded box-shadow">
-            <div class="row">
-                <div class="col-12 col-md-9">
-                    @include('job-core::locations.partials.location', compact('location'))
+        @if($listing->relatedLocations()->count() === 1)
+            <div class="my-3 p-3 bg-white rounded box-shadow">
+                <div class="row">
+                    <div class="col-12 col-md-9">
+                        @include('job-core::locations.partials.location', compact('location'))
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
     @endif
     @if(count($listings))
         <div class="my-3 p-3 bg-white rounded box-shadow">
