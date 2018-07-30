@@ -25,13 +25,23 @@ class PositionSchedule extends Model
     ];
 
     /**
-     * Position Schedule Listings
+     * Job Listings
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function listings()
     {
         return $this->hasMany(Listing::class, 'position_schedule_code', 'code')->listingsFilter();
+    }
+
+    /**
+     * Job Listings (inactive)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function inactiveListings()
+    {
+        return $this->hasMany(Listing::class, 'position_schedule_code', 'code')->listingsFilter(false);
     }
 
     /**

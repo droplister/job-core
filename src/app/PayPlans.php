@@ -25,13 +25,23 @@ class PayPlans extends Model
     ];
 
     /**
-     * Pay Plan Listings
+     * Job Listings
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function listings()
     {
         return $this->belongsToMany(Listing::class, 'listing_pay_plan', 'pay_plan_id', 'listing_id')->listingsFilter();
+    }
+
+    /**
+     * Job Listings (inactive)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function inactiveListings()
+    {
+        return $this->belongsToMany(Listing::class, 'listing_pay_plan', 'pay_plan_id', 'listing_id')->listingsFilter(false);
     }
 
     /**

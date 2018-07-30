@@ -98,13 +98,23 @@ class OccupationalSeries extends Model
     }
 
     /**
-     * Occpational Series Listings
+     * Job Listings
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function listings()
     {
         return $this->belongsToMany(Listing::class, 'listing_occupational_series', 'occupational_series_id', 'listing_id')->listingsFilter();
+    }
+
+    /**
+     * Job Listings (inactive)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function inactiveListings()
+    {
+        return $this->belongsToMany(Listing::class, 'listing_occupational_series', 'occupational_series_id', 'listing_id')->listingsFilter(false);
     }
 
     /**

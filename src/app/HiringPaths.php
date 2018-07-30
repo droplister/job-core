@@ -25,13 +25,23 @@ class HiringPaths extends Model
     ];
 
     /**
-     * Hiring Paths Listings
+     * Job Listings
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function listings()
     {
         return $this->belongsToMany(Listing::class, 'listing_hiring_path', 'hiring_path_id', 'listing_id')->listingsFilter();
+    }
+
+    /**
+     * Job Listings (inactive)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function inactiveListings()
+    {
+        return $this->belongsToMany(Listing::class, 'listing_hiring_path', 'hiring_path_id', 'listing_id')->listingsFilter(false);
     }
 
     /**

@@ -77,13 +77,23 @@ class SecurityClearances extends Model
     }
 
     /**
-     * Securty Clearance Listings
-     * 
+     * Job Listings
+     *  
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function listings()
     {
         return $this->belongsToMany(Listing::class, 'listing_security_clearance', 'security_clearance_id', 'listing_id')->listingsFilter();
+    }
+
+    /**
+     * Job Listings (inactive)
+     *  
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function inactiveListings()
+    {
+        return $this->belongsToMany(Listing::class, 'listing_security_clearance', 'security_clearance_id', 'listing_id')->listingsFilter(false);
     }
 
     /**

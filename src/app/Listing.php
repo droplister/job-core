@@ -376,35 +376,33 @@ class Listing extends Model
     /**
      * Listing Filter
      */
-    public function scopeListingsFilter($query)
+    public function scopeListingsFilter($query, $active=true)
     {
+        if($active)
+        {
+            $query = $query->isActive()
+                ->latest('publication_start_date');
+        }
+        else
+        {
+            $query = $query->isNotActive()
+                ->latest('application_close_date');
+        }
+
         switch(config('job-core.filter'))
         {
             case 'federal': 
-                return $query->isActive()
-                    ->notInternship()
-                    ->latest('publication_start_date');
+                return $query->notInternship();
             case 'internship': 
-                return $query->isActive()
-                    ->isInternship()
-                    ->latest('publication_start_date');
+                return $query->isInternship();
             case 'military_base': 
-                return $query->isActive()
-                    ->onMilitaryBase()
-                    ->notInternship()
-                    ->latest('publication_start_date');
+                return $query->onMilitaryBase()->notInternship();
             case 'security_clearance': 
-                return $query->isActive()
-                    ->isCleared()
-                    ->notInternship()
-                    ->latest('publication_start_date');
+                return $query->isCleared()->notInternship();
             case 'senior_executive': 
-                return $query->isActive()
-                    ->isSeniorExecutive()
-                    ->latest('publication_start_date');
+                return $query->isSeniorExecutive();
             default:
-                return $query->isActive()
-                    ->latest('publication_start_date');
+                return $query;
         }
     }
 

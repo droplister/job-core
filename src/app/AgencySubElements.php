@@ -132,13 +132,23 @@ class AgencySubElements extends Model
     }
 
     /**
-     * Job Listings (Cleared)
+     * Job Listings
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function listings()
     {
         return $this->belongsToMany(Listing::class, 'listing_agency_sub_element', 'agency_sub_element_id', 'listing_id')->listingsFilter();
+    }
+
+    /**
+     * Job Listings (inactive)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function inactiveListings()
+    {
+        return $this->belongsToMany(Listing::class, 'listing_agency_sub_element', 'agency_sub_element_id', 'listing_id')->listingsFilter(false);
     }
 
     /**
