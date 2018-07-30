@@ -16,50 +16,37 @@ class ListingFilter extends ModelFilter
 
     public function q($keyword)
     {
-        return $this->where('position_title', 'like', '%' . $keyword . '%')
-            ->orWhere('job_summary', 'like', '%' . $keyword . '%');
+        return $this->where('position_title', 'like', '%' . $keyword . '%');
     }
 
     public function agency($id)
     {
-        $this->related('agencies', function($query) use ($id) {
-            return $query->where('id', $id);
-        });
+        $this->related('agencies', 'id', $id);
     }
 
     public function path($id)
     {
-        $this->related('hiringPaths', function($query) use ($id) {
-            return $query->where('id', $id);
-        });
+        $this->related('hiringPaths', 'id', $id);
     }
 
     public function location($id)
     {
-        $this->related('locations', function($query) use ($id) {
-            return $query->where('id', $id);
-        });
+        $this->related('locations', 'id', $id);
     }
 
     public function career($id)
     {
-        $this->related('careers', function($query) use ($id) {
-            return $query->where('id', $id);
-        });
+        $this->related('careers', 'id', $id);
     }
 
     public function plan($id)
     {
-        $this->related('payPlans', function($query) use ($id) {
-            return $query->where('id', $id);
-        });
+        $this->related('payPlans', 'id', $id);
     }
 
     public function clearance($id)
     {
-        $this->related('securityClearances', function($query) use ($id) {
-            return $query->where('id', $id);
-        });
+        $this->related('securityClearances', 'id', $id);
     }
 
     public function schedule($code)
