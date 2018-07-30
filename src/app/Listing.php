@@ -637,14 +637,6 @@ class Listing extends Model
     }
 
     /**
-     * Model Filter
-     */
-    public function modelFilter()
-    {
-        return $this->provideFilter(ModelFilters\ListingFilter::class);
-    }
-
-    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array
