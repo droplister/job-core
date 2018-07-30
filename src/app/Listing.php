@@ -337,7 +337,7 @@ class Listing extends Model
      */
     public function relatedLocations()
     {
-        return $this->belongsToMany(Location::class)->isCity()->take(config('job-core.max_relations'));
+        return $this->belongsToMany(Location::class)->relatedFilter()->isCity()->take(config('job-core.max_relations'));
     }
 
     /**
