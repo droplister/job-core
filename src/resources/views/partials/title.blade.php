@@ -2,15 +2,15 @@
     <i class="fa {{ $fa }} fa-lg mt-3 mr-3 mb-3"></i>
     <div class="lh-100">
         @if(isset($link))
-            <h6 class="mb-0 lh-100">
+            <h1 class="h6 mb-0 lh-100">
                 <a href="{{ $link }}" class="text-white">
                     {{ $title }}
                 </a>
-            </h6>
+            </h1>
         @else
-            <h6 class="mb-0 text-white lh-100">
+            <h1 class="h6 mb-0 text-white lh-100">
                 {{ $title }}
-            </h6>
+            </h1>
         @endif
         @if(isset($subtitle))
             <small>{{ $subtitle }}</small>
