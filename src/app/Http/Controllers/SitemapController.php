@@ -25,6 +25,29 @@ class SitemapController extends Controller
      */
     public function index(Request $request)
     {
+        $routes = [
+            'home.index',
+            'search.index',
+            'agencies.index',
+            'listings.index',
+            'clearances.index',
+            'careers.index',
+            'locations.index',
+            'plans.index',
+            'schedules.index',
+            'travels.index',
+            'paths.index',
+            'most.index',
+            'specific.index',
+            'contact.create',
+            'pages.about',
+            'pages.advertise',
+            'pages.disclaimer',
+            'pages.newsletter',
+            'pages.privacy',
+            'pages.terms'
+        ];
+
         // Get Agencies
         $agencies = Cache::remember('sitemap_agencies', 1440,
             function () {
