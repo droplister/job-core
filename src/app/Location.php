@@ -348,6 +348,14 @@ class Location extends Model
     }
 
     /**
+     * Has Description
+     */
+    public function scopeHasDescription($query)
+    {
+        return $query->whereNotNull('description');
+    }
+
+    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array

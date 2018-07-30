@@ -217,7 +217,7 @@ class AgencySubElements extends Model
     }
 
     /**
-     * With Descriptions
+     * Has Description
      */
     public function scopeHasDescription($query)
     {
