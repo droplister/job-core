@@ -42,11 +42,13 @@
       <loc>{{ route('clearances.show', ['clearance' => $clearance->slug]) }}</loc>
    </url>
 @endforeach
-@foreach($travels as $travel)
-   <url>
-      <loc>{{ route('travels.show', ['travel' => $travel->slug]) }}</loc>
-   </url>
-@endforeach
+<!--
+   @foreach($travels as $travel)
+      <url>
+         <loc>{{ route('travels.show', ['travel' => $travel->slug]) }}</loc>
+      </url>
+   @endforeach
+-->
 @foreach($listings as $listing)
    <url>
       <loc>{{ route('listings.show', ['listing' => $listing->slug]) }}</loc>
