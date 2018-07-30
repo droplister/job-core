@@ -361,7 +361,7 @@ class Listing extends Model
      */
     public function travelPercentage()
     {
-        return $this->belongsTo(TravelPercentages::class, 'travel_percentage_code', 'code');
+        return $this->belongsTo(TravelPercentage::class, 'travel_percentage_code', 'code');
     }
 
     /**
