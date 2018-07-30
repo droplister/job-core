@@ -1,7 +1,7 @@
 @if(isset($sponsored))
     @include('job-core::partials.h-tag', [
         'tag' => 'h6',
-        'title' => 'Featured',
+        'title' => 'Featured Jobs',
     ])
     @foreach($sponsored->all() as $job)
         @include('job-core::listings.partials.listing-sponsored')
