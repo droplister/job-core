@@ -3,9 +3,9 @@
     'class' => 'h6',
     'title' => $location->name,
 ])
-@if(\Request::route()->getName() === 'listings.show' && strlen($location->description) > 1000)
+@if(\Request::route()->getName() === 'listings.show')
     @include('job-core::partials.p-tag', [
-        'text' => str_limit(strip_tags($location->description), 1000),
+        'text' => strip_tags($location->description),
         'pb' => 'pb-3 border-bottom border-gray',
     ])
     <small class="d-block text-right mt-3">
