@@ -4,6 +4,7 @@ namespace Droplister\JobCore\App;
 
 use Cache;
 use Carbon\Carbon;
+use EloquentFilter\Filterable;
 use Droplister\JobCore\App\Traits\ChunksParagraphs;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Listing extends Model
 {
-    use ChunksParagraphs, Sluggable, SluggableScopeHelpers, SoftDeletes;
+    use ChunksParagraphs, Filterable, Sluggable, SluggableScopeHelpers, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -308,7 +309,7 @@ class Listing extends Model
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function clearances()
+    public function securityClearances()
     {
         return $this->belongsToMany(SecurityClearances::class, 'listing_security_clearance', 'listing_id', 'security_clearance_id');
     }
@@ -348,7 +349,7 @@ class Listing extends Model
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function payplans()
+    public function payPlans()
     {
         return $this->belongsToMany(PayPlans::class, 'listing_pay_plan', 'listing_id', 'pay_plan_id');
     }
@@ -358,9 +359,9 @@ class Listing extends Model
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function travel()
+    public function travelPercentage()
     {
-        return $this->belongsTo(TravelPercentage::class, 'travel_percentage_code', 'code');
+        return $this->belongsTo(TravelPercentages::class, 'travel_percentage_code', 'code');
     }
 
     /**
@@ -368,7 +369,7 @@ class Listing extends Model
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function schedule()
+    public function positionSchedule()
     {
         return $this->belongsTo(PositionSchedule::class, 'position_schedule_code', 'code');
     }
@@ -633,6 +634,14 @@ class Listing extends Model
     public function scopeWhereHasSchedule($query, $schedule)
     {
         return $query->where('position_schedule_code', $schedule);
+    }
+
+    /**
+     * Model Filter
+     */
+    public function modelFilter()
+    {
+        return $this->provideFilter(Droplister\JobCore\App\ModelFilters\ListingFilter::class);
     }
 
     /**

@@ -115,7 +115,7 @@ class UsaJobsFetchSecurity extends Command
         if(! $listing) return false;
 
         // SecurityClearances
-        $listing->clearances()->sync([$clearance->id], false);
+        $listing->securityClearances()->sync([$clearance->id], false);
 
         $listing->update(['clearance_code' => $clearance->code]);
 

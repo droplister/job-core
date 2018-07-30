@@ -14,7 +14,7 @@
     <div class="col-3 d-none d-md-inline-block">
          @include('job-core::listings.partials.attribute', [
             'title' => 'Travel %',
-            'text' => $listing->travel->value
+            'text' => $listing->travelPercentage->value
         ])
     </div>
     <div class="col-3 d-none d-md-inline-block">

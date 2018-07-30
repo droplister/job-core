@@ -34,7 +34,8 @@ class ListingsController extends Controller
         // Get Children
         $children = Cache::remember('listings_index_children', 1440,
             function () {
-                return SecurityClearances::related()->get();
+                return [];
+                // return SecurityClearances::related()->get();
             }
         );
 

@@ -93,7 +93,7 @@ class OccupationalSeries extends Model
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function clearances() {
+    public function securityClearances() {
         return $this->belongsToThrough(SecurityClearances::class, Listing::class, 'clearance_code', 'code', 'code');
     }
 
