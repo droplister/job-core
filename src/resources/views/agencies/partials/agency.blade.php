@@ -1,5 +1,6 @@
 @include('job-core::partials.h-tag', [
-    'tag' => 'h6',
+    'tag' => 'h2',
+    'class' => 'h6',
     'title' => $agency->value,
 ])
 @if(\Request::route()->getName() === 'listings.show' && strlen($agency->description) > 1000)
