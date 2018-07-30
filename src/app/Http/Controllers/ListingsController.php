@@ -58,7 +58,7 @@ class ListingsController extends Controller
             $sponsored = null;
         }
 
-        return view('job-core::listings.index', compact('listings', 'sponsored', 'children'));
+        return view('job-core::listings.index', compact('request', 'listings', 'sponsored', 'children'));
     }
 
     /**
