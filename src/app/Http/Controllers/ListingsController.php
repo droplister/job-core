@@ -26,8 +26,6 @@ class ListingsController extends Controller
      */
     public function index(Request $request)
     {
-        return $request->all();
-
         // Get Listings
         $listings = Cache::remember('listings_index_' . serialize($request->all()), 1440,
             function () use ($request) {
