@@ -4,25 +4,14 @@
         'title' => 'Narrow by Career',
     ])
     @foreach($careers as $child)
-        @if($request->has('career') && $child->id === (int) $request->career)
-            @include('job-core::partials.p-tag', [
-                'text' => $child->value,
-                'link' =>  ? null : route($route, [
-                    'career' => $child->id
-                ] + $request->except('career')),
-                'pt' => $loop->first ? 'pt-3' : 'pt-2',
-                'pb' => $loop->last ? 'pb-4' : '',
-            ])
-        @else
-            @include('job-core::partials.p-tag', [
-                'text' => $child->value,
-                'link' =>  ? null : route($route, [
-                    'career' => $child->id
-                ] + $request->except('career')),
-                'pt' => $loop->first ? 'pt-3' : 'pt-2',
-                'pb' => $loop->last ? 'pb-4' : '',
-            ])
-        @endif
+        @include('job-core::partials.p-tag', [
+            'text' => $child->value,
+            'link' => $request->has('career') && $child->id === (int) $request->career ? null : route($route, [
+                'career' => $child->id
+            ] + $request->except('career')),
+            'pt' => $loop->first ? 'pt-3' : 'pt-2',
+            'pb' => $loop->last ? 'pb-4' : '',
+        ])
     @endforeach
 @endif
 @if(count($agencies) > 0)
