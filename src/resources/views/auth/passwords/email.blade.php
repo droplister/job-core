@@ -35,7 +35,7 @@
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-lg {{ config('job-core.button_class') }}">
-                                {{ __('Send Password Reset Link') }}
+                                {{ __('Send Reset') }}
                             </button>
                         </div>
                     </div>
