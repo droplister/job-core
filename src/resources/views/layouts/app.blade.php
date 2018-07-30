@@ -27,7 +27,7 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', config('job-core.google_analytics'));
+      gtag('config', '{{ config('job-core.google_analytics') }}');
     </script>
 </head>
 <body class="{{ config('job-core.body_class') }}">
