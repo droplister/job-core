@@ -41,13 +41,13 @@ class HomeController extends Controller
             }
         );
 
-        // Top Levels
-        $levels = Cache::remember('home_levels', 1440,
+        // Top Clearances
+        $clearances = Cache::remember('home_clearances', 1440,
             function () {
                 return SecurityClearances::home()->get();
             }
         );
 
-        return view('job-core::home', compact('locations', 'careers', 'agencies', 'levels'));
+        return view('job-core::home', compact('locations', 'careers', 'agencies', 'clearances'));
     }
 }

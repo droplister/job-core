@@ -17,53 +17,53 @@ class SecurityClearancesController extends Controller
      */
     public function index(Request $request)
     {
-        // Get Levels
-        $levels = Cache::remember('levels_index', 1440,
+        // Get Clearances
+        $clearances = Cache::remember('clearances_index', 1440,
             function () {
                 return SecurityClearances::index()->get();
             }
         );
 
-        return view('job-core::levels.index', compact('levels'));
+        return view('job-core::clearances.index', compact('clearances'));
     }
 
     /**
      * Show Security Clearance
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  string  $level
+     * @param  string  $clearance
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $level)
+    public function show(Request $request, $clearance)
     {
-        // Get Level
-        $level = Cache::remember('levels_show_' . $level, 1440,
-            function () use ($level) {
-                return SecurityClearances::findBySlugOrFail($level);
+        // Get Clearance
+        $clearance = Cache::remember('clearances_show_' . $clearance, 1440,
+            function () use ($clearance) {
+                return SecurityClearances::findBySlugOrFail($clearance);
             }
         );
 
         // Get Listings
-        $listings = Cache::remember('levels_show_' . $level->slug . '_listings_' . $request->input('page', 1), 1440,
-            function () use ($request, $level) {
-                return $level->listings()->paginate(config('job-core.per_page'));
+        $listings = Cache::remember('clearances_show_' . $clearance->slug . '_listings_' . $request->input('page', 1), 1440,
+            function () use ($request, $clearance) {
+                return $clearance->listings()->paginate(config('job-core.per_page'));
             }
         );
 
         // Sponsored Jobs
-        $sponsored = Cache::remember('levels_show_' . $level->slug . '_sponsored', 1440,
-            function () use ($level) {
-                return $level->sponsoredListings();
+        $sponsored = Cache::remember('clearances_show_' . $clearance->slug . '_sponsored', 1440,
+            function () use ($clearance) {
+                return $clearance->sponsoredListings();
             }
         );
 
         // Get Children
-        $children = Cache::remember('levels_show_children', 1440,
+        $children = Cache::remember('clearances_show_children', 1440,
             function () {
                 return SecurityClearances::related()->get();
             }
         );
 
-        return view('job-core::levels.show', compact('level', 'listings', 'sponsored', 'children'));
+        return view('job-core::clearances.show', compact('clearance', 'listings', 'sponsored', 'children'));
     }
 }

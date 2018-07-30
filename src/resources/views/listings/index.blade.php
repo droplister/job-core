@@ -16,7 +16,7 @@
                 @include('job-core::listings.partials.listings')
             </div>
             <div class="col-12 col-md-3">
-                @include('job-core::levels.partials.levels')
+                @include('job-core::clearances.partials.clearances')
             </div>
         </div>
     </div>

@@ -2,10 +2,10 @@
     'tag' => 'h6',
     'title' => 'Security Clearance'
 ])     
-@foreach($levels as $level)
+@foreach($clearances as $clearance)
     @include('job-core::partials.p-tag', [
-        'text' => $level->value,
-        'link' => route('levels.show', ['level' => $level->slug]),
+        'text' => $clearance->value,
+        'link' => route('clearances.show', ['clearance' => $clearance->slug]),
         'pt' => $loop->first ? 'pt-3' : 'pt-2',
         'pb' => $loop->last ? 'pb-4' : '',
     ])

@@ -42,7 +42,7 @@ class SecurityClearances extends Model
      */
     public function getPageTitleAttribute()
     {
-        return Cache::rememberForever('level_' . $this->slug . '_page_title',
+        return Cache::rememberForever('clearance_' . $this->slug . '_page_title',
             function () {
                 return $this->value . ' ' . config('job-core.keyword');
             }
@@ -56,7 +56,7 @@ class SecurityClearances extends Model
      */
     public function getPageDescriptionAttribute()
     {
-        return Cache::remember('level_' . $this->slug . '_page_description', 1440,
+        return Cache::remember('clearance_' . $this->slug . '_page_description', 1440,
             function () {               
                 $listings_count = number_format($this->listings()->count());
                 $keyword = strtolower(config('job-core.keyword'));

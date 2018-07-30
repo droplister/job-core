@@ -17,7 +17,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::resource('search', 'SearchController');
 	Route::resource('agencies', 'AgencySubElementsController');
 	Route::resource('listings', 'ListingsController');
-	Route::resource('levels', 'SecurityClearancesController');
+	Route::resource('clearances', 'SecurityClearancesController');
 	Route::resource('careers', 'OccupationalSeriesController');
 	Route::resource('locations', 'LocationsController');
 	Route::resource('plans', 'PayPlansController');

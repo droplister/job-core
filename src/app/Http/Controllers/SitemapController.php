@@ -68,7 +68,7 @@ class SitemapController extends Controller
         );
 
         // Get Security Clearances
-        $levels = Cache::remember('sitemap_levels', 1440,
+        $clearances = Cache::remember('sitemap_clearances', 1440,
             function () {
 				return SecurityClearances::index()->get();
             }
@@ -88,6 +88,6 @@ class SitemapController extends Controller
             }
         );
 
-        return view('job-core::sitemap.index', compact('agencies', 'paths', 'locations', 'careers', 'plans', 'schedules', 'levels', 'travels', 'listings'));
+        return view('job-core::sitemap.index', compact('agencies', 'paths', 'locations', 'careers', 'plans', 'schedules', 'clearances', 'travels', 'listings'));
     }
 }

@@ -35,9 +35,9 @@
       <loc>{{ route('schedules.show', ['schedule' => $schedule->slug]) }}</loc>
    </url>
 @endforeach
-@foreach($levels as $level)
+@foreach($clearances as $clearance)
    <url>
-      <loc>{{ route('levels.show', ['level' => $level->slug]) }}</loc>
+      <loc>{{ route('clearances.show', ['clearance' => $clearance->slug]) }}</loc>
    </url>
 @endforeach
 @foreach($travels as $travel)
