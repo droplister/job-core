@@ -2,6 +2,7 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Droplister\JobCore\App\Listing;
