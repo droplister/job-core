@@ -49,8 +49,8 @@ class ListingsController extends Controller
         $schedules = Cache::remember('listings_index_schedules_' . serialize($request->all()), 1440,
             function () use ($request) {
                 return PositionSchedule::whereHas('listings',
-                    function ($listings) use ($request) {
-                        return $listings->filter($request->all());
+                    function ($listing) use ($request) {
+                        return $listing->filter($request->all());
                     }
                 );
             }
