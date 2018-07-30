@@ -38,7 +38,7 @@ class SpecificController extends Controller
                     )
                     ->withCount('listings')
                     ->has('listings', '>=', config('job-core.min_listings'))
-                    ->orderBy('value', 'desc')
+                    ->orderBy('value', 'asc')
                     ->get();
             }
         );
