@@ -112,7 +112,7 @@ class Location extends Model
      */
     public function listings()
     {
-        return $this->belongsToMany(Listing::class)->listingFilter();
+        return $this->belongsToMany(Listing::class)->listingsFilter();
     }
 
     /**

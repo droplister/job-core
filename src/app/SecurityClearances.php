@@ -83,7 +83,7 @@ class SecurityClearances extends Model
      */
     public function listings()
     {
-        return $this->belongsToMany(Listing::class, 'listing_security_clearance', 'security_clearance_id', 'listing_id')->listingFilter();
+        return $this->belongsToMany(Listing::class, 'listing_security_clearance', 'security_clearance_id', 'listing_id')->listingsFilter();
     }
 
     /**

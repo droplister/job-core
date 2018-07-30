@@ -98,7 +98,7 @@ class ListingsController extends Controller
     {
         return Cache::remember('listing_is_enabled_' . $listing->slug, 1440,
             function () use ($listing) {
-                return ! Listing::listingFilter()->get()->contains($listing);
+                return ! Listing::listingsFilter()->get()->contains($listing);
             }
         );
     }

@@ -376,7 +376,7 @@ class Listing extends Model
     /**
      * Listing Filter
      */
-    public function scopeListingFilter($query)
+    public function scopeListingsFilter($query)
     {
         switch(config('job-core.filter'))
         {
@@ -413,7 +413,7 @@ class Listing extends Model
      */
     public function scopeIndex($query)
     {
-        return $query->listingFilter();
+        return $query->listingsFilter();
     }
 
     /**
@@ -424,26 +424,26 @@ class Listing extends Model
         switch(config('job-core.filter'))
         {
             case 'federal': 
-                return $query->listingFilter()
+                return $query->listingsFilter()
                     ->whereHas('careers',
                         function ($career) {
                             $career->where('job_family', '=', '0800');
                         }
                     );
             case 'internship': 
-                return $query->listingFilter()
+                return $query->listingsFilter()
                     ->where('minimum_range', '>', 0)
                     ->orderBy('maximum_range', 'desc');
             case 'military_base': 
-                return $query->listingFilter()
+                return $query->listingsFilter()
                     ->where('position_schedule_code', '=', 2)
                     ->orderBy('maximum_range', 'desc');
             case 'security_clearance': 
-                return $query->listingFilter()
+                return $query->listingsFilter()
                     ->where('maximum_range', '>', 99999)
                     ->orderBy('maximum_range', 'desc');
             default:
-                return $query->listingFilter();
+                return $query->listingsFilter();
         }
     }
 
@@ -455,32 +455,32 @@ class Listing extends Model
         switch(config('job-core.filter'))
         {
             case 'federal': 
-                return $query->listingFilter()
+                return $query->listingsFilter()
                     ->whereHas('careers',
                         function ($career) {
                             $career->where('job_family', '=', '0600');
                         }
                     );
             case 'internship': 
-                return $query->listingFilter()
+                return $query->listingsFilter()
                     ->where('minimum_range', '=', 0)
                     ->where('maximum_range', '=', 0);
             case 'military_base': 
-                return $query->listingFilter()
+                return $query->listingsFilter()
                     ->whereHas('hiringPaths',
                         function ($path) {
                             $path->where('code', '=', 'VET');
                         }
                     );
             case 'security_clearance': 
-                return $query->listingFilter()
+                return $query->listingsFilter()
                     ->whereHas('hiringPaths',
                         function ($path) {
                             $path->where('code', '=', 'VET');
                         }
                     );
             default:
-                return $query->listingFilter();
+                return $query->listingsFilter();
         }
     }
 
@@ -491,7 +491,7 @@ class Listing extends Model
     {
         return $query->where('position_title', 'like', '%' . $keyword . '%')
             ->orWhere('job_summary', 'like', '%' . $keyword . '%')
-            ->listingFilter();
+            ->listingsFilter();
     }
 
     /**
@@ -521,7 +521,7 @@ class Listing extends Model
             ->where('low_grade', '>=', $listing->low_grade)
             ->where('high_grade', '<=', $listing->high_grade)
             ->inRandomOrder()
-            ->listingFilter()
+            ->listingsFilter()
             ->orWhereNotIn('id', [$listing->id])
             ->whereHas('careers',
                 function ($career) use ($listing) {
@@ -529,7 +529,7 @@ class Listing extends Model
                 }
             )
             ->inRandomOrder()
-            ->listingFilter()
+            ->listingsFilter()
             ->take(config('job-core.max_related'));
     }
 

@@ -31,7 +31,7 @@ class PayPlans extends Model
      */
     public function listings()
     {
-        return $this->belongsToMany(Listing::class, 'listing_pay_plan', 'pay_plan_id', 'listing_id')->listingFilter();
+        return $this->belongsToMany(Listing::class, 'listing_pay_plan', 'pay_plan_id', 'listing_id')->listingsFilter();
     }
 
     /**

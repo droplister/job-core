@@ -138,7 +138,7 @@ class AgencySubElements extends Model
      */
     public function listings()
     {
-        return $this->belongsToMany(Listing::class, 'listing_agency_sub_element', 'agency_sub_element_id', 'listing_id')->listingFilter();
+        return $this->belongsToMany(Listing::class, 'listing_agency_sub_element', 'agency_sub_element_id', 'listing_id')->listingsFilter();
     }
 
     /**

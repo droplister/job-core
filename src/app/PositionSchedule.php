@@ -31,7 +31,7 @@ class PositionSchedule extends Model
      */
     public function listings()
     {
-        return $this->hasMany(Listing::class, 'position_schedule_code', 'code')->listingFilter();
+        return $this->hasMany(Listing::class, 'position_schedule_code', 'code')->listingsFilter();
     }
 
     /**

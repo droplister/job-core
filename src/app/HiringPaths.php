@@ -31,7 +31,7 @@ class HiringPaths extends Model
      */
     public function listings()
     {
-        return $this->belongsToMany(Listing::class, 'listing_hiring_path', 'hiring_path_id', 'listing_id')->listingFilter();
+        return $this->belongsToMany(Listing::class, 'listing_hiring_path', 'hiring_path_id', 'listing_id')->listingsFilter();
     }
 
     /**

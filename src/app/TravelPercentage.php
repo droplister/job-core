@@ -30,7 +30,7 @@ class TravelPercentage extends Model
      */
     public function listings()
     {
-        return $this->hasMany(Listing::class, 'travel_percentage_code', 'code')->listingFilter();
+        return $this->hasMany(Listing::class, 'travel_percentage_code', 'code')->listingsFilter();
     }
 
     /**

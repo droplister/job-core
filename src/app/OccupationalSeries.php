@@ -104,7 +104,7 @@ class OccupationalSeries extends Model
      */
     public function listings()
     {
-        return $this->belongsToMany(Listing::class, 'listing_occupational_series', 'occupational_series_id', 'listing_id')->listingFilter();
+        return $this->belongsToMany(Listing::class, 'listing_occupational_series', 'occupational_series_id', 'listing_id')->listingsFilter();
     }
 
     /**
