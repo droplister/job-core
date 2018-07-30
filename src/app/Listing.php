@@ -641,7 +641,7 @@ class Listing extends Model
      */
     public function modelFilter()
     {
-        return $this->provideFilter(Droplister\JobCore\App\ModelFilters\ListingFilter::class);
+        return $this->provideFilter(ModelFilters\ListingFilter::class);
     }
 
     /**
