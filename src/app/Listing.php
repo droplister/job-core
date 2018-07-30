@@ -243,12 +243,9 @@ class Listing extends Model
     {
         return Cache::rememberForever('listing_' . $this->slug . '_position_title',
             function () use ($value) {
-                if (strpos($value, ' ' . $this->job_grade) === false &&
-                    strpos($value, ' ' . $this->job_grade_code . '-') === false && 
-                    strpos($value, ' ' . $this->job_grade_code) === false ||
-                    strpos($value, '(' . $this->job_grade_code . '-') === false && 
-                    strpos($value, '(' . $this->job_grade) === false && 
-                    strpos($value, '(' . $this->job_grade_code) === false)
+                if (strpos($value, $this->job_grade) === false &&
+                    strpos($value, $this->job_grade_code . '-') === false && 
+                    strpos($value, $this->job_grade_code) === false)
                 {
                     return trim($value) . ', ' . $this->job_grade;
                 }
