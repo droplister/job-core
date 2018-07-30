@@ -40,33 +40,21 @@ class SearchController extends Controller
         // Get Locations
         $locations = Cache::remember('listings_index_locations_' . serialize($request->all()), 1440,
             function () use ($request) {
-                return Location::whereHas('listings',
-                    function ($listing) use ($request) {
-                        return $listing->filter($request->all());
-                    }
-                );
+                return Location::narrow($request)->get();
             }
         );
 
         // Get Schedules
         $schedules = Cache::remember('listings_index_schedules_' . serialize($request->all()), 1440,
             function () use ($request) {
-                return PositionSchedule::whereHas('listings',
-                    function ($listing) use ($request) {
-                        return $listing->filter($request->all());
-                    }
-                );
+                return PositionSchedule::narrow($request)->get();
             }
         );
 
         // Get Clearances
         $clearances = Cache::remember('listings_index_clearances_' . serialize($request->all()), 1440,
             function () use ($request) {
-                return SecurityClearances::whereHas('listings',
-                    function ($listing) use ($request) {
-                        return $listing->filter($request->all());
-                    }
-                );
+                return SecurityClearances::narrow($request)->get();
             }
         );
 
