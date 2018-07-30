@@ -5,7 +5,7 @@
       <loc>{{ route($route) }}</loc>
    </url>
 @endforeach
-@foreach($agencies as $agencies)
+@foreach($agencies as $agency)
    <url>
       <loc>{{ route('agencies.show', ['agency' => $agency->slug]) }}</loc>
    </url>
