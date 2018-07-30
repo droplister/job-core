@@ -4,7 +4,7 @@
     @include('job-core::listings.partials.listing')
 @endforeach
 
-@if(count($listing) === 0)
+@if(count($listings) === 0)
     @include('job-core::listings.partials.listings-not-found')
 @endif
 
