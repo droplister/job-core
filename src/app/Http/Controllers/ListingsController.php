@@ -7,6 +7,8 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Droplister\JobCore\App\Listing;
+use Droplister\JobCore\App\Location;
+use Droplister\JobCore\App\PositionSchedule;
 use Droplister\JobCore\App\SecurityClearances;
 use JobApis\Jobs\Client\Queries\JujuQuery;
 use JobApis\Jobs\Client\Providers\JujuProvider;
@@ -32,11 +34,36 @@ class ListingsController extends Controller
             }
         );
 
-        // Get Children
-        $children = Cache::remember('listings_index_children', 1440,
-            function () {
-                return [];
-                // return SecurityClearances::related()->get();
+        // Get Locations
+        $locations = Cache::remember('listings_index_locations_' . serialize($request->all()), 1440,
+            function () use ($request) {
+                return Location::whereHas('listings',
+                    function ($listings) use ($request) {
+                        return $listings->filter($request->all());
+                    }
+                );
+            }
+        );
+
+        // Get Schedules
+        $schedules = Cache::remember('listings_index_schedules_' . serialize($request->all()), 1440,
+            function () use ($request) {
+                return PositionSchedule::whereHas('listings',
+                    function ($listings) use ($request) {
+                        return $listings->filter($request->all());
+                    }
+                );
+            }
+        );
+
+        // Get Clearances
+        $clearances = Cache::remember('listings_index_clearances_' . serialize($request->all()), 1440,
+            function () use ($request) {
+                return SecurityClearances::whereHas('listings',
+                    function ($listings) use ($request) {
+                        return $listings->filter($request->all());
+                    }
+                );
             }
         );
 
@@ -58,7 +85,7 @@ class ListingsController extends Controller
             $sponsored = null;
         }
 
-        return view('job-core::listings.index', compact('request', 'listings', 'sponsored', 'children'));
+        return view('job-core::listings.index', compact('request', 'listings', 'sponsored', 'locations', 'schedules', 'clearances'));
     }
 
     /**
