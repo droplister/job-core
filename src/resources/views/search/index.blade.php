@@ -3,7 +3,9 @@
 @section('title', 'Search Jobs')
 
 @section('content')
-    @if($listings && count($listings))
+    @if(empty($_GET))
+        @include('job-core::search.partials.form')
+    @else
         @include('job-core::partials.title', [
             'fa' => 'fa-list',
             'title' => 'Search',
@@ -19,7 +21,5 @@
                 </div>
             </div>
         </div>
-    @else
-        @include('job-core::search.partials.form')
     @endif
 @endsection
