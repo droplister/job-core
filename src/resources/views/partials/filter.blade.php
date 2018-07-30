@@ -1,5 +1,33 @@
 @include('job-core::partials.h-tag', [
     'tag' => 'h6',
+    'title' => 'Narrow by Agency',
+])
+@foreach($locations as $child)
+    @include('job-core::partials.p-tag', [
+        'text' => $child->value,
+        'link' => $request->has('agency') && $child->id === (int) $request->agency ? null : route($route, [
+            'agency' => $child->id
+        ] + $request->except('agency')),
+        'pt' => $loop->first ? 'pt-3' : 'pt-2',
+        'pb' => $loop->last ? 'pb-4' : '',
+    ])
+@endforeach
+@include('job-core::partials.h-tag', [
+    'tag' => 'h6',
+    'title' => 'Narrow by Career',
+])
+@foreach($locations as $child)
+    @include('job-core::partials.p-tag', [
+        'text' => $child->value,
+        'link' => $request->has('career') && $child->id === (int) $request->career ? null : route($route, [
+            'career' => $child->id
+        ] + $request->except('career')),
+        'pt' => $loop->first ? 'pt-3' : 'pt-2',
+        'pb' => $loop->last ? 'pb-4' : '',
+    ])
+@endforeach
+@include('job-core::partials.h-tag', [
+    'tag' => 'h6',
     'title' => 'Narrow by Location',
 ])
 @foreach($locations as $child)
