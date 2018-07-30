@@ -118,6 +118,11 @@ return [
     'monetized' => env('JOB_CORE_MONETIZED', false),
 
     /**
+     * Google Analytics
+     */
+    'google_analytics' => env('JOB_CORE_GOOGLE_ANALYTICS'),
+
+    /**
      * Adsense Ad Client
      */
     'google_ad_client' => env('JOB_CORE_GOOGLE_AD_CLIENT'),
