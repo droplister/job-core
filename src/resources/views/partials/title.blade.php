@@ -11,10 +11,12 @@
                     {{ $title }}
                 </span>
             @endif
-            @if(isset($subtitle))
-                <small>{{ $subtitle }}</small>
-            @endif
         </h1>
+        @if(isset($subtitle))
+            <h3 class="h6 mb-0 font-weight-normal">
+                {{ $subtitle }}
+            </h3>
+        @endif
     </div>
 </div>
 @include('job-core::partials.adsense')
