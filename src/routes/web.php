@@ -20,7 +20,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('clearances', 'SecurityClearancesController');
     Route::resource('careers', 'OccupationalSeriesController');
     Route::resource('locations', 'LocationsController');
-    Route::resource('plans', 'PayPlansController');
+    // Route::resource('plans', 'PayPlansController');
     Route::resource('schedules', 'PositionSchedulesController');
     Route::resource('travels', 'TravelPercentagesController');
     Route::resource('paths', 'HiringPathsController');

@@ -25,11 +25,13 @@
       <loc>{{ route('careers.show', ['career' => $career->slug]) }}</loc>
    </url>
 @endforeach
-@foreach($plans as $plan)
-   <url>
-      <loc>{{ route('plans.show', ['plan' => $plan->slug]) }}</loc>
-   </url>
-@endforeach
+<!--
+   @foreach($plans as $plan)
+      <url>
+         <loc>{{ route('plans.show', ['plan' => $plan->slug]) }}</loc>
+      </url>
+   @endforeach
+-->
 @foreach($schedules as $schedule)
    <url>
       <loc>{{ route('schedules.show', ['schedule' => $schedule->slug]) }}</loc>

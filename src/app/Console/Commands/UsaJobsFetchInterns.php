@@ -67,6 +67,11 @@ class UsaJobsFetchInterns extends Command
 
         $this->flagInternships($path->listings);
 
+        // Method 4
+        $path = HiringPaths::findBySlug('recent-graduates');
+
+        $this->flagInternships($path->listings);
+
         // Comment
         $this->comment("Processed Internships");
     }
