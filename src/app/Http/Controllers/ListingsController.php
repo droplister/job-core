@@ -38,8 +38,8 @@ class ListingsController extends Controller
         $locations = Cache::remember('listings_index_locations_' . serialize($request->all()), 1440,
             function () use ($request) {
                 return Location::whereHas('listings',
-                    function ($listings) use ($request) {
-                        return $listings->filter($request->all());
+                    function ($listing) use ($request) {
+                        return $listing->filter($request->all());
                     }
                 );
             }
@@ -60,8 +60,8 @@ class ListingsController extends Controller
         $clearances = Cache::remember('listings_index_clearances_' . serialize($request->all()), 1440,
             function () use ($request) {
                 return SecurityClearances::whereHas('listings',
-                    function ($listings) use ($request) {
-                        return $listings->filter($request->all());
+                    function ($listing) use ($request) {
+                        return $listing->filter($request->all());
                     }
                 );
             }

@@ -41,8 +41,8 @@ class SearchController extends Controller
         $locations = Cache::remember('listings_index_locations_' . serialize($request->all()), 1440,
             function () use ($request) {
                 return Location::whereHas('listings',
-                    function ($listings) use ($request) {
-                        return $listings->filter($request->all());
+                    function ($listing) use ($request) {
+                        return $listing->filter($request->all());
                     }
                 );
             }
@@ -52,8 +52,8 @@ class SearchController extends Controller
         $schedules = Cache::remember('listings_index_schedules_' . serialize($request->all()), 1440,
             function () use ($request) {
                 return PositionSchedule::whereHas('listings',
-                    function ($listings) use ($request) {
-                        return $listings->filter($request->all());
+                    function ($listing) use ($request) {
+                        return $listing->filter($request->all());
                     }
                 );
             }
@@ -63,8 +63,8 @@ class SearchController extends Controller
         $clearances = Cache::remember('listings_index_clearances_' . serialize($request->all()), 1440,
             function () use ($request) {
                 return SecurityClearances::whereHas('listings',
-                    function ($listings) use ($request) {
-                        return $listings->filter($request->all());
+                    function ($listing) use ($request) {
+                        return $listing->filter($request->all());
                     }
                 );
             }
