@@ -19,11 +19,19 @@ class SearchController extends Controller
      */
     public function index(Request $request)
     {
-        // Get Query
-        $listings = Listing::filter($request->all())->paginate(config('job-core.per_page'));
-
         // Get Keyword
         $keyword = $request->has('q') ? $request->q : config('job-core.keyword');
+
+        // Get Subtitle
+        $subtitle = $request->has('q') ? 'Results for "' . $request->q . '"' : 'Results for Job Filter';
+
+        // Get Listings
+        $listings = Cache::remember('search_index_' . serialize($request->all()), 1440,
+            function () use ($request) {
+                return Listing::filter($request->all())
+                    ->paginateFilter(config('job-core.per_page'));
+            }
+        );
 
         // Sponsored Listings
         try
@@ -39,8 +47,6 @@ class SearchController extends Controller
         {
             $sponsored = null;
         }
-
-        $subtitle = $request->has('q') ? 'Results for "' . $request->q . '"' : 'Results for Job Filter';
 
         return view('job-core::search.index', compact('request', 'subtitle', 'listings', 'sponsored'));
     }

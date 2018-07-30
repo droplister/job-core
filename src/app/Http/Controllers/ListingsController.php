@@ -25,9 +25,10 @@ class ListingsController extends Controller
     public function index(Request $request)
     {
         // Get Listings
-        $listings = Cache::remember('listings_index', 1440,
+        $listings = Cache::remember('listings_index_' . serialize($request->all()), 1440,
             function () use ($request) {
-                return Listing::index()->paginate(config('job-core.per_page'));
+                return Listing::filter($request->all())
+                    ->paginateFilter(config('job-core.per_page'));
             }
         );
 
