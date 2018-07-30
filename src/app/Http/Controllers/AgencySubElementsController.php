@@ -6,9 +6,12 @@ use Cache;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Droplister\JobCore\App\AgencySubElements;
+use Droplister\JobCore\App\Traits\GuardsAgainst;
 
 class AgencySubElementsController extends Controller
 {
+    use GuardsAgainst;
+
     /**
      * Ageny Sub Elements Index
      *
@@ -50,6 +53,12 @@ class AgencySubElementsController extends Controller
                 return AgencySubElements::findBySlugOrFail($agency);
             }
         );
+
+        // Guard Against
+        if($this->guardAgainstIrrelevantPages($agency))
+        {
+            return abort(404);
+        }
 
         // Get Listings
         $listings = Cache::remember('agencies_show_' . $agency->slug . '_listings_' . $request->input('page', 1), 1440,

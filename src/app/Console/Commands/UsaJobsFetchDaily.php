@@ -10,12 +10,13 @@ use Droplister\JobCore\App\HiringPaths;
 use Droplister\JobCore\App\AgencySubElements;
 use Droplister\JobCore\App\OccupationalSeries;
 use Droplister\JobCore\App\Traits\LinksUrls;
+use Droplister\JobCore\App\Traits\GuardsAgainst;
 
 use Illuminate\Console\Command;
 
 class UsaJobsFetchDaily extends Command
 {
-    use LinksUrls;
+    use GuardsAgainst, LinksUrls;
 
     /**
      * USAJobs.gov API
@@ -386,47 +387,5 @@ class UsaJobsFetchDaily extends Command
         }
 
         return $locations;
-    }
-
-    /**
-     * Guard Against Data
-     *
-     * @return boolean
-     */
-    private function guardAgainstTrashed($data)
-    {
-        return Listing::whereControlNumber($data['control_number'])
-            ->onlyTrashed()
-            ->exists();
-    }
-
-    /**
-     * Guard Against Data
-     *
-     * @return boolean
-     */
-    private function guardAgainstInternationalLocation($location)
-    {
-        return 'United States' !== $location->CountryCode ||
-        isset($location->CountrySubDivisionCode) &&
-        in_array($location->CountrySubDivisionCode, [
-            'Northern Mariana Islands',
-            'American Samoa',
-            'Guam',
-            'Puerto Rico',
-            'Virgin Islands'
-        ]);
-    }
-
-    /**
-     * Guard Against Data
-     *
-     * @return boolean
-     */
-    private function guardAgainstWashingtonDcCities($location)
-    {
-        $city_name = str_replace(', District of Columbia', '', $location->CityName);
-
-        return $city_name !== 'District of Columbia' && $city_name !== 'Washington DC';
     }
 }

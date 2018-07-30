@@ -5,12 +5,13 @@ namespace Droplister\JobCore\Database\Seeds;
 use Curl\Curl;
 use Droplister\JobCore\App\AgencySubElements;
 use Droplister\JobCore\App\Traits\LinksUrls;
+use Droplister\JobCore\App\Traits\GuardsAgainst;
 
 use Illuminate\Database\Seeder;
 
 class AgencySubElementsDataTableSeeder extends Seeder
 {
-    use LinksUrls;
+    use GuardsAgainst, LinksUrls;
 
     /**
      * USAJobs.gov API
@@ -75,15 +76,5 @@ class AgencySubElementsDataTableSeeder extends Seeder
         $logo_url = property_exists($result, 'logo') && $result->logo ? trim($result->logo->thumb_url) : null;
 
         return compact('value', 'description', 'url', 'logo_url');
-    }
-
-    /**
-     * Guard Against Data
-     *
-     * @return boolean
-     */
-    private function guardAgainstNonAgencies($data)
-    {
-        return AgencySubElements::whereValue($data['value'])->doesntExist();
     }
 }

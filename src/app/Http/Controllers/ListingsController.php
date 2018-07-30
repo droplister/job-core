@@ -10,9 +10,12 @@ use Droplister\JobCore\App\Listing;
 use Droplister\JobCore\App\SecurityClearances;
 use JobApis\Jobs\Client\Queries\JujuQuery;
 use JobApis\Jobs\Client\Providers\JujuProvider;
+use Droplister\JobCore\App\Traits\GuardsAgainst;
 
 class ListingsController extends Controller
 {
+    use GuardsAgainst;
+
     /**
      * Listings Index
      *
@@ -86,20 +89,5 @@ class ListingsController extends Controller
         );
 
         return view('job-core::listings.show', compact('listing', 'listings'));
-    }
-
-    /**
-     * Check Filter Applies
-     * 
-     * @param  \Droplister\JobCore\App\Listing  $listing
-     * @return boolean
-     */
-    private function guardAgainstDisabledListings(Listing $listing)
-    {
-        return Cache::remember('listing_is_enabled_' . $listing->slug, 1440,
-            function () use ($listing) {
-                return ! Listing::listingsFilter()->get()->contains($listing);
-            }
-        );
     }
 }
