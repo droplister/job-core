@@ -1,4 +1,4 @@
-@if(isset($sponsored))
+@if(auth()->check() && count($listings) === 0 || isset($sponsored))
     @include('job-core::partials.h-tag', [
         'tag' => 'h6',
         'title' => 'Featured Jobs',
