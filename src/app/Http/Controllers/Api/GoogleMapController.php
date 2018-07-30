@@ -20,7 +20,7 @@ class GoogleMapController extends Controller
         // Get Locations
         $locations = Cache::remember('google_map_index', 1440,
             function () {
-        		return Location::map()->get();
+                return Location::map()->get();
             }
         );
 

@@ -16,58 +16,64 @@ class ListingFilter extends ModelFilter
 
     public function q($keyword)
     {
-	    $this->whereLike($keyword);
+        return $this->where('position_title', 'like', '%' . $keyword . '%')
+            ->orWhere('job_summary', 'like', '%' . $keyword . '%');
     }
 
     public function agency($id)
     {
-	    $this->related('agencies', function($query) use ($id) {
-	        return $query->where('id', $id);
-	    });
+        $this->related('agencies', function($query) use ($id) {
+            return $query->where('id', $id);
+        });
     }
 
     public function path($id)
     {
-	    $this->related('hiringPaths', function($query) use ($id) {
-	        return $query->where('id', $id);
-	    });
+        $this->related('hiringPaths', function($query) use ($id) {
+            return $query->where('id', $id);
+        });
     }
 
     public function location($id)
     {
-	    $this->related('locations', function($query) use ($id) {
-	        return $query->where('id', $id);
-	    });
+        $this->related('locations', function($query) use ($id) {
+            return $query->where('id', $id);
+        });
     }
 
     public function career($id)
     {
-	    $this->related('careers', function($query) use ($id) {
-	        return $query->where('id', $id);
-	    });
+        $this->related('careers', function($query) use ($id) {
+            return $query->where('id', $id);
+        });
     }
 
     public function plan($id)
     {
-	    $this->related('payPlans', function($query) use ($id) {
-	        return $query->where('id', $id);
-	    });
+        $this->related('payPlans', function($query) use ($id) {
+            return $query->where('id', $id);
+        });
     }
 
     public function clearance($id)
     {
-	    $this->related('securityClearances', function($query) use ($id) {
-	        return $query->where('id', $id);
-	    });
+        $this->related('securityClearances', function($query) use ($id) {
+            return $query->where('id', $id);
+        });
     }
 
     public function schedule($code)
     {
-	    return $this->where('position_schedule_code', $code);
+        return $this->where('position_schedule_code', $code);
     }
 
     public function travel($code)
     {
-	    return $this->where('travel_percentage_code', '=', $code);
+        return $this->where('travel_percentage_code', '=', $code);
+    }
+
+    public function setup()
+    {
+        $this->listingsFilter();
     }
 }

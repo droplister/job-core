@@ -4,6 +4,6 @@
     'mb' => 'mb-3',
 ])
 <p class="text-muted small lh-135">
-	{{ config('job-core.domain') }} is a free {{ strtolower(config('job-core.keyword')) }} search tool powered by the USAJobs.gov API offered for free by Family Media LLC.
+    {{ config('job-core.domain') }} is a free {{ strtolower(config('job-core.keyword')) }} search tool powered by the USAJobs.gov API offered for free by Family Media LLC.
 </p>
 @include('job-core::partials.resources')

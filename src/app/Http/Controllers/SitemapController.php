@@ -51,63 +51,63 @@ class SitemapController extends Controller
         // Get Agencies
         $agencies = Cache::remember('sitemap_agencies', 1440,
             function () {
-				return AgencySubElements::relatedFilter()->get();
+                return AgencySubElements::relatedFilter()->get();
             }
         );
 
         // Get Hiring Paths
         $paths = Cache::remember('sitemap_paths', 1440,
             function () {
-				return HiringPaths::index()->get();
+                return HiringPaths::index()->get();
             }
         );
 
         // Get Locations
         $locations = Cache::remember('sitemap_locations', 1440,
             function () {
-				return Location::relatedFilter()->get();
+                return Location::relatedFilter()->get();
             }
         );
 
         // Get Careers
         $careers = Cache::remember('sitemap_career', 1440,
             function () {
-				return OccupationalSeries::index()->get();
+                return OccupationalSeries::index()->get();
             }
         );
 
         // Get Pay Plans
         $plans = Cache::remember('sitemap_plans', 1440,
             function () {
-				return PayPlans::index()->get();
+                return PayPlans::index()->get();
             }
         );
 
         // Get Position Schedules
         $schedules = Cache::remember('sitemap_schedules', 1440,
             function () {
-				return PositionSchedule::index()->get();
+                return PositionSchedule::index()->get();
             }
         );
 
         // Get Security Clearances
         $clearances = Cache::remember('sitemap_clearances', 1440,
             function () {
-				return SecurityClearances::index()->get();
+                return SecurityClearances::index()->get();
             }
         );
 
         // Get Travel Percentages
         $travels = Cache::remember('sitemap_travels', 1440,
             function () {
-				return TravelPercentage::index()->get();
+                return TravelPercentage::index()->get();
             }
         );
 
         // Get Listings
         $listings = Cache::remember('sitemap_listings', 1440,
             function () {
-				return Listing::listingsFilter()->get();
+                return Listing::listingsFilter()->get();
             }
         );
 

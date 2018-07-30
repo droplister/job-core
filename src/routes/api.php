@@ -14,5 +14,5 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['middleware' => ['api']], function () {
-	Route::get('/api/map', 'Api\GoogleMapController@index')->name('api.map.index');
+    Route::get('/api/map', 'Api\GoogleMapController@index')->name('api.map.index');
 });
