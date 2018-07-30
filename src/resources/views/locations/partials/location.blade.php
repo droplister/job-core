@@ -8,6 +8,11 @@
         'text' => str_limit(strip_tags($location->description), 1000),
         'pb' => 'pb-3 border-bottom border-gray',
     ])
+    <small class="d-block text-right mt-3">
+        <a href="{{ route('locations.show', ['location' => $location->slug]) }}">
+            <i class="fa fa-user"></i> All Jobs
+        </a>
+    </small>
 @else
     @foreach($location->chunkParagraphs($location->description) as $paragraph)
         @include('job-core::partials.p-tag', [
@@ -15,9 +20,5 @@
             'pb' => $loop->last ? 'pb-3 border-bottom border-gray' : 'pb-0',
         ])
     @endforeach
+    <br />
 @endif
-<small class="d-block text-right mt-3">
-    <a href="{{ route('locations.show', ['location' => $location->slug]) }}">
-        <i class="fa fa-user"></i> All Jobs
-    </a>
-</small>
