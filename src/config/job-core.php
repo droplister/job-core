@@ -143,6 +143,11 @@ return [
     'affiliate_url' => env('JOB_CORE_AFFILIATE_URL', env('APP_URL')),
 
     /**
+     * Heartbeat Url
+     */
+    'heartbeat_url' => env('JOB_CORE_HEARTBEAT_URL'),
+
+    /**
      * USAJobs.gov Host
      */
     'usajobs_host' => env('JOB_CORE_USAJOBS_HOST'),
