@@ -637,6 +637,14 @@ class Listing extends Model
     }
 
     /**
+     * Model Filter
+     */
+    public function modelFilter()
+    {
+        return $this->provideFilter(\Droplister\JobCore\App\ModelFilters\ListingFilter::class);
+    }
+
+    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array
