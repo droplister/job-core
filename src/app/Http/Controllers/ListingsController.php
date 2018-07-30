@@ -37,7 +37,7 @@ class ListingsController extends Controller
         // Get Locations
         $locations = Cache::remember('listings_index_locations_' . serialize($request->all()), 1440,
             function () use ($request) {
-                return Location::narrow($request)->get();
+                return Location::isCity()->narrow($request)->get();
             }
         );
 
