@@ -396,7 +396,7 @@ class Listing extends Model
         switch(config('job-core.filter'))
         {
             case 'federal': 
-                return $query->notInternship();
+                return $query->offMilitaryBase()->notInternship();
             case 'internship': 
                 return $query->isInternship();
             case 'military_base': 
