@@ -5,6 +5,8 @@ namespace Droplister\JobCore\App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Droplister\JobCore\App\Listing;
+use JobApis\Jobs\Client\Queries\JujuQuery;
+use JobApis\Jobs\Client\Providers\JujuProvider;
 
 class SearchController extends Controller
 {
