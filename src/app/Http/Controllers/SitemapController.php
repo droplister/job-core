@@ -111,6 +111,6 @@ class SitemapController extends Controller
             }
         );
 
-        return view('job-core::sitemap.index', compact('agencies', 'paths', 'locations', 'careers', 'plans', 'schedules', 'clearances', 'travels', 'listings'));
+        return view('job-core::sitemap.index', compact('routes', 'agencies', 'paths', 'locations', 'careers', 'plans', 'schedules', 'clearances', 'travels', 'listings'));
     }
 }
