@@ -9,7 +9,9 @@ use App\Http\Controllers\Controller;
 use Droplister\JobCore\App\Listing;
 use Droplister\JobCore\App\Location;
 use Droplister\JobCore\App\PositionSchedule;
+use Droplister\JobCore\App\AgencySubElements;
 use Droplister\JobCore\App\SecurityClearances;
+use Droplister\JobCore\App\OccupationalSeries;
 use JobApis\Jobs\Client\Queries\JujuQuery;
 use JobApis\Jobs\Client\Providers\JujuProvider;
 
@@ -34,6 +36,20 @@ class SearchController extends Controller
             function () use ($request) {
                 return Listing::filter($request->all())
                     ->paginateFilter(config('job-core.per_page'));
+            }
+        );
+
+        // Get Agencies
+        $agencies = Cache::remember('listings_index_agencies_' . serialize($request->all()), 1440,
+            function () use ($request) {
+                return AgencySubElements::narrow($request)->get();
+            }
+        );
+
+        // Get Careers
+        $careers = Cache::remember('listings_index_careets_' . serialize($request->all()), 1440,
+            function () use ($request) {
+                return OccupationalSeries::narrow($request)->get();
             }
         );
 
@@ -73,6 +89,6 @@ class SearchController extends Controller
             $sponsored = null;
         }
 
-        return view('job-core::search.index', compact('request', 'subtitle', 'listings', 'sponsored', 'locations', 'schedules', 'clearances'));
+        return view('job-core::search.index', compact('request', 'subtitle', 'listings', 'sponsored', 'agencies', 'careers', 'locations', 'schedules', 'clearances'));
     }
 }

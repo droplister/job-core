@@ -34,6 +34,20 @@ class ListingsController extends Controller
             }
         );
 
+        // Get Agencies
+        $agencies = Cache::remember('listings_index_agencies_' . serialize($request->all()), 1440,
+            function () use ($request) {
+                return AgencySubElements::narrow($request)->get();
+            }
+        );
+
+        // Get Careers
+        $careers = Cache::remember('listings_index_careets_' . serialize($request->all()), 1440,
+            function () use ($request) {
+                return OccupationalSeries::narrow($request)->get();
+            }
+        );
+
         // Get Locations
         $locations = Cache::remember('listings_index_locations_' . serialize($request->all()), 1440,
             function () use ($request) {
@@ -73,7 +87,7 @@ class ListingsController extends Controller
             $sponsored = null;
         }
 
-        return view('job-core::listings.index', compact('request', 'listings', 'sponsored', 'locations', 'schedules', 'clearances'));
+        return view('job-core::listings.index', compact('request', 'listings', 'sponsored', 'agencies', 'careers', 'locations', 'schedules', 'clearances'));
     }
 
     /**
