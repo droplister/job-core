@@ -11,6 +11,7 @@ use Droplister\JobCore\App\Location;
 use Droplister\JobCore\App\AgencySubElements;
 use Droplister\JobCore\App\PositionSchedule;
 use Droplister\JobCore\App\SecurityClearances;
+use Droplister\JobCore\App\OccupationalSeries;
 use JobApis\Jobs\Client\Queries\JujuQuery;
 use JobApis\Jobs\Client\Providers\JujuProvider;
 use Droplister\JobCore\App\Traits\GuardsAgainst;
