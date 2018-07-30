@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Droplister\JobCore\App\Listing;
 use Droplister\JobCore\App\Location;
+use Droplister\JobCore\App\AgencySubElements;
 use Droplister\JobCore\App\PositionSchedule;
 use Droplister\JobCore\App\SecurityClearances;
 use JobApis\Jobs\Client\Queries\JujuQuery;
