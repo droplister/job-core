@@ -19,22 +19,6 @@ trait GuardsAgainst
         return AgencySubElements::whereValue($data['value'])->doesntExist();
     }
 
-	/**
-	 * Guard Against Irrelevant Pages
-     * 
-	 * @param  $model
-	 * @return boolean
-	 */
-	public function guardAgainstIrrelevantPages($model)
-	{
-        if($model->listings()->count() === 0 && $model->inactiveListings()->count() === 0)
-        {
-            return true;
-        }
-
-	    return false;
-	}
-
     /**
      * Guard Agaisnt Disabled Listings
      * 
