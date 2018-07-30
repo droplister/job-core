@@ -22,6 +22,9 @@ trait NarrowsListings
             function ($listing) use ($listings) {
                 $listing->whereIn('id', $listings);
             }
-        )->take(config('job-core.max_relations'));
+        )
+        ->withCount('listings')
+        ->orderBy('listings_count', 'desc')
+        ->take(config('job-core.max_relations'));
     }
 }
