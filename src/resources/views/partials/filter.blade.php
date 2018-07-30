@@ -2,7 +2,7 @@
     'tag' => 'h6',
     'title' => 'Narrow by Agency',
 ])
-@foreach($locations as $child)
+@foreach($agencies as $child)
     @include('job-core::partials.p-tag', [
         'text' => $child->value,
         'link' => $request->has('agency') && $child->id === (int) $request->agency ? null : route($route, [
@@ -16,7 +16,7 @@
     'tag' => 'h6',
     'title' => 'Narrow by Career',
 ])
-@foreach($locations as $child)
+@foreach($careers as $child)
     @include('job-core::partials.p-tag', [
         'text' => $child->value,
         'link' => $request->has('career') && $child->id === (int) $request->career ? null : route($route, [
