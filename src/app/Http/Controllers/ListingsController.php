@@ -42,7 +42,7 @@ class ListingsController extends Controller
         // Get Agencies
         $agencies = Cache::remember('listings_index_agencies_' . serialize($request->all()), 1440,
             function () use ($request) {
-                return AgencySubElements::narrow($request)->get();
+                return AgencySubElements::isChild()->narrow($request)->get();
             }
         );
 

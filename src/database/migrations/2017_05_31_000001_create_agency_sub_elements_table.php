@@ -15,8 +15,6 @@ class CreateAgencySubElementsTable extends Migration
     {
         Schema::create('agency_sub_elements', function (Blueprint $table) {
             $table->increments('id');
-
-            // AgencySubElements
             $table->string('parent_code')->nullable()->index();
             $table->string('code')->unique();
             $table->string('slug')->unique();
@@ -25,8 +23,6 @@ class CreateAgencySubElementsTable extends Migration
             $table->string('logo_url')->nullable();
             $table->text('description')->nullable();
             $table->boolean('disabled')->index();
-
-            // Timestamps
             $table->timestamps();
         });
     }

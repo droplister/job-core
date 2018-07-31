@@ -14,13 +14,8 @@ class CreateListingLocationPivotTable extends Migration
     public function up()
     {
         Schema::create('listing_location', function (Blueprint $table) {
-            // Relations
             $table->integer('listing_id')->unsigned()->index();
             $table->integer('location_id')->unsigned()->index();
-
-            // Foreign Keys
-            $table->foreign('listing_id')->references('id')->on('listings');
-            $table->foreign('location_id')->references('id')->on('locations');
         });
     }
 

@@ -14,14 +14,9 @@ class CreateAlertUserPivotTable extends Migration
     public function up()
     {
         Schema::create('alert_user', function (Blueprint $table) {
-            // Relations
             $table->integer('alert_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
             $table->timestamp('expired_at');
-
-            // Foreign Keys
-            $table->foreign('alert_id')->references('id')->on('alerts');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

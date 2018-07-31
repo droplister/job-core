@@ -15,15 +15,11 @@ class CreateHiringPathsTable extends Migration
     {
         Schema::create('hiring_paths', function (Blueprint $table) {
             $table->increments('id');
-
-            // HiringPaths
             $table->string('code')->unique();
             $table->string('slug')->unique();
             $table->string('value');
             $table->text('description')->nullable();
             $table->boolean('disabled')->index();
-
-            // Timestamps
             $table->timestamps();
         });
     }

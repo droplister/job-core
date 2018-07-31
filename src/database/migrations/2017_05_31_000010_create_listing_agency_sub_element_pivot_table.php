@@ -14,13 +14,8 @@ class CreateListingAgencySubElementPivotTable extends Migration
     public function up()
     {
         Schema::create('listing_agency_sub_element', function (Blueprint $table) {
-            // Relations
             $table->integer('listing_id')->unsigned()->index();
             $table->integer('agency_sub_element_id')->unsigned()->index();
-
-            // Foreign Keys
-            $table->foreign('listing_id')->references('id')->on('listings');
-            $table->foreign('agency_sub_element_id')->references('id')->on('agency_sub_elements');
         });
     }
 

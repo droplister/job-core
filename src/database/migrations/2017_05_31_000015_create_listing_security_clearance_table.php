@@ -14,13 +14,8 @@ class CreateListingSecurityClearanceTable extends Migration
     public function up()
     {
         Schema::create('listing_security_clearance', function (Blueprint $table) {
-            // Relations
             $table->integer('listing_id')->unsigned()->index();
             $table->integer('security_clearance_id')->unsigned()->index();
-
-            // Foreign Keys
-            $table->foreign('listing_id')->references('id')->on('listings');
-            $table->foreign('security_clearance_id')->references('id')->on('security_clearances');
         });
     }
 

@@ -15,14 +15,10 @@ class CreatePositionSchedulesTable extends Migration
     {
         Schema::create('position_schedules', function (Blueprint $table) {
             $table->increments('id');
-
-            // PositionSchedule
             $table->string('code')->unique();
             $table->string('slug')->unique();
             $table->string('value');
             $table->text('description')->nullable();
-
-            // Timestamps
             $table->timestamps();
         });
     }

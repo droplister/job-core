@@ -15,14 +15,10 @@ class CreateSecurityClearancesTable extends Migration
     {
         Schema::create('security_clearances', function (Blueprint $table) {
             $table->increments('id');
-
-            // SecurityClearances
             $table->string('code')->unique();
             $table->string('slug')->unique();
             $table->string('value');
             $table->text('description')->nullable();
-
-            // Timestamps
             $table->timestamps();
         });
     }

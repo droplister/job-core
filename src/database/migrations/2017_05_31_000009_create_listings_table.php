@@ -14,8 +14,6 @@ class CreateListingsTable extends Migration
     {
         Schema::create('listings', function (Blueprint $table) {
             $table->increments('id');
-
-            // Listing
             $table->string('control_number')->unique();
             $table->string('position_id')->index();
             $table->string('organization_code')->nullable()->index();
@@ -47,8 +45,6 @@ class CreateListingsTable extends Migration
             $table->date('position_end_date')->index();
             $table->date('publication_start_date')->index();
             $table->date('application_close_date')->index();
-
-            // Timestamps
             $table->timestamps();
             $table->softDeletes();
         });

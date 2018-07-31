@@ -14,8 +14,6 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
-
-            // Location
             $table->integer('parent_id')->nullable()->unsigned()->index();
             $table->string('type')->index();
             $table->string('name');
@@ -24,8 +22,6 @@ class CreateLocationsTable extends Migration
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
             $table->text('description')->nullable();
-
-            // Timestamps
             $table->timestamps();
         });
     }

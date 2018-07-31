@@ -15,14 +15,10 @@ class CreateTravelPercentagesTable extends Migration
     {
         Schema::create('travel_percentages', function (Blueprint $table) {
             $table->increments('id');
-
-            // TravelPercentage
             $table->string('code')->unique();
             $table->string('slug')->unique();
             $table->string('value');
             $table->text('description')->nullable();
-
-            // Timestamps
             $table->timestamps();
         });
     }
