@@ -8,7 +8,7 @@
     <div class="col-6 col-md-3">
          @include('job-core::listings.partials.attribute', [
             'title' => 'Clearance',
-            'text' => isset($listing->clearances[0]) ? $listing->clearances[0]->value : 'Unknown'
+            'text' => isset($listing->securityClearances[0]) ? $listing->securityClearances[0]->value : 'Unknown'
         ])
     </div>
     <div class="col-3 d-none d-md-inline-block">
