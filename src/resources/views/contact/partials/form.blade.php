@@ -1,5 +1,6 @@
 <form method="POST" action="{{ route('contact.store') }}" aria-label="{{ __('Contact') }}" class="small">
     @csrf
+    @captcha
 
     <div class="row">
         <div class="col-md-6">

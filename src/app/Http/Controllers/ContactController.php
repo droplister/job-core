@@ -34,6 +34,7 @@ class ContactController extends Controller
             'email' => 'required|email',
             'subject' => 'required',
             'body' => 'required',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
         Mail::to(config('job-core.contact_email'))->send(new ContactEmail($request->first_name, $request->last_name, $request->email, $request->subject, $request->body));
