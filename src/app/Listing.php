@@ -392,15 +392,15 @@ class Listing extends Model
         switch(config('job-core.filter'))
         {
             case 'federal': 
-                return $query->offMilitaryBase()->notInternship();
+                return $query->offMilitaryBase()->notInternship()->notSeniorExecutive();
             case 'internship': 
-                return $query->offMilitaryBase()->isInternship();
+                return $query->offMilitaryBase()->isInternship()->notSeniorExecutive();
             case 'military_base': 
-                return $query->onMilitaryBase()->notInternship();
+                return $query->onMilitaryBase()->notInternship()->notSeniorExecutive();
             case 'security_clearance': 
-                return $query->isCleared()->offMilitaryBase()->notInternship();
+                return $query->offMilitaryBase()->notInternship()->notSeniorExecutive()->isCleared();
             case 'senior_executive': 
-                return $query->isSeniorExecutive()->offMilitaryBase()->notInternship();
+                return $query->offMilitaryBase()->notInternship()->isSeniorExecutive();
             default:
                 return $query;
         }
