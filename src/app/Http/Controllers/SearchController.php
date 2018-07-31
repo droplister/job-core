@@ -80,8 +80,13 @@ class SearchController extends Controller
             $query = new JujuQuery([
                 'partnerid' => config('job-core.partner_id')
             ]);
+
+            $query->set('channel', config('job-core.domain'));
+
             $query->set('k', $keyword)->set('highlight', '0');
+
             $client = new JujuProvider($query);
+
             $sponsored = $client->getJobs()->orderBy('datePosted');
         }
         catch(Exception $e)

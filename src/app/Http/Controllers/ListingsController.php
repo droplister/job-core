@@ -78,6 +78,8 @@ class ListingsController extends Controller
                 'partnerid' => config('job-core.partner_id')
             ]);
 
+            $query->set('channel', config('job-core.domain'));
+
             $query->set('k', config('job-core.keyword'))->set('highlight', '0');
 
             $client = new JujuProvider($query);

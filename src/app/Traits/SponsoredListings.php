@@ -23,6 +23,9 @@ trait SponsoredListings
             // Query
             $query = $this->queryKeyword();
 
+            // Channel
+            $query->set('channel', config('job-core.domain'));
+
             // Client
             $client = new JujuProvider($query);
 
