@@ -23,6 +23,16 @@
 ])
 
 @include('job-core::partials.filter', [
+	'children' => $paths,
+	'parameter' => 'path'
+])
+
+@include('job-core::partials.filter', [
+	'children' => $plans,
+	'parameter' => 'plan'
+])
+
+@include('job-core::partials.filter', [
 	'children' => $travels,
 	'parameter' => 'travel'
 ])
