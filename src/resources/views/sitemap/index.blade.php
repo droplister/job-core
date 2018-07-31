@@ -10,11 +10,6 @@
       <loc>{{ route('agencies.show', ['agency' => $agency->slug]) }}</loc>
    </url>
 @endforeach
-@foreach($paths as $path)
-   <url>
-      <loc>{{ route('paths.show', ['path' => $path->slug]) }}</loc>
-   </url>
-@endforeach
 @foreach($locations as $location)
    <url>
       <loc>{{ route('locations.show', ['location' => $location->slug]) }}</loc>
@@ -23,16 +18,6 @@
 @foreach($careers as $career)
    <url>
       <loc>{{ route('careers.show', ['career' => $career->slug]) }}</loc>
-   </url>
-@endforeach
-@foreach($schedules as $schedule)
-   <url>
-      <loc>{{ route('schedules.show', ['schedule' => $schedule->slug]) }}</loc>
-   </url>
-@endforeach
-@foreach($clearances as $clearance)
-   <url>
-      <loc>{{ route('clearances.show', ['clearance' => $clearance->slug]) }}</loc>
    </url>
 @endforeach
 @foreach($listings as $listing)

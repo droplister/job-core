@@ -30,15 +30,8 @@ class SitemapController extends Controller
             'search.index',
             'agencies.index',
             'listings.index',
-            'clearances.index',
             'careers.index',
             'locations.index',
-            // 'plans.index',
-            'schedules.index',
-            // 'travels.index',
-            'paths.index',
-            'most.index',
-            'specific.index',
             'contact.create',
             'pages.about',
             'pages.advertise',
@@ -52,13 +45,6 @@ class SitemapController extends Controller
         $agencies = Cache::remember('sitemap_agencies', 1440,
             function () {
                 return AgencySubElements::relatedFilter()->get();
-            }
-        );
-
-        // Get Hiring Paths
-        $paths = Cache::remember('sitemap_paths', 1440,
-            function () {
-                return HiringPaths::index()->get();
             }
         );
 
@@ -76,34 +62,6 @@ class SitemapController extends Controller
             }
         );
 
-        // Get Pay Plans
-        $plans = Cache::remember('sitemap_plans', 1440,
-            function () {
-                return PayPlans::index()->get();
-            }
-        );
-
-        // Get Position Schedules
-        $schedules = Cache::remember('sitemap_schedules', 1440,
-            function () {
-                return PositionSchedule::index()->get();
-            }
-        );
-
-        // Get Security Clearances
-        $clearances = Cache::remember('sitemap_clearances', 1440,
-            function () {
-                return SecurityClearances::index()->get();
-            }
-        );
-
-        // Get Travel Percentages
-        $travels = Cache::remember('sitemap_travels', 1440,
-            function () {
-                return TravelPercentage::index()->get();
-            }
-        );
-
         // Get Listings
         $listings = Cache::remember('sitemap_listings', 1440,
             function () {
@@ -111,7 +69,7 @@ class SitemapController extends Controller
             }
         );
 
-        $view = view('job-core::sitemap.index', compact('routes', 'agencies', 'paths', 'locations', 'careers', 'plans', 'schedules', 'clearances', 'travels', 'listings'));
+        $view = view('job-core::sitemap.index', compact('routes', 'agencies', 'locations', 'careers', 'listings'));
 
         return response($view, 200)
             ->header('Content-Type', 'text/xml');
