@@ -13,8 +13,11 @@
     </span>
     <span class="d-block mt-1">
         Published {{ $listing->publication_start_date->diffForHumans() }}
-        <a href="{{ $listing->position_uri }}" class="ml-1" target="_blank">
+        <a href="{{ $listing->position_uri }}" class="ml-2" target="_blank">
             <i class="fa fa-external-link"></i> Apply Now
+        </a>
+        <a href="#" class="ml-2">
+            <i class="fa fa-envelope-o"></i> Email Job
         </a>
     </span>
 </p>

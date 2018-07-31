@@ -152,9 +152,7 @@
                         <a href="{{ route('pages.terms') }}">Terms</a>
                     </p>
                     <p class="text-muted pt-1 pb-3 mb-0 small lh-135">
-                        <a href="https://familymediallc.com/" class="text-muted">
-                            Family Media LLC
-                        </a>
+                        <a href="https://familymediallc.com/" class="text-muted">Family Media LLC</a>
                         &copy; {{ date('Y') }}
                     </p>
                 </div>

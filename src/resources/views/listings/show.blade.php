@@ -13,6 +13,9 @@
     @include('job-core::listings.partials.apply-button', [
         'class' => 'd-md-none mt-3'
     ])
+    @include('job-core::listings.partials.email-button', [
+        'class' => 'd-md-none mt-3'
+    ])
     <div class="my-3 p-3 bg-white rounded box-shadow">
         @include('job-core::listings.partials.attributes')
         @include('job-core::partials.adsense', ['class' => 'd-block d-md-none mb-4'])
@@ -20,10 +23,11 @@
             <div class="col-12 col-md-9">
                 @include('job-core::listings.partials.content')
                 <div class="row">
-                    <div class="col-12 col-md-6 offset-md-3 mt-1 mb-4">
-                        @include('job-core::listings.partials.apply-button', [
-                            'extra' => true
-                        ])
+                    <div class="col-12 col-md-6 mt-1 mb-2">
+                        @include('job-core::listings.partials.apply-button')
+                    </div>
+                    <div class="col-12 col-md-6 mt-1 mb-4">
+                        @include('job-core::listings.partials.email-button')
                     </div>
                 </div>
             </div>
