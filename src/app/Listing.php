@@ -162,19 +162,15 @@ class Listing extends Model
      * @return string
      */
     public function getJobGradeAttribute()
-    {
-        return Cache::rememberForever('listing_' . $this->id . '_job_grade',
-            function () {               
-                $grade = $this->low_grade === $this->high_grade ? $this->low_grade : "{$this->low_grade}/{$this->high_grade}";
+    {            
+        $grade = $this->low_grade === $this->high_grade ? $this->low_grade : "{$this->low_grade}/{$this->high_grade}";
 
-                if($this->careers()->exists())
-                {
-                    return "{$this->job_grade_code}-{$this->careers()->first()->code}-{$grade}";
-                }
+        if($this->careers()->exists())
+        {
+            return "{$this->job_grade_code}-{$this->careers()->first()->code}-{$grade}";
+        }
 
-                return "{$this->job_grade_code}-{$grade}";
-            }
-        );
+        return "{$this->job_grade_code}-{$grade}";
     }
 
     /**
