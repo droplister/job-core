@@ -1,6 +1,7 @@
 @include('job-core::partials.h-tag', [
     'tag' => 'h6',
     'title' => 'Contact Form',
+    'mb' => 'mb-3',
 ])
 <form method="POST" action="{{ route('contact.store') }}" aria-label="{{ __('Contact') }}" class="small">
     @csrf
