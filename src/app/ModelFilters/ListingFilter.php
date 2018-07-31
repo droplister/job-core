@@ -13,44 +13,44 @@ class ListingFilter extends ModelFilter
             ->orWhere('qualification_summary', 'like', '%' . $keyword . '%');
     }
 
-    public function agency($id)
+    public function agency($slug)
     {
-        $this->related('agencies', 'id', $id);
+        $this->related('agencies', 'slug', $slug);
     }
 
-    public function path($id)
+    public function path($slug)
     {
-        $this->related('hiringPaths', 'id', $id);
+        $this->related('hiringPaths', 'slug', $slug);
     }
 
-    public function location($id)
+    public function location($slug)
     {
-        $this->related('locations', 'id', $id);
+        $this->related('locations', 'slug', $slug);
     }
 
-    public function career($id)
+    public function career($slug)
     {
-        $this->related('careers', 'id', $id);
+        $this->related('careers', 'slug', $slug);
     }
 
-    public function plan($id)
+    public function plan($slug)
     {
-        $this->related('payPlans', 'id', $id);
+        $this->related('payPlans', 'slug', $slug);
     }
 
-    public function clearance($id)
+    public function clearance($slug)
     {
-        $this->related('securityClearances', 'id', $id);
+        $this->related('securityClearances', 'slug', $slug);
     }
 
-    public function schedule($code)
+    public function schedule($slug)
     {
-        return $this->where('position_schedule_code', $code);
+        $this->related('positionSchedules', 'slug', $slug);
     }
 
-    public function travel($code)
+    public function travel($slug)
     {
-        return $this->where('travel_percentage_code', '=', $code);
+        $this->related('travelPercentage', 'slug', $slug);
     }
 
     public function setup()
