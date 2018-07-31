@@ -18,8 +18,23 @@
                     'mb' => 'mb-3',
                 ])
                 <p class="text-muted small lh-135">
-                    Job seekers love {{ config('job-core.domain') }} for its hyper-relevant search and that they can signup to receive new jobs in their inbox. If you are intersted in advertising on {{ config('job-core.domain') }}, please <a href="{{ route('contact.create') }}">contact us</a>.
+                    Job seekers love {{ config('job-core.domain') }} for its hyper-relevant search tools and that they can get new job alerts right in their inbox. Whether you're a recruiter or a third-party ad agency, we offer a range of creative marketing opportunities and are able to custom-tailor our campaigns to your exact needs. If you are interested in advertising on {{ config('job-core.domain') }}, please <a href="{{ route('contact.create') }}">contact us</a>.
                 </p>
+                @include('job-core::partials.h-tag', [
+                    'tag' => 'h6',
+                    'title' => 'Research',
+                    'mt' => 'mt-4',
+                ])
+                <p class="text-muted small lh-135 pt-3 mb-0">
+                    "62% of candidates listed career sites as a top channel for researching new job opportunities."
+                </p>
+                <p class="text-muted small lh-135 pt-2 mb-0">
+                    "HR teams are 2x more likely to recruit faster using data-driven recruiting."
+                </p>
+                <p class="text-muted small lh-135 pt-2 pb-2 mb-0">
+                    Source: <a href="https://www.talentlyft.com/en/blog/article/114/10-recruiting-trends-in-2018-infographic" target="_blank" class="text-muted">10 Recruiting Trends in 2018 (Infographic)</a>
+                </p>
+                <br class="d-md-none" />
             </div>
             <div class="col-12 col-md-3">
                 @include('job-core::pages.partials.menu')
