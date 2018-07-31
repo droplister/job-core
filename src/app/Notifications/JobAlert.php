@@ -4,6 +4,7 @@ namespace Droplister\JobCore\App\Notifications;
 
 use Droplister\JobCore\App\Alert;
 use Droplister\JobCore\App\Listing;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;

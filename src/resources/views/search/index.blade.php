@@ -18,7 +18,7 @@
                     @include('job-core::listings.partials.listings')
                 </div>
                 <div class="col-12 col-md-3">
-                    @include('job-core::partials.filter', ['route' => 'search.index'])
+                    @include('job-core::partials.filters', ['route' => 'search.index'])
                 </div>
             </div>
         </div>

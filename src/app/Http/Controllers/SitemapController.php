@@ -2,9 +2,6 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
-use Cache;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Droplister\JobCore\App\Listing;
 use Droplister\JobCore\App\Location;
 use Droplister\JobCore\App\PayPlans;
@@ -14,6 +11,10 @@ use Droplister\JobCore\App\TravelPercentage;
 use Droplister\JobCore\App\AgencySubElements;
 use Droplister\JobCore\App\OccupationalSeries;
 use Droplister\JobCore\App\SecurityClearances;
+
+use Cache;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SitemapController extends Controller
 {

@@ -2,19 +2,19 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
-use Cache;
-use Exception;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Droplister\JobCore\App\Listing;
 use Droplister\JobCore\App\Location;
 use Droplister\JobCore\App\AgencySubElements;
 use Droplister\JobCore\App\PositionSchedule;
 use Droplister\JobCore\App\SecurityClearances;
 use Droplister\JobCore\App\OccupationalSeries;
+use Droplister\JobCore\App\Traits\GuardsAgainst;
 use JobApis\Jobs\Client\Queries\JujuQuery;
 use JobApis\Jobs\Client\Providers\JujuProvider;
-use Droplister\JobCore\App\Traits\GuardsAgainst;
+
+use Cache, Exception;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ListingsController extends Controller
 {
@@ -43,10 +43,10 @@ class ListingsController extends Controller
             }
         );
 
-        // Get Careers
-        $careers = Cache::remember('listings_index_careets_' . serialize($request->all()), 1440,
+        // Get Paths
+        $paths = Cache::remember('listings_index_paths_' . serialize($request->all()), 1440,
             function () use ($request) {
-                return OccupationalSeries::narrow($request)->get();
+                return HiringPaths::narrow($request)->get();
             }
         );
 
@@ -57,10 +57,17 @@ class ListingsController extends Controller
             }
         );
 
-        // Get Schedules
-        $schedules = Cache::remember('listings_index_schedules_' . serialize($request->all()), 1440,
+        // Get Careers
+        $careers = Cache::remember('listings_index_careers_' . serialize($request->all()), 1440,
             function () use ($request) {
-                return PositionSchedule::narrow($request)->get();
+                return OccupationalSeries::narrow($request)->get();
+            }
+        );
+
+        // Get Plans
+        $plans = Cache::remember('listings_index_plans_' . serialize($request->all()), 1440,
+            function () use ($request) {
+                return PayPlans::narrow($request)->get();
             }
         );
 
@@ -70,6 +77,23 @@ class ListingsController extends Controller
                 return SecurityClearances::narrow($request)->get();
             }
         );
+
+        // Get Schedules
+        $schedules = Cache::remember('listings_index_schedules_' . serialize($request->all()), 1440,
+            function () use ($request) {
+                return PositionSchedule::narrow($request)->get();
+            }
+        );
+
+        // Get Travel %
+        $travels = Cache::remember('listings_index_travels_' . serialize($request->all()), 1440,
+            function () use ($request) {
+                return TravelPercentage::narrow($request)->get();
+            }
+        );
+
+        // Show Filters
+        $show_filters = count($careers) + count($agencies) + count($locations) + count($schedules) + count($clearances) + count($paths) + count($plans) + count($travels) > 0;
 
         // Sponsored Listings
         try
@@ -91,7 +115,7 @@ class ListingsController extends Controller
             $sponsored = null;
         }
 
-        return view('job-core::listings.index', compact('request', 'listings', 'sponsored', 'agencies', 'careers', 'locations', 'schedules', 'clearances'));
+        return view('job-core::listings.index', compact('request', 'listings', 'sponsored', 'agencies', 'careers', 'locations', 'schedules', 'clearances', 'paths', 'plans', 'travels', 'show_filters'));
     }
 
     /**

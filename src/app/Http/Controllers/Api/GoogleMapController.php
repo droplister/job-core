@@ -2,11 +2,12 @@
 
 namespace Droplister\JobCore\App\Http\Controllers\Api;
 
+use Droplister\JobCore\App\Location;
+use Droplister\JobCore\App\Http\Resources\GoogleMapResource;
+
 use Cache;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Droplister\JobCore\App\Location;
-use Droplister\JobCore\App\Http\Resources\GoogleMapResource;
 
 class GoogleMapController extends Controller
 {

@@ -2,10 +2,11 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
+use Droplister\JobCore\App\PositionSchedule;
+
 use Cache;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Droplister\JobCore\App\PositionSchedule;
 
 class PositionSchedulesController extends Controller
 {

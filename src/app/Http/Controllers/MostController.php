@@ -2,14 +2,14 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
-use Cache;
-use Exception;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Droplister\JobCore\App\Listing;
 use Droplister\JobCore\App\OccupationalSeries;
 use JobApis\Jobs\Client\Queries\JujuQuery;
 use JobApis\Jobs\Client\Providers\JujuProvider;
+
+use Cache, Exception;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MostController extends Controller
 {

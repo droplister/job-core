@@ -2,13 +2,14 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
-use Cache;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Droplister\JobCore\App\Location;
 use Droplister\JobCore\App\AgencySubElements;
 use Droplister\JobCore\App\OccupationalSeries;
 use Droplister\JobCore\App\SecurityClearances;
+
+use Cache;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {

@@ -2,10 +2,11 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
+use Droplister\JobCore\App\HiringPaths;
+
 use Cache;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Droplister\JobCore\App\HiringPaths;
 
 class HiringPathsController extends Controller
 {

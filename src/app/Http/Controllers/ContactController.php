@@ -3,6 +3,7 @@
 namespace Droplister\JobCore\App\Http\Controllers;
 
 use Droplister\JobCore\App\Mail\ContactEmail;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;

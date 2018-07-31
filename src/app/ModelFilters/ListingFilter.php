@@ -6,18 +6,11 @@ use EloquentFilter\ModelFilter;
 
 class ListingFilter extends ModelFilter
 {
-    /**
-    * Related Models that have ModelFilters as well as the method on the ModelFilter
-    * As [relationMethod => [input_key1, input_key2]].
-    *
-    * @var array
-    */
-    public $relations = [];
-
     public function q($keyword)
     {
         return $this->where('position_title', 'like', '%' . $keyword . '%')
-            ->orWhere('job_summary', 'like', '%' . $keyword . '%');
+            ->orWhere('job_summary', 'like', '%' . $keyword . '%')
+            ->orWhere('qualification_summary', 'like', '%' . $keyword . '%');
     }
 
     public function agency($id)

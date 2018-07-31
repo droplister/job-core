@@ -2,10 +2,11 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
+use Droplister\JobCore\App\SecurityClearances;
+
 use Cache;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Droplister\JobCore\App\SecurityClearances;
 
 class SecurityClearancesController extends Controller
 {

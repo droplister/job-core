@@ -2,10 +2,11 @@
 
 namespace Droplister\JobCore\App\Console\Commands;
 
-use Notification;
 use Droplister\JobCore\App\Alert;
 use Droplister\JobCore\App\Listing;
 use Droplister\JobCore\App\Notifications\JobAlert;
+
+use Notification;
 use Illuminate\Console\Command;
 
 class UsaJobsSendAlerts extends Command

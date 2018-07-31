@@ -2,13 +2,13 @@
 
 namespace Droplister\JobCore\App;
 
-use Cache;
 use Carbon\Carbon;
 use EloquentFilter\Filterable;
 use Droplister\JobCore\App\Traits\ChunksParagraphs;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
+use Cache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

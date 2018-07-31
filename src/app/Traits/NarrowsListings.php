@@ -2,8 +2,9 @@
 
 namespace Droplister\JobCore\App\Traits;
 
-use Cache;
 use Droplister\JobCore\App\Listing;
+
+use Cache;
 
 trait NarrowsListings
 {

@@ -2,13 +2,13 @@
 
 namespace Droplister\JobCore\App;
 
-use Cache;
 use Droplister\JobCore\App\Traits\NarrowsListings;
 use Droplister\JobCore\App\Traits\ChunksParagraphs;
 use Droplister\JobCore\App\Traits\SponsoredListings;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
+use Cache;
 use Illuminate\Database\Eloquent\Model;
 
 class AgencySubElements extends Model
