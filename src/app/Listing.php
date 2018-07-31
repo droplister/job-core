@@ -238,17 +238,17 @@ class Listing extends Model
      *
      * @return string
      */
-    public function getTitleAttribute($value)
+    public function getTitleAttribute()
     {
         return Cache::rememberForever('listing_' . $this->id . '_title',
-            function () use ($value) {
-                if (strpos($value, $this->job_grade) === false &&
-                    strpos($value, $this->job_grade_code . '-') === false && 
-                    strpos($value, $this->job_grade_code) === false)
+            function () {
+                if (strpos($this->position_title, $this->job_grade) === false &&
+                    strpos($this->position_title, $this->job_grade_code . '-') === false && 
+                    strpos($this->position_title, $this->job_grade_code) === false)
                 {
-                    return trim($value) . ', ' . $this->job_grade;
+                    return trim($this->position_title) . ', ' . $this->job_grade;
                 }
-                return $value;
+                return $this->position_title;
             }
         );
     }
