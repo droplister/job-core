@@ -1,3 +1,6 @@
+@if(count($careers) + count($agencies) + count($locations) + count($schedules) + count($clearances) > 0)
+    <br class="d-md-none" />
+@endif
 @if(count($careers) > 0)
     @include('job-core::partials.h-tag', [
         'tag' => 'h6',
