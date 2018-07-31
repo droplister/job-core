@@ -185,6 +185,7 @@
                 <p class="text-muted small lh-135">Lastly, California users are also entitled to the following specific consumer rights notice: The Complaint Assistance Unit of the Division of Consumer Services of the California Department of Consumer Affairs may be contacted in writing at 1625 North Market Blvd., Sacramento, CA 95834, or by telephone at (916) 445-1254 or (800) 952-5210. </p>
             </div>
             <div class="col-12 col-md-3">
+                @include('job-core::pages.partials.menu')
             </div>
         </div>
     </div>

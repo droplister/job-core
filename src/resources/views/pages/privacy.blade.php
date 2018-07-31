@@ -24,6 +24,7 @@
                 <p class="text-muted small lh-135"><strong>Other Information:</strong> Every computer has an IP (Internet Protocol) address. IP addresses of computers used to visit this site are noted. In addition, we automatically collect other information such as email addresses, browser types, operating systems, and the URL addresses of sites clicked to and from this site.</p>
             </div>
             <div class="col-12 col-md-3">
+                @include('job-core::pages.partials.menu')
             </div>
         </div>
     </div>

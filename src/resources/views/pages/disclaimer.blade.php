@@ -22,6 +22,7 @@
                 <p class="text-muted small lh-135">3. This website generates income through banner advertisements and affiliate links. Third party vendors, including Google, use cookies to serve ads based on a user's prior visits to our website.</p>
             </div>
             <div class="col-12 col-md-3">
+                @include('job-core::pages.partials.menu')
             </div>
         </div>
     </div>

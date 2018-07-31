@@ -53,6 +53,21 @@ class ListingFilter extends ModelFilter
         $this->related('travelPercentage', 'slug', $slug);
     }
 
+    public function job_grade($code)
+    {
+        $this->where('job_grade_code', $code);
+    }
+
+    public function low_grade($grade)
+    {
+        $this->where('low_grade', '>=', $grade);
+    }
+
+    public function high_grade($grade)
+    {
+        $this->where('high_grade', '<=', $grade);
+    }
+
     public function setup()
     {
         $this->listingsFilter();

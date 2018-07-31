@@ -95,8 +95,19 @@ class ListingsController extends Controller
             }
         );
 
+        // Get Job Grades
+        $job_grades = Cache::remember('listings_index_job_grades' . serialize($request->all()), 1440,
+            function () use ($request) {
+                return Listing::filter($request->all())
+                    ->selectRaw('COUNT(id) as count, job_grade_code')
+                    ->groupBy('job_grade_code')
+                    ->orderBy('count', 'desc')
+                    ->get();
+            }
+        );
+
         // Show Filters
-        $show_filters = count($careers) + count($agencies) + count($locations) + count($schedules) + count($clearances) + count($paths) + count($plans) + count($travels) > 0;
+        $show_filters = count($careers) + count($agencies) + count($locations) + count($schedules) + count($clearances) + count($paths) + count($plans) + count($travels) + count($job_grades) > 0;
 
         // Sponsored Listings
         try
@@ -118,7 +129,7 @@ class ListingsController extends Controller
             $sponsored = null;
         }
 
-        return view('job-core::listings.index', compact('request', 'listings', 'sponsored', 'agencies', 'careers', 'locations', 'schedules', 'clearances', 'paths', 'plans', 'travels', 'show_filters'));
+        return view('job-core::listings.index', compact('request', 'listings', 'sponsored', 'agencies', 'careers', 'locations', 'schedules', 'clearances', 'paths', 'plans', 'travels', 'show_filters', 'job_grades'));
     }
 
     /**

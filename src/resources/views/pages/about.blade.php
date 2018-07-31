@@ -15,6 +15,7 @@
                 @include('job-core::partials.about')
             </div>
             <div class="col-12 col-md-3">
+                @include('job-core::pages.partials.menu')
             </div>
         </div>
     </div>
