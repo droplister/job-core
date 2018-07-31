@@ -5,7 +5,7 @@
 ])
 @if(\Request::route()->getName() === 'listings.show')
     @include('job-core::partials.p-tag', [
-        'text' => strip_tags($agency->description),
+        'text' => str_limit(strip_tags($agency->description), 500),
         'pb' => 'pb-3 border-bottom border-gray',
     ])
     <small class="d-block text-right mt-3">
