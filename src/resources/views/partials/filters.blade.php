@@ -32,8 +32,10 @@
 	'parameter' => 'clearance'
 ])
 
-<small class="d-block text-right mt-3">
-    <a href="{{ route($route) }}">
-        <i class="fa fa-refresh"></i> Reset
-    </a>
-</small>
+@if(! empty($_GET))
+	<small class="d-block text-right mt-3">
+	    <a href="{{ route($route) }}">
+	        <i class="fa fa-refresh"></i> Reset
+	    </a>
+	</small>
+@endif

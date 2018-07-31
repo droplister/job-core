@@ -45,7 +45,7 @@ class ListingFilter extends ModelFilter
 
     public function schedule($slug)
     {
-        $this->related('positionSchedules', 'slug', $slug);
+        $this->related('positionSchedule', 'slug', $slug);
     }
 
     public function travel($slug)
