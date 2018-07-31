@@ -241,18 +241,14 @@ class Listing extends Model
      */
     public function getPositionTitleAttribute($value)
     {
-        return Cache::rememberForever('listing_' . $this->id . '_position_title',
-            function () use ($value) {
-                if (strpos($value, $this->job_grade) === false &&
-                    strpos($value, $this->job_grade_code . '-') === false && 
-                    strpos($value, $this->job_grade_code) === false)
-                {
-                    return trim($value) . ', ' . $this->job_grade;
-                }
+        if (strpos($value, $this->job_grade) === false &&
+            strpos($value, $this->job_grade_code . '-') === false && 
+            strpos($value, $this->job_grade_code) === false)
+        {
+            return trim($value) . ', ' . $this->job_grade;
+        }
 
-                return $value;
-            }
-        );
+        return $value;
     }
 
     /**
