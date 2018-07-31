@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('contact.store') }}" aria-label="{{ __('Contact') }}">
+<form method="POST" action="{{ route('contact.store') }}" aria-label="{{ __('Contact') }}" class="small">
     @csrf
 
     <div class="row">
