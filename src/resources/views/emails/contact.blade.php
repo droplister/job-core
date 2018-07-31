@@ -1,5 +1,11 @@
-@component('mail::message')
-# New Message
+@component('mail::layout')
+	@slot('header')
+	    @component('mail::header', ['url' => config('app.url')])
+	        {{ config('job-core.domain') }}
+	    @endcomponent
+	@endslot
 
-{{ $body }}
+	# {{ $first_name }} {{ $last_name }} said,
+
+	{{ $body }}
 @endcomponent
