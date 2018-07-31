@@ -79,6 +79,7 @@ class Listing extends Model
         'career',
         'job_grade',
         'pay_range',
+        'title',
         'subtitle',
         'summary',
     ];
