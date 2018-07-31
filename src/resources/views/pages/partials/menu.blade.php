@@ -1,9 +1,9 @@
 @include('job-core::partials.h-tag', [
     'tag' => 'h6',
-    'title' => 'Page Menu',
+    'title' => 'Menu',
 ])
 @include('job-core::partials.p-tag', [
-    'text' => 'About Us',
+    'text' => 'About',
     'link' => route('pages.about'),
     'pt' => 'pt-3',
     'pb' => '',

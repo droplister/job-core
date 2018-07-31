@@ -9,7 +9,7 @@
     </a>
 </p>
 <p class="text-muted small lh-135 pt-2 mb-0">
-    <a href="https://my.usajobs.gov/Content/pdfs/Tutorials-Resume.pdf" target="_blank">
+    <a href="https://www.usajobs.gov/Content/pdfs/Tutorials-Resume.pdf" target="_blank">
         Tutorial on creating a resume in USAJobs (PDF)
     </a>
 </p>

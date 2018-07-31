@@ -18,7 +18,7 @@
                     'mb' => 'mb-3',
                 ])
                 <p class="text-muted small lh-135">
-                    Job seekers love {{ config('job-core.domain') }} for its hyper relevant job alerts that they can get sent for free to their email inbox. If you are intersted in advertising on {{ config('job-core.domain') }}, please <a href="{{ route('contact.create') }}">contact us</a>.
+                    Job seekers love {{ config('job-core.domain') }} for its hyper-relevant search and that they can signup to receive new jobs in their inbox. If you are intersted in advertising on {{ config('job-core.domain') }}, please <a href="{{ route('contact.create') }}">contact us</a>.
                 </p>
             </div>
             <div class="col-12 col-md-3">
