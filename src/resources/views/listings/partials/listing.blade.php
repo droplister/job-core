@@ -16,8 +16,8 @@
         <a href="{{ $listing->position_uri }}" class="ml-2" target="_blank">
             <i class="fa fa-external-link"></i> Apply Now
         </a>
-        <a href="#" class="ml-2">
-            <i class="fa fa-envelope-o"></i> Email <span class="d-none d-sm-inline">Job</span>
+        <a href="#" class="ml-2 d-none d-sm-inline">
+            <i class="fa fa-envelope-o"></i> Email Job
         </a>
     </span>
 </p>
