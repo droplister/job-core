@@ -37,5 +37,7 @@ class ContactController extends Controller
         ]);
 
         Mail::to(config('job-core.contact_email'))->send(new ContactEmail($request->first_name, $request->last_name, $request->email, $request->subject, $request->body));
+
+        return redirect(route('contact.create'))->with('success', 'Email Sent');
     }
 }
