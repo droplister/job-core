@@ -39,6 +39,7 @@ class CoreInstallCommand extends Command
     {
         $this->call('core:refresh');
         $this->call('db:seed', ['--class' => 'Droplister\\JobCore\\Database\\Seeds\\DatabaseSeeder']);
+        $this->call('core:publish');
         $this->call('core:update');
     }
 }

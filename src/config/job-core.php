@@ -123,6 +123,11 @@ return [
     'contact_email' => env('JOB_CORE_CONTACT_EMAIL'),
 
     /**
+     * Slack Webhook
+     */
+    'slack_webhook' => env('JOB_CORE_SLACK_WEBHOOK'),
+
+    /**
      * Google Analytics
      */
     'google_analytics' => env('JOB_CORE_GOOGLE_ANALYTICS'),

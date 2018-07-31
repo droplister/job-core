@@ -28,7 +28,7 @@ class AlertsController extends Controller
     {
         $user = Auth::user();
 
-        $alerts = [];
+        $alerts = $user->activeAlerts()->get();
 
         return view('job-core::alerts.index', compact('user', 'alerts'));
     }
@@ -53,5 +53,16 @@ class AlertsController extends Controller
     public function create(Request $request)
     {
         return view('job-core::alerts.create');
+    }
+
+    /**
+     * Alerts Store
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
     }
 }

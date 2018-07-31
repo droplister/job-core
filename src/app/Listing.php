@@ -532,14 +532,6 @@ class Listing extends Model
     }
 
     /**
-     * Fresh
-     */
-    public function scopeIsFresh($query)
-    {
-        return $query->where('publication_start_date', '>', Carbon::now()->subDays(7));
-    }
-
-    /**
      * Active
      */
     public function scopeIsActive($query)
@@ -553,6 +545,22 @@ class Listing extends Model
     public function scopeIsNotActive($query)
     {
         return $query->where('application_close_date', '<', Carbon::now()->toDateString());
+    }
+
+    /**
+     * New
+     */
+    public function scopeIsNew($query)
+    {
+        return $query->where('publication_start_date', '>', Carbon::now()->subDays(1));
+    }
+    
+    /**
+     * Fresh
+     */
+    public function scopeIsFresh($query)
+    {
+        return $query->where('publication_start_date', '>', Carbon::now()->subDays(7));
     }
 
     /**
