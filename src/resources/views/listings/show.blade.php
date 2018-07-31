@@ -14,7 +14,7 @@
         'class' => 'd-md-none mt-3'
     ])
     @include('job-core::listings.partials.email-button', [
-        'class' => 'd-md-none mt-3'
+        'class' => 'd-md-none mt-2'
     ])
     <div class="my-3 p-3 bg-white rounded box-shadow">
         @include('job-core::listings.partials.attributes')
