@@ -38,7 +38,7 @@ class ContactController extends Controller
 
         Mail::to(config('job-core.contact_email'))
             ->replyTo($request->email, $request->first_name . ' ' . $request->last_name)
-            ->subject(config('job-core.domain') . ' Contact Form: ' . $request->subject);
+            ->subject(config('job-core.domain') . ' Contact Form: ' . $request->subject)
             ->send(new ContactEmail($request->first_name, $request->last_name, $request->email, $request->subject, $request->body));
     }
 }
