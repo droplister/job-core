@@ -38,6 +38,8 @@ class ContactEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact');
+        return $this->replyTo($this->email, $this->first_name . ' ' . $this->last_name)
+            ->subject(config('job-core.domain') . ' Contact Form: ' . $this->subject)
+            ->markdown('emails.contact');
     }
 }
