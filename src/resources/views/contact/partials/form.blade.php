@@ -44,7 +44,6 @@
                     <option value=""></option>
                     <option value="Advertising">Advertising</option>
                     <option value="Bugs &amp; Errors">Bugs &amp; Errors</option>
-                    <option value="Press Inquiry">Press Inquiry</option>
                     <option value="Website Feedback">Website Feedback</option>
                     <option value="Other">Other</option>
                 </select>
@@ -69,7 +68,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <input type="submit" class="btn btn-success btn-send" value="Send message">
+            <input type="submit" class="btn btn-lg {{ config('job-core.button_class') }}" value="Send Message">
         </div>
     </div>
 </form>

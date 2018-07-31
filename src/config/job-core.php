@@ -118,6 +118,11 @@ return [
     'monetized' => env('JOB_CORE_MONETIZED', false),
 
     /**
+     * Contact Email
+     */
+    'contact_email' => env('JOB_CORE_CONTACT_EMAIL'),
+
+    /**
      * Google Analytics
      */
     'google_analytics' => env('JOB_CORE_GOOGLE_ANALYTICS'),

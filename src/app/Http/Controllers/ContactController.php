@@ -2,7 +2,9 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
+use App\Mail\ContactEmail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 
 class ContactController extends Controller
@@ -26,6 +28,17 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required',
+            'body' => 'required',
+        ]);
+
+        Mail::to(config('job-core.contact_email'))
+            ->replyTo($request->email, $request->first_name . ' ' . $request->last_name)
+            ->subject(config('job-core.domain') . ' Contact Form: ' . $request->subject);
+            ->send(new ContactEmail($request->first_name, $request->last_name, $request->email, $request->subject, $request->body));
     }
 }
