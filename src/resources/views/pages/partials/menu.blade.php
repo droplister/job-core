@@ -4,31 +4,31 @@
 ])
 @include('job-core::partials.p-tag', [
     'text' => 'About',
-    'link' => route('pages.about'),
+    'link' => \Request::route()->getName() !== 'pages.about' ? route('pages.about') : null,
     'pt' => 'pt-3',
     'pb' => '',
 ])
 @include('job-core::partials.p-tag', [
     'text' => 'Advertise',
-    'link' => route('pages.advertise'),
+    'link' => \Request::route()->getName() !== 'pages.advertise' ? route('pages.advertise') : null,
     'pt' => 'pt-2',
     'pb' => '',
 ])
 @include('job-core::partials.p-tag', [
     'text' => 'Disclaimer',
-    'link' => route('pages.disclaimer'),
+    'link' => \Request::route()->getName() !== 'pages.disclaimer' ? route('pages.disclaimer') : null,
     'pt' => 'pt-2',
     'pb' => '',
 ])
 @include('job-core::partials.p-tag', [
     'text' => 'Privacy Policy',
-    'link' => route('pages.privacy'),
+    'link' => \Request::route()->getName() !== 'pages.privacy' ? route('pages.privacy') : null,
     'pt' => 'pt-2',
     'pb' => '',
 ])
 @include('job-core::partials.p-tag', [
     'text' => 'Terms of Use',
-    'link' => route('pages.terms'),
+    'link' => \Request::route()->getName() !== 'pages.terms' ? route('pages.terms') : null,
     'pt' => 'pt-2',
     'pb' => 'pb-4',
 ])
