@@ -121,6 +121,6 @@ class SearchController extends Controller
             $sponsored = null;
         }
 
-        return view('job-core::search.index', compact('request', 'listings', 'sponsored', 'agencies', 'careers', 'locations', 'schedules', 'clearances', 'paths', 'plans', 'travels', 'show_filters'));
+        return view('job-core::search.index', compact('request', 'subtitle', 'listings', 'sponsored', 'agencies', 'careers', 'locations', 'schedules', 'clearances', 'paths', 'plans', 'travels', 'show_filters'));
     }
 }
