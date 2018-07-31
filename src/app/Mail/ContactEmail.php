@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail;
+namespace Droplister\JobCore\App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
