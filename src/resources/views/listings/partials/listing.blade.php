@@ -17,7 +17,7 @@
             <i class="fa fa-external-link"></i> Apply Now
         </a>
         <a href="#" class="ml-2">
-            <i class="fa fa-envelope-o"></i> Email Job
+            <i class="fa fa-envelope-o"></i> Email <span class="d-none d-sm-inline">Job</span>
         </a>
     </span>
 </p>

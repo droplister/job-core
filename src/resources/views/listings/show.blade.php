@@ -27,7 +27,9 @@
                         @include('job-core::listings.partials.apply-button')
                     </div>
                     <div class="col-12 col-md-6 mt-1 mb-4">
-                        @include('job-core::listings.partials.email-button')
+                        @include('job-core::listings.partials.email-button', [
+                            'extra' => true
+                        ])
                     </div>
                 </div>
             </div>
