@@ -168,6 +168,7 @@ class AgencySubElements extends Model
     public function scopeHome($query)
     {
         return $query->isEnabled()
+            ->isChild()
             ->has('listings', '>=', config('job-core.min_listings'))
             ->withCount('listings')
             ->orderBy('listings_count', 'desc')
