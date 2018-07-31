@@ -1,6 +1,6 @@
 <p class="text-muted pt-3 pb-3 mb-0 small lh-135 border-bottom border-gray">
     <a href="{{ route('listings.show', ['listing' => $listing->slug]) }}" class="d-block font-weight-bold">
-        {{ $listing->position_title }}
+        {{ $listing->title }}
     </a>
     <span class="d-block">
         {{ $listing->agency }} - {{ $listing->position_location_display }}

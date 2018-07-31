@@ -163,14 +163,16 @@ class Listing extends Model
      */
     public function getJobGradeAttribute()
     {            
-        $grade = $this->low_grade === $this->high_grade ? $this->low_grade : "{$this->low_grade}/{$this->high_grade}";
-
-        if($this->careers()->exists())
-        {
-            return "{$this->job_grade_code}-{$this->careers()->first()->code}-{$grade}";
-        }
-
-        return "{$this->job_grade_code}-{$grade}";
+        return Cache::rememberForever('listing_' . $this->id . '_job_grade',
+            function () {               
+                $grade = $this->low_grade === $this->high_grade ? $this->low_grade : "{$this->low_grade}/{$this->high_grade}";
+                if($this->careers()->exists())
+                {
+                    return "{$this->job_grade_code}-{$this->careers()->first()->code}-{$grade}";
+                }
+                return "{$this->job_grade_code}-{$grade}";
+            }
+        );
     }
 
     /**
@@ -231,20 +233,23 @@ class Listing extends Model
     }
 
     /**
-     * Mutate Position Title
+     * Title
      *
      * @return string
      */
-    public function getPositionTitleAttribute($value)
+    public function getTitleAttribute($value)
     {
-        if (strpos($value, $this->job_grade) === false &&
-            strpos($value, $this->job_grade_code . '-') === false && 
-            strpos($value, $this->job_grade_code) === false)
-        {
-            return trim($value) . ', ' . $this->job_grade;
-        }
-
-        return $value;
+        return Cache::rememberForever('listing_' . $this->id . '_title',
+            function () use ($value) {
+                if (strpos($value, $this->job_grade) === false &&
+                    strpos($value, $this->job_grade_code . '-') === false && 
+                    strpos($value, $this->job_grade_code) === false)
+                {
+                    return trim($value) . ', ' . $this->job_grade;
+                }
+                return $value;
+            }
+        );
     }
 
     /**

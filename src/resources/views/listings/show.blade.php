@@ -6,7 +6,7 @@
 @section('content')
     @include('job-core::partials.title', [
         'fa' => 'fa-user-plus',
-        'title' => $listing->position_title,
+        'title' => $listing->title,
         'subtitle' => $listing->subtitle,
         'link' => route('listings.show', ['listing' => $listing->slug])
     ])
