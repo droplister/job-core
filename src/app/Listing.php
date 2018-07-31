@@ -93,9 +93,7 @@ class Listing extends Model
     {
         return Cache::rememberForever('listing_' . $this->id . '_page_title',
             function () {               
-                $title = "{$this->position_title} ({$this->position_id})";
-
-                return $this->agency ? "{$title} - {$this->agency}" : $title;
+                return $this->agency ? "{$this->title} - {$this->agency}" : $this->title;
             }
         );
     }
