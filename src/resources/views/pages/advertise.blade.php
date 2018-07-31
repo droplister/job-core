@@ -18,10 +18,7 @@
                     'mb' => 'mb-3',
                 ])
                 <p class="text-muted small lh-135">
-                    Job seekers love {{ config('job-core.domain') }} for its hyper-relevant search tools and that they can get new jobs sent right to their inbox.
-                </p>
-                <p class="text-muted small lh-135">
-                    Recruiters love us too! Whether you're a recruiter or a third-party ad agency, we offer a wide range of creative marketing opportunities. If you are interested in advertising on {{ config('job-core.domain') }}, please <a href="{{ route('contact.create') }}">contact us</a>.
+                    Job seekers love {{ config('job-core.domain') }} for its hyper-relevant search tools. They can subscribe for free to get new jobs sent to their inbox. Recruiters love us too! Whether you're a recruiter or a third-party ad agency, we offer a wide range of creative marketing opportunities. If you are interested in advertising on {{ config('job-core.domain') }}, please <a href="{{ route('contact.create') }}">contact us</a>.
                 </p>
                 @include('job-core::partials.h-tag', [
                     'tag' => 'h6',
