@@ -90,7 +90,7 @@ class Listing extends Model
      */
     public function getPageTitleAttribute()
     {
-        return Cache::rememberForever('listing_' . $this->slug . '_page_title',
+        return Cache::rememberForever('listing_' . $this->id . '_page_title',
             function () {               
                 $title = "{$this->position_title} ({$this->position_id})";
 
@@ -106,7 +106,7 @@ class Listing extends Model
      */
     public function getPageDescriptionAttribute()
     {
-        return Cache::rememberForever('listing_' . $this->slug . '_page_description',
+        return Cache::rememberForever('listing_' . $this->id . '_page_description',
             function () {               
                 return "{$this->subtitle}. {$this->summary}";
             }
@@ -120,7 +120,7 @@ class Listing extends Model
      */
     public function getAgencyAttribute()
     {
-        return Cache::rememberForever('listing_' . $this->slug . '_agency',
+        return Cache::rememberForever('listing_' . $this->id . '_agency',
             function () {
                 if($this->agencies()->isChild()->count() === 1)
                 {
@@ -147,7 +147,7 @@ class Listing extends Model
      */
     public function getCareerAttribute()
     {
-        return Cache::rememberForever('listing_' . $this->slug . '_career',
+        return Cache::rememberForever('listing_' . $this->id . '_career',
             function () {
                 $career = $this->careers()->isChild()->first();
 
@@ -163,7 +163,7 @@ class Listing extends Model
      */
     public function getJobGradeAttribute()
     {
-        return Cache::rememberForever('listing_' . $this->slug . '_job_grade',
+        return Cache::rememberForever('listing_' . $this->id . '_job_grade',
             function () {               
                 $grade = $this->low_grade === $this->high_grade ? $this->low_grade : "{$this->low_grade}/{$this->high_grade}";
 
@@ -184,7 +184,7 @@ class Listing extends Model
      */
     public function getPayRangeAttribute()
     {
-        return Cache::rememberForever('listing_' . $this->slug . '_pay_range',
+        return Cache::rememberForever('listing_' . $this->id . '_pay_range',
             function () {               
                 if($this->minimum_range + $this->maximum_range > 0)
                 {
@@ -208,7 +208,7 @@ class Listing extends Model
      */
     public function getSubtitleAttribute()
     {
-        return Cache::rememberForever('listing_' . $this->slug . '_subtitle',
+        return Cache::rememberForever('listing_' . $this->id . '_subtitle',
             function () {
                 $career = $this->career ? $this->career . ' Job' : 'Job';
                 $agency = $this->agency ? $this->agency : 'Federal Government';
@@ -225,7 +225,7 @@ class Listing extends Model
      */
     public function getSummaryAttribute()
     {
-        return Cache::rememberForever('listing_' . $this->slug . '_summary',
+        return Cache::rememberForever('listing_' . $this->id . '_summary',
             function () {               
                 $summary = $this->qualification_summary ? $this->qualification_summary : $this->job_summary;
 
@@ -241,7 +241,7 @@ class Listing extends Model
      */
     public function getPositionTitleAttribute($value)
     {
-        return Cache::rememberForever('listing_' . $this->slug . '_position_title',
+        return Cache::rememberForever('listing_' . $this->id . '_position_title',
             function () use ($value) {
                 if (strpos($value, $this->job_grade) === false &&
                     strpos($value, $this->job_grade_code . '-') === false && 

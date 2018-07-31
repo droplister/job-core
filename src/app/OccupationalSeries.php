@@ -45,7 +45,7 @@ class OccupationalSeries extends Model
      */
     public function getPageTitleAttribute()
     {
-        return Cache::rememberForever('career_' . $this->slug . '_page_title',
+        return Cache::rememberForever('career_' . $this->id . '_page_title',
             function () {
                 return $this->value . ' (' . $this->code . ') - ' . config('job-core.keyword');
             }
@@ -59,7 +59,7 @@ class OccupationalSeries extends Model
      */
     public function getPageDescriptionAttribute()
     {
-        return Cache::remember('career_' . $this->slug . '_page_description', 1440,
+        return Cache::remember('career_' . $this->id . '_page_description', 1440,
             function () {               
                 $listings_count = number_format($this->listings()->count());
                 $keyword = strtolower(config('job-core.keyword'));

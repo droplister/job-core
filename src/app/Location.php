@@ -47,7 +47,7 @@ class Location extends Model
      */
     public function getPageTitleAttribute()
     {
-        return Cache::rememberForever('location_' . $this->slug . '_page_title',
+        return Cache::rememberForever('location_' . $this->id . '_page_title',
             function () {               
                 return config('job-core.keyword') . ' in ' . $this->title;
             }
@@ -61,7 +61,7 @@ class Location extends Model
      */
     public function getPageDescriptionAttribute()
     {
-        return Cache::remember('location_' . $this->slug . '_page_description', 1440,
+        return Cache::remember('location_' . $this->id . '_page_description', 1440,
             function () {
                 $listings_count = number_format($this->listings()->count());
                 $children = $this->related()->paginate(3);

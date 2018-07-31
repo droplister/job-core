@@ -47,7 +47,7 @@ class AgencySubElements extends Model
      */
     public function getPageTitleAttribute()
     {
-        return Cache::rememberForever('agency_' . $this->slug . '_page_title',
+        return Cache::rememberForever('agency_' . $this->id . '_page_title',
             function () {
                 return config('job-core.keyword') . ' for the ' . $this->value;
             }
@@ -61,7 +61,7 @@ class AgencySubElements extends Model
      */
     public function getPageDescriptionAttribute()
     {
-        return Cache::remember('agency_' . $this->slug . '_page_description', 1440,
+        return Cache::remember('agency_' . $this->id . '_page_description', 1440,
             function () {               
                 $listings = $this->listings()->paginate(10);
                 $listings_count = $listings->total();
