@@ -20,9 +20,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('clearances', 'SecurityClearancesController');
     Route::resource('careers', 'OccupationalSeriesController');
     Route::resource('locations', 'LocationsController');
-    // Route::resource('plans', 'PayPlansController');
+    Route::resource('plans', 'PayPlansController');
     Route::resource('schedules', 'PositionSchedulesController');
-    // Route::resource('travels', 'TravelPercentagesController');
+    Route::resource('travels', 'TravelPercentagesController');
     Route::resource('paths', 'HiringPathsController');
     Route::get(config('job-core.most_route'), 'MostController@index')->name('most.index');
     Route::get(config('job-core.specific_route'), 'SpecificController@index')->name('specific.index');
