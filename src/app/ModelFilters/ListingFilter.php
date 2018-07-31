@@ -16,7 +16,8 @@ class ListingFilter extends ModelFilter
 
     public function q($keyword)
     {
-        return $this->where('position_title', 'like', '%' . $keyword . '%');
+        return $this->where('position_title', 'like', '%' . $keyword . '%')
+            ->orWhere('job_summary', 'like', '%' . $keyword . '%');
     }
 
     public function agency($id)
