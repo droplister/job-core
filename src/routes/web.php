@@ -29,6 +29,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get(config('job-core.affiliate_route'), 'AffiliateController@index')->name('affiliate.index');
     Route::get('/contact', 'ContactController@create')->name('contact.create');
     Route::post('/contact', 'ContactController@store')->name('contact.store');
+    Route::get('/referral', 'ReferralController@create')->name('referral.create');
+    Route::post('/referral', 'ReferralController@store')->name('referral.store');
     Route::get('/about', 'PagesController@about')->name('pages.about');
     Route::get('/advertise', 'PagesController@advertise')->name('pages.advertise');
     Route::get('/disclaimer', 'PagesController@disclaimer')->name('pages.disclaimer');

@@ -17,7 +17,7 @@ class ListingFilter extends ModelFilter
             ->orWhere('position_location_display', 'like', '%' . $keyword . '%');
     }
 
-    public function days_ago($days)
+    public function days($days)
     {
         return $this->where('publication_start_date', '>', Carbon::now()->subDays($days));
     }
@@ -62,19 +62,19 @@ class ListingFilter extends ModelFilter
         return $this->related('travelPercentage', 'slug', $slug);
     }
 
-    public function job_grade($code)
+    public function grade($code)
     {
         return $this->where('job_grade_code', $code);
     }
 
-    public function low_grade($grade)
-    {
-        return $this->where('low_grade', '>=', $grade);
-    }
-
-    public function high_grade($grade)
+    public function high($grade)
     {
         return $this->where('high_grade', '<=', $grade);
+    }
+
+    public function low($grade)
+    {
+        return $this->where('low_grade', '>=', $grade);
     }
 
     public function setup()

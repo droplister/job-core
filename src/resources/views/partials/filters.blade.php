@@ -17,7 +17,7 @@
         @else
             @include('job-core::partials.p-tag', [
                 'text' => $days === 1 ? '24 hours ago' : $days . ' days ago',
-                'link' => route($route, ['days_ago' => $days] + $request->except('days_ago')),
+                'link' => route($route, ['days' => $days] + $request->except('days')),
                 'pt' => $loop->first ? 'pt-3' : 'pt-2',
                 'pb' => $loop->last ? 'pb-4' : '',
             ])
