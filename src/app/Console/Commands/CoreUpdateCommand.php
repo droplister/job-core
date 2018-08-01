@@ -42,7 +42,7 @@ class CoreUpdateCommand extends Command
         $this->call('usajobs:military');
         $this->call('usajobs:security');
         $this->call('usajobs:travel');
-        $this->call('usajobs:prune');
+        // $this->call('usajobs:prune');
         $this->call('usajobs:alerts');
     }
 }
