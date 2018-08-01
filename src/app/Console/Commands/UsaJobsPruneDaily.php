@@ -39,8 +39,16 @@ class UsaJobsPruneDaily extends Command
      */
     public function handle()
     {
-        $ids = Listing::listingsFilter()->pluck('id')->all();
+        $active_ids = Listing::listingsFilter()
+            ->pluck('id')
+            ->all();
 
-        Listing::whereNotIn('id', $ids)->forceDelete();
+        $closed_ids = Listing::listingsFilter(false)
+            ->pluck('id')
+            ->all();
+
+        Listing::whereNotIn('id', $active_ids)
+            ->orWhereNotIn('id', $closed_ids)
+            ->forceDelete();
     }
 }
