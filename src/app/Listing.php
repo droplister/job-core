@@ -398,7 +398,7 @@ class Listing extends Model
             case 'military_base': 
                 return $query->onMilitaryBase()->notInternship()->notSeniorExecutive();
             case 'security_clearance': 
-                return $query->offMilitaryBase()->notInternship()->notSeniorExecutive()->isCleared();
+                return $query->notInternship()->notSeniorExecutive()->isCleared();
             case 'senior_executive': 
                 return $query->offMilitaryBase()->notInternship()->isSeniorExecutive();
             default:
