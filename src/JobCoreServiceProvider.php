@@ -38,7 +38,6 @@ class JobCoreServiceProvider extends ServiceProvider
                 App\Console\Commands\UsaJobsFetchInterns::class,
                 App\Console\Commands\UsaJobsFetchMilitary::class,
                 App\Console\Commands\UsaJobsFetchSecurity::class,
-                App\Console\Commands\UsaJobsPruneDaily::class,
                 App\Console\Commands\UsaJobsSendAlerts::class,
             ]);
         }
