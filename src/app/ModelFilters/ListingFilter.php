@@ -10,7 +10,9 @@ class ListingFilter extends ModelFilter
     {
         return $this->where('position_title', 'like', '%' . $keyword . '%')
             ->orWhere('job_summary', 'like', '%' . $keyword . '%')
-            ->orWhere('qualification_summary', 'like', '%' . $keyword . '%');
+            ->orWhere('qualification_summary', 'like', '%' . $keyword . '%')
+            ->orWhere('job_grade_code', 'like', '%' . $keyword . '%')
+            ->orWhere('position_location_display', 'like', '%' . $keyword . '%');
     }
 
     public function agency($slug)
