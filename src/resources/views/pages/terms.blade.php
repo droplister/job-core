@@ -1,12 +1,12 @@
 @extends('job-core::layouts.app')
 
-@section('title', 'Terms of Service')
+@section('title', 'Terms of Use')
 @section('description', 'This is an agreement between Family Media LLC and you. This Agreement is legally binding and governs your use of our Site and Service.')
 
 @section('content')
     @include('job-core::partials.title', [
         'fa' => 'fa-info-circle',
-        'title' => 'Terms of Service',
+        'title' => 'Terms of Use',
         'link' => route('pages.terms')
     ])
     <div class="my-3 p-3 bg-white rounded box-shadow">
@@ -17,10 +17,10 @@
                     'title' => '1. Your Acceptance',
                     'mb' => 'mb-3',
                 ])
-                <p class="text-muted small lh-135">Welcome to the Terms of Service for {{ config('job-core.domain') }}. This is an agreement (&#8220;Agreement&#8221;) between Family Media, LLC, (&#8220;{{ config('job-core.domain') }}&#8221;), the owner and operator of https://{{ strtolower(config('job-core.domain')) }} (the &#8220;Site&#8221; and any &#8220;Services&#8221;) and you (&#8220;you&#8221; or &#8220;your&#8221; or &#8220;user(s)&#8221;), a user of the Site and Service. This Agreement is legally binding and governs your use of our Site and Service.</p>
+                <p class="text-muted small lh-135">Welcome to the Terms of Use for {{ config('job-core.domain') }}. This is an agreement (&#8220;Agreement&#8221;) between Family Media, LLC, (&#8220;{{ config('job-core.domain') }}&#8221;), the owner and operator of https://{{ strtolower(config('job-core.domain')) }} (the &#8220;Site&#8221; and any &#8220;Services&#8221;) and you (&#8220;you&#8221; or &#8220;your&#8221; or &#8220;user(s)&#8221;), a user of the Site and Service. This Agreement is legally binding and governs your use of our Site and Service.</p>
                 <p class="text-muted small lh-135">Throughout this Agreement, the words &#8220;{{ config('job-core.domain') }},&#8221; &#8220;us,&#8221; &#8220;we,&#8221; and &#8220;our,&#8221; refer to our company, Family Media, LLC and our Site, https://{{ strtolower(config('job-core.domain')) }} or our Service, {{ config('job-core.domain') }}, as is appropriate in the context of the use of the words.</p>
-                <p class="text-muted small lh-135">By using or accessing our Site and using any of our Services, you acknowledge and agree to these terms and agree to be bound by this Agreement and the Privacy Policy. We may amend our Terms of Service or Privacy Policy from time to time, we will notify you of these changes to our policy. In order to continue using our Site and Service you must agree to all such changes.</p>
-                <p class="text-muted small lh-135">If you do not agree to the Terms of Service or the Privacy Policy please stop using our Site and Service immediately. Users of our Service must be 18 years of age or older. If you are under 18 please do not use our Site or Any Services. If you have any questions, please <a href="{{ route('contact.create') }}">contact us</a>.</p>
+                <p class="text-muted small lh-135">By using or accessing our Site and using any of our Services, you acknowledge and agree to these terms and agree to be bound by this Agreement and the Privacy Policy. We may amend our Terms of Use or Privacy Policy from time to time, we will notify you of these changes to our policy. In order to continue using our Site and Service you must agree to all such changes.</p>
+                <p class="text-muted small lh-135">If you do not agree to the Terms of Use or the Privacy Policy please stop using our Site and Service immediately. Users of our Service must be 18 years of age or older. If you are under 18 please do not use our Site or Any Services. If you have any questions, please <a href="{{ route('contact.create') }}">contact us</a>.</p>
                 @include('job-core::partials.h-tag', [
                     'tag' => 'h6',
                     'title' => '2. Disclaimer',
@@ -110,7 +110,7 @@
                 <p class="text-muted small lh-135">You agree to defend, indemnify and hold harmless {{ config('job-core.domain') }}, its parent corporation, officers, directors, employees, creditors, and agents, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses (including but not limited to attorney&#8217;s fees) arising from:</p>
                 <ul class="text-muted small lh-135">
                     <li>1. your use of and access to the {{ config('job-core.domain') }} Service;</li>
-                    <li>2. your violation of any term of these Terms of Service;</li>
+                    <li>2. your violation of any term of these Terms of Use;</li>
                     <li>3. any claim that your actions caused injury or harm to a third party.</li>
                 </ul>
                 <p class="text-muted small lh-135">You also agree that you have a duty to defend us against such claims and we may require you to pay for an attorney(s) of our choice in such cases. You agree that this indemnity extends to requiring you to pay for our reasonable attorneys&#8217; fees, court costs, and disbursements. In the event of a claim such as one described in this paragraph, we may elect to settle with the party/parties making the claim and you shall be liable for the damages as though we had proceeded with a trial.</p>
@@ -119,7 +119,7 @@
                     'title' => '13. Third Party Links',
                     'mb' => 'mb-3',
                 ])
-                <p class="text-muted small lh-135">We may link to third party websites from our own website. We have no control over, and are not responsible for, these third party websites or their use of your personal information. We do not endorse, recommend or vouch for the security of such websites. We recommend that you review their terms of service and privacy policies before accessing and using the third party site.</p>
+                <p class="text-muted small lh-135">We may link to third party websites from our own website. We have no control over, and are not responsible for, these third party websites or their use of your personal information. We do not endorse, recommend or vouch for the security of such websites. We recommend that you review their Terms of Use and privacy policies before accessing and using the third party site.</p>
                 @include('job-core::partials.h-tag', [
                     'tag' => 'h6',
                     'title' => '14. COPPA Compliance',
