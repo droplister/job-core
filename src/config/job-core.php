@@ -3,6 +3,16 @@
 return [
 
     /**
+     * Medium
+     */
+    'medium' => env('JOB_CORE_MEDIUM'),
+
+    /**
+     * Twitter
+     */
+    'twitter' => env('JOB_CORE_TWITTER'),
+
+    /**
      * Filter
      */
     'filter' => env('JOB_CORE_FILTER'),

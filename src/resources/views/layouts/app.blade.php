@@ -150,6 +150,16 @@
                         <a href="{{ route('pages.disclaimer') }}" class="mr-2">Disclaimer</a>
                         <a href="{{ route('pages.privacy') }}" class="mr-2">Privacy</a>
                         <a href="{{ route('pages.terms') }}">Terms</a>
+                        @if(config('job-core.twitter'))
+                            <a href="{{ config('job-core.twitter') }}" class="ml-2">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        @endif
+                        @if(config('job-core.medium'))
+                            <a href="{{ config('job-core.medium') }}" class="ml-2">
+                                <i class="fa fa-medium"></i>
+                            </a>
+                        @endif
                     </p>
                     <p class="text-muted pt-1 pb-3 mb-0 small lh-135">
                         <a href="https://familymediallc.com/" class="text-muted">Family Media LLC</a>
