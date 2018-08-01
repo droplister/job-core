@@ -2,20 +2,28 @@
     <br class="d-md-none" />
 @endif
 
-@include('job-core::partials.filter', [
-	'children' => $careers,
-	'parameter' => 'career'
-])
-
-@include('job-core::partials.filter', [
-	'children' => $agencies,
-	'parameter' => 'agency'
-])
-
-@include('job-core::partials.filter', [
-	'children' => $locations,
-	'parameter' => 'location'
-])
+@if(count($days_ago) > 0)
+    @include('job-core::partials.h-tag', [
+        'tag' => 'h6',
+        'title' => 'Narrow by Age',
+    ])
+    @foreach($days_ago as $days)
+        @if($request->has('days_ago') && $days === $request->days_ago)
+            @include('job-core::partials.p-tag', [
+                'text' => $days === 1 ? '24 hours ago' : $days . ' days ago',
+                'pt' => $loop->first ? 'pt-3' : 'pt-2',
+                'pb' => $loop->last ? 'pb-4' : '',
+            ])
+        @else
+            @include('job-core::partials.p-tag', [
+                'text' => $days === 1 ? '24 hours ago' : $days . ' days ago',
+                'link' => route($route, ['days_ago' => $days] + $request->except('days_ago')),
+                'pt' => $loop->first ? 'pt-3' : 'pt-2',
+                'pb' => $loop->last ? 'pb-4' : '',
+            ])
+        @endif
+    @endforeach
+@endif
 
 @include('job-core::partials.filter', [
 	'children' => $schedules,
@@ -28,18 +36,8 @@
 ])
 
 @include('job-core::partials.filter', [
-	'children' => $plans,
-	'parameter' => 'plan'
-])
-
-@include('job-core::partials.filter', [
 	'children' => $travels,
 	'parameter' => 'travel'
-])
-
-@include('job-core::partials.filter', [
-	'children' => $clearances,
-	'parameter' => 'clearance'
 ])
 
 @if(! empty($_GET) && $show_filters)

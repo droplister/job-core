@@ -42,45 +42,13 @@ class SearchController extends Controller
             }
         );
 
-        // Get Agencies
-        $agencies = Cache::remember('listings_index_agencies_' . serialize($request->all()), 1440,
-            function () use ($request) {
-                return AgencySubElements::isChild()->narrow($request)->get();
-            }
-        );
+        // Get Ages
+        $days_ago = [1, 3, 7, 30];
 
         // Get Paths
         $paths = Cache::remember('listings_index_paths_' . serialize($request->all()), 1440,
             function () use ($request) {
                 return HiringPaths::narrow($request)->get();
-            }
-        );
-
-        // Get Locations
-        $locations = Cache::remember('listings_index_locations_' . serialize($request->all()), 1440,
-            function () use ($request) {
-                return Location::isCity()->narrow($request)->get();
-            }
-        );
-
-        // Get Careers
-        $careers = Cache::remember('listings_index_careers_' . serialize($request->all()), 1440,
-            function () use ($request) {
-                return OccupationalSeries::narrow($request)->get();
-            }
-        );
-
-        // Get Plans
-        $plans = Cache::remember('listings_index_plans_' . serialize($request->all()), 1440,
-            function () use ($request) {
-                return PayPlans::narrow($request)->get();
-            }
-        );
-
-        // Get Clearances
-        $clearances = Cache::remember('listings_index_clearances_' . serialize($request->all()), 1440,
-            function () use ($request) {
-                return SecurityClearances::narrow($request)->get();
             }
         );
 
@@ -99,7 +67,7 @@ class SearchController extends Controller
         );
 
         // Show Filters
-        $show_filters = count($careers) + count($agencies) + count($locations) + count($schedules) + count($clearances) + count($paths) + count($plans) + count($travels) > 0;
+        $show_filters = count($schedules) + count($paths) + count($travels) > 0;
 
         // Sponsored Listings
         try
@@ -121,6 +89,6 @@ class SearchController extends Controller
             $sponsored = null;
         }
 
-        return view('job-core::search.index', compact('request', 'subtitle', 'listings', 'sponsored', 'agencies', 'careers', 'locations', 'schedules', 'clearances', 'paths', 'plans', 'travels', 'show_filters'));
+        return view('job-core::search.index', compact('request', 'subtitle', 'listings', 'sponsored', 'days_ago', 'schedules', 'paths', 'travels', 'show_filters'));
     }
 }

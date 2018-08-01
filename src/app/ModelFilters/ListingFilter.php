@@ -2,6 +2,8 @@
 
 namespace Droplister\JobCore\App\ModelFilters;
 
+use Carbon\Carbon;
+
 use EloquentFilter\ModelFilter;
 
 class ListingFilter extends ModelFilter
@@ -13,6 +15,11 @@ class ListingFilter extends ModelFilter
             ->orWhere('qualification_summary', 'like', '%' . $keyword . '%')
             ->orWhere('job_grade_code', 'like', '%' . $keyword . '%')
             ->orWhere('position_location_display', 'like', '%' . $keyword . '%');
+    }
+
+    public function days_ago($days=1)
+    {
+        return $query->where('publication_start_date', '>', Carbon::now()->subDays($days));
     }
 
     public function agency($slug)
