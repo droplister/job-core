@@ -2,23 +2,25 @@
 
 namespace Droplister\JobCore\App\Console\Commands;
 
+use Droplister\JobCore\App\Listing;
+
 use Illuminate\Console\Command;
 
-class CoreUpdateCommand extends Command
+class UsaJobsPruneDaily extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'core:update';
+    protected $signature = 'usajobs:prune';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Update Job Core';
+    protected $description = 'Prune Jobs';
 
     /**
      * Create a new command instance.
@@ -37,12 +39,16 @@ class CoreUpdateCommand extends Command
      */
     public function handle()
     {
-        $this->call('usajobs:daily');
-        $this->call('usajobs:interns');
-        $this->call('usajobs:military');
-        $this->call('usajobs:security');
-        $this->call('usajobs:travel');
-        $this->call('usajobs:prune');
-        $this->call('usajobs:alerts');
+        $active_ids = Listing::listingsFilter()
+            ->pluck('id')
+            ->all();
+
+        $closed_ids = Listing::listingsFilter(false)
+            ->pluck('id')
+            ->all();
+
+        Listing::whereNotIn('id', $active_ids)
+            ->whereNotIn('id', $closed_ids)
+            ->delete();
     }
 }
