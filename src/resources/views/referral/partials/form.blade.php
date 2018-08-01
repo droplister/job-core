@@ -7,7 +7,7 @@
     @csrf
     @captcha
 
-    <input type="hidden" name="listing" value="{{ $request->has('listing') ? $request->listing }} : ''">
+    <input type="hidden" name="listing" value="{{ $request->has('listing') ? $request->listing : '' }}">
 
     <div class="row">
         <div class="col-md-6">
