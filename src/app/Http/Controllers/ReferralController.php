@@ -19,7 +19,7 @@ class ReferralController extends Controller
      */
     public function create(Request $request)
     {
-        return view('job-core::referral.create');
+        return view('job-core::referral.create', compact('request'));
     }
 
     /**
