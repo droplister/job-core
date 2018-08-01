@@ -42,7 +42,7 @@
 	'parameter' => 'clearance'
 ])
 
-@if(! empty($_GET))
+@if(! empty($_GET) && $show_filters)
 	<small class="d-block text-right mt-3">
 	    <a href="{{ route($route) }}">
 	        <i class="fa fa-refresh"></i> Reset

@@ -2,6 +2,7 @@
 
 namespace Droplister\JobCore\App\Http\Controllers\Auth;
 
+use Newsletter;
 use Droplister\JobCore\App\User;
 
 use App\Http\Controllers\Controller;
@@ -71,6 +72,21 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        if($request->has('newsletter'))
+        {
+            Newsletter::subscribe($user->email, ['NAME' => $user->name]);
+        }
     }
 
     /**
