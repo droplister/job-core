@@ -1,5 +1,5 @@
 @component('mail::message')
-## {{ $from }} shared this {{ $listing->position_title }} job with you.
+## {{ $sender }} shared this {{ $listing->position_title }} job with you.
 
 Find this job and more like it on {{ config('job-core.domain') }}.
 

@@ -11,7 +11,7 @@ class ReferralEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $from;
+    public $sender;
     public $listing;
 
     /**
@@ -19,9 +19,9 @@ class ReferralEmail extends Mailable
      *
      * @return void
      */
-    public function __construct($from, $listing)
+    public function __construct($sender, $listing)
     {
-        $this->from = $from;
+        $this->sender = $sender;
         $this->listing = $listing;
     }
 
@@ -32,7 +32,8 @@ class ReferralEmail extends Mailable
      */
     public function build()
     {
-        return $this->replyTo($this->from)
+        return $this->from(config('mail.from.address'), $this->sender . ' via ' . config('job-core.domain'))
+            ->replyTo($this->sender)
             ->subject($this->listing->title)
             ->markdown('job-core::emails.referral');
     }
