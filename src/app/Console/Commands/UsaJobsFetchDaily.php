@@ -245,11 +245,11 @@ class UsaJobsFetchDaily extends Command
     {
         foreach($result->MatchedObjectDescriptor->PositionLocation as $location)
         {
-            // if($this->guardAgainstInternationalLocation($location))
-            // {
-            //     $listing->delete();
-            //     break;
-            // }
+            if($this->guardAgainstInternationalLocation($location))
+            {
+                $listing->delete();
+                break;
+            }
 
             $country = $this->firstOrCreateLocation(null, 'country', $location->CountryCode);
 
