@@ -32,8 +32,7 @@ class ReferralEmail extends Mailable
      */
     public function build()
     {
-        return $this->from(config('mail.from.address'), $this->from . ' via ' . config('job-core.domain'))
-            ->replyTo($this->from)
+        return $this->replyTo($this->from)
             ->subject($this->listing->title)
             ->markdown('job-core::emails.referral');
     }

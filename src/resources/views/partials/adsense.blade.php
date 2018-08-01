@@ -1,5 +1,5 @@
 @guest
-    @if(config('job-core.monetized') && empty($_GET) && substr(\Request::route()->getName(), 0, 5) !== 'pages' && \Request::route()->getName() !== 'contact.create')
+    @if(config('job-core.monetized') && empty($_GET) && substr(\Request::route()->getName(), 0, 5) !== 'pages' && \Request::route()->getName() !== 'contact.create' && \Request::route()->getName() !== 'referral.create')
         <div class="row {{ isset($class) ? $class : 'd-none d-md-block' }}">
             <div class="col">
                 <Adsense
