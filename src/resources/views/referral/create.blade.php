@@ -9,6 +9,11 @@
         'link' => route('referral.create')
     ])
     @include('job-core::partials.session')
+    @if($request->has('listing'))
+        <div class="alert alert-warning">
+            {{ title_case(str_replace('-', ' ', $request->listing)) }}
+        </div>
+    @endif
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="row">
             <div class="col-12 col-md-9">
