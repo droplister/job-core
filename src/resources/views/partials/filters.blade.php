@@ -8,7 +8,7 @@
         'title' => 'Narrow by Age',
     ])
     @foreach($days_ago as $days)
-        @if($request->has('days') && $days === $request->days)
+        @if($request->has('days') && $days === (int) $request->days)
             @include('job-core::partials.p-tag', [
                 'text' => $days === 1 ? '24 hours ago' : $days . ' days ago',
                 'pt' => $loop->first ? 'pt-3' : 'pt-2',
