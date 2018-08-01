@@ -48,7 +48,7 @@ class UsaJobsPruneDaily extends Command
             ->all();
 
         Listing::whereNotIn('id', $active_ids)
-            ->orWhereNotIn('id', $closed_ids)
+            ->whereNotIn('id', $closed_ids)
             ->forceDelete();
     }
 }
