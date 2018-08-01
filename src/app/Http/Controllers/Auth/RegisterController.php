@@ -85,7 +85,11 @@ class RegisterController extends Controller
     {
         if($request->has('newsletter'))
         {
-            Newsletter::subscribe($user->email, ['NAME' => $user->name]);
+            Newsletter::subscribe($user->email, ['NAME' => $user->name], 'subscribers', [
+                'interests' => [
+                    config('newsletter.lists.subscribers.interest_id') => true
+                ]
+            ]);
         }
     }
 

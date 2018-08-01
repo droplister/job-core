@@ -33,6 +33,11 @@ return [
              * http://kb.mailchimp.com/lists/managing-subscribers/find-your-list-id.
              */
             'id' => env('MAILCHIMP_LIST_ID'),
+
+            /*
+             * Interest ID
+             */
+            'interest_id' => env('MAILCHIMP_INTEREST_ID'),
         ],
     ],
 
