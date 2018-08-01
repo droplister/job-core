@@ -16,7 +16,7 @@
         <a href="{{ $listing->position_uri }}" class="ml-2" target="_blank">
             <i class="fa fa-external-link"></i> Apply Now
         </a>
-        <a href="#" class="ml-2 d-none d-sm-inline">
+        <a href="{{ route('referral.create', ['listing' => $listing->slug]) }}" class="ml-2 d-none d-sm-inline">
             <i class="fa fa-envelope-o"></i> Email Job
         </a>
     </span>
