@@ -17,7 +17,7 @@ class ListingFilter extends ModelFilter
             ->orWhere('position_location_display', 'like', '%' . $keyword . '%');
     }
 
-    public function days_ago($days=1)
+    public function days_ago($days)
     {
         return $query->where('publication_start_date', '>', Carbon::now()->subDays($days));
     }
