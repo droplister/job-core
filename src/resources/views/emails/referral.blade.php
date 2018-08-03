@@ -1,4 +1,5 @@
 @component('mail::message')
+# Hello,
 ## {{ $sender }} shared this {{ $listing->position_title }} job with you from {{ config('job-core.domain') }}.
 
 {{ $listing->subtitle }}...
