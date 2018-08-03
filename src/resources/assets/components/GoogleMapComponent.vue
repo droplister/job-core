@@ -65,11 +65,11 @@
       fetchData: function () {
         var api = '/api/map';
         var self = this;
-        $.get(api, function(data) {
+        $.get(api, function (data) {
           self.markers = data.data;
         });
       },
-      toggleInfo: function(marker, idx) {
+      toggleInfo: function (marker, idx) {
         this.infoPosition = marker.position;
         this.title = marker.title;
         this.count = marker.listings_count;

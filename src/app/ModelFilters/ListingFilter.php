@@ -10,11 +10,13 @@ class ListingFilter extends ModelFilter
 {
     public function q($keyword)
     {
-        return $this->where('position_title', 'like', '%' . $keyword . '%')
-            ->orWhere('job_summary', 'like', '%' . $keyword . '%')
-            ->orWhere('qualification_summary', 'like', '%' . $keyword . '%')
-            ->orWhere('job_grade_code', 'like', '%' . $keyword . '%')
-            ->orWhere('position_location_display', 'like', '%' . $keyword . '%');
+        return $this->where(function ($q) {
+            return $q->where('position_title', 'like', '%' . $keyword . '%')
+                ->orWhere('job_summary', 'like', '%' . $keyword . '%')
+                ->orWhere('qualification_summary', 'like', '%' . $keyword . '%')
+                ->orWhere('job_grade_code', 'like', '%' . $keyword . '%')
+                ->orWhere('position_location_display', 'like', '%' . $keyword . '%');
+        });
     }
 
     public function days($days)
@@ -79,6 +81,6 @@ class ListingFilter extends ModelFilter
 
     public function setup()
     {
-        $this->listingsFilter();
+        return $this->listingsFilter();
     }
 }

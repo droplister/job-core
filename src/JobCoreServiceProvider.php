@@ -58,7 +58,7 @@ class JobCoreServiceProvider extends ServiceProvider
         * Routes
         */
         $this->app->router->group(['namespace' => 'Droplister\JobCore\App\Http\Controllers'],
-            function() {
+            function () {
                 require __DIR__.'/routes/api.php';
             }
         );
@@ -67,7 +67,7 @@ class JobCoreServiceProvider extends ServiceProvider
         * Routes
         */
         $this->app->router->group(['namespace' => 'Droplister\JobCore\App\Http\Controllers'],
-            function() {
+            function () {
                 require __DIR__.'/routes/web.php';
             }
         );
