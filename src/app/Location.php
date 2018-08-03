@@ -74,9 +74,19 @@ class Location extends Model
                         $cities[] = $name[0];
                     }
 
-                    $description = "including opportunities in {$cities[0]}, {$cities[1]}, and {$cities[2]}";
+                    if(count($cities) > 2)
+                    {
+                        $description = "including opportunities in {$cities[0]}, {$cities[1]}, and {$cities[2]}";
+                    }
+                    elseif(count($cities) > 1)
+                    {
+                        $description = "including opportunities in {$cities[0]} and {$cities[1]}";
+                    }
 
-                    return "Search {$listings_count} {$this->pageTitle}, {$description}.";
+                    if(isset($description))
+                    {
+                        return "Search {$listings_count} {$this->pageTitle}, {$description}.";
+                    }
                 }
 
                 $description = "Find a full or part-time role with a federal agency in {$this->name}";
