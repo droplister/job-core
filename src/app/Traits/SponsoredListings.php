@@ -2,8 +2,13 @@
 
 namespace Droplister\JobCore\App\Traits;
 
+use Exception;
 use Droplister\JobCore\App\Location;
 use Droplister\JobCore\App\AgencySubElements;
+use Droplister\JobCore\App\Controllers\MostController;
+use Droplister\JobCore\App\Controllers\SearchController;
+use Droplister\JobCore\App\Controllers\SpecificController;
+use Droplister\JobCore\App\Controllers\ListingsController;
 use JobApis\Jobs\Client\Queries\JujuQuery;
 use JobApis\Jobs\Client\Providers\JujuProvider;
 
@@ -15,24 +20,21 @@ trait SponsoredListings
      *
      * @return array
      */
-    public function sponsoredListings()
+    public function sponsoredListings($request=null)
     {
         // Sponsored Listings
         try
         {
-            // Query
-            $query = $this->queryKeyword();
+            // Juju Query
+            $query = $this->queryKeyword($request);
 
-            // Channel
-            $query->set('channel', config('job-core.domain'));
+            // Juju Provider
+            $provider = new JujuProvider($query);
 
-            // Client
-            $client = new JujuProvider($query);
-
-            // Get Jobs
-            return $client->getJobs()->orderBy('datePosted');
+            // Get Juju Jobs
+            return $provider->getJobs()->orderBy('datePosted');
         }
-        catch(\Exception $e)
+        catch(Exception $e)
         {
             return null;
         }
@@ -41,34 +43,55 @@ trait SponsoredListings
     /**
      * Build Query
      */
-    private function queryKeyword()
+    private function queryKeyword($request)
     {
-        $query = new JujuQuery([
-            'partnerid' => config('job-core.partner_id')
+        return new JujuQuery([
+            'highlight' => '0',
+            'partnerid' => config('job-core.partner_id'),
+            'channel' => strtolower(config('job-core.domain')),
+            'k' => $this->keyword($request),
+            'l' => $this->location(),
         ]);
-
-        $query = $this->keywordFilter($query);
-
-        return $query->set('highlight', '0');
     }
 
     /**
-     * Set Filters
+     * Get keyword.
      */
-    private function keywordFilter($query)
+    private function keyword($request)
     {
-        $keywords = [$this->value, config('job-core.keyword_root')];
-
-        if($this instanceof AgencySubElements)
+        if($request && $request->has('q'))
         {
-            return $query->set('k', $keywords[0]);
+            return $request->has('q') ? $request->q : config('job-core.keyword');
+        }
+        elseif($this instanceof AgencySubElements)
+        {
+            return $this->value;
         }
         elseif($this instanceof Location)
         {
-            return $query->set('k', $keywords[1])
-                ->set('l', $this->title);
+            return config('job-core.keyword_root');
+        }
+        elseif($this instanceof ListingsController ||
+            $this instanceof MostController ||
+            $this instanceof SearchController ||
+            $this instanceof SpecificController)
+        {
+             return config('job-core.keyword');
         }
 
-        return $query->set('k', implode(' ', $keywords));
+        return $this->value . ' ' . config('job-core.keyword_root');
+    }
+
+    /**
+     * Get location.
+     */
+    private function location()
+    {
+        if($this instanceof Location)
+        {
+            return $this->title;
+        }
+
+        return '';
     }
 }

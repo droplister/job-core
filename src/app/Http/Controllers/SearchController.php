@@ -11,6 +11,7 @@ use Droplister\JobCore\App\PositionSchedule;
 use Droplister\JobCore\App\AgencySubElements;
 use Droplister\JobCore\App\SecurityClearances;
 use Droplister\JobCore\App\OccupationalSeries;
+use Droplister\JobCore\App\Traits\SponsoredListings;
 use JobApis\Jobs\Client\Queries\JujuQuery;
 use JobApis\Jobs\Client\Providers\JujuProvider;
 
@@ -20,6 +21,8 @@ use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {
+    use SponsoredListings;
+
     /**
      * Show the application dashboard.
      *
@@ -28,9 +31,6 @@ class SearchController extends Controller
      */
     public function index(Request $request)
     {
-        // Get Keyword
-        $keyword = $request->has('q') ? $request->q : config('job-core.keyword');
-
         // Get Subtitle
         $subtitle = $request->has('q') ? 'Results for "' . $request->q . '"' : 'Results for Job Filter';
 
@@ -70,24 +70,7 @@ class SearchController extends Controller
         $show_filters = count($schedules) + count($paths) + count($travels) > 0;
 
         // Sponsored Listings
-        try
-        {
-            $query = new JujuQuery([
-                'partnerid' => config('job-core.partner_id')
-            ]);
-
-            $query->set('channel', config('job-core.domain'));
-
-            $query->set('k', $keyword)->set('highlight', '0');
-
-            $client = new JujuProvider($query);
-
-            $sponsored = $client->getJobs()->orderBy('datePosted');
-        }
-        catch(Exception $e)
-        {
-            $sponsored = null;
-        }
+        $sponsored = $this->sponsoredListings($request);
 
         return view('job-core::search.index', compact('request', 'subtitle', 'listings', 'sponsored', 'days_ago', 'schedules', 'paths', 'travels', 'show_filters'));
     }

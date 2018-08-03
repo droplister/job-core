@@ -4,6 +4,7 @@ namespace Droplister\JobCore\App\Http\Controllers;
 
 use Droplister\JobCore\App\Listing;
 use Droplister\JobCore\App\OccupationalSeries;
+use Droplister\JobCore\App\Traits\SponsoredListings;
 use JobApis\Jobs\Client\Queries\JujuQuery;
 use JobApis\Jobs\Client\Providers\JujuProvider;
 
@@ -44,24 +45,7 @@ class MostController extends Controller
         );
 
         // Sponsored Listings
-        try
-        {
-            $query = new JujuQuery([
-                'partnerid' => config('job-core.partner_id')
-            ]);
-
-            $query->set('channel', config('job-core.domain'));
-
-            $query->set('k', config('job-core.keyword'))->set('highlight', '0');
-
-            $client = new JujuProvider($query);
-
-            $sponsored = $client->getJobs()->orderBy('datePosted');
-        }
-        catch(Exception $e)
-        {
-            $sponsored = null;
-        }
+        $sponsored = $this->sponsoredListings();
 
         return view('job-core::most.index', compact('listings', 'sponsored', 'children'));
     }

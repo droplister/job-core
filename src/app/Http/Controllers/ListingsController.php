@@ -12,6 +12,7 @@ use Droplister\JobCore\App\PositionSchedule;
 use Droplister\JobCore\App\SecurityClearances;
 use Droplister\JobCore\App\OccupationalSeries;
 use Droplister\JobCore\App\Traits\GuardsAgainst;
+use Droplister\JobCore\App\Traits\SponsoredListings;
 use JobApis\Jobs\Client\Queries\JujuQuery;
 use JobApis\Jobs\Client\Providers\JujuProvider;
 
@@ -21,7 +22,7 @@ use App\Http\Controllers\Controller;
 
 class ListingsController extends Controller
 {
-    use GuardsAgainst;
+    use GuardsAgainst, SponsoredListings;
 
     /**
      * Listings Index
@@ -67,24 +68,7 @@ class ListingsController extends Controller
         $show_filters = count($schedules) + count($paths) + count($travels) > 0;
 
         // Sponsored Listings
-        try
-        {
-            $query = new JujuQuery([
-                'partnerid' => config('job-core.partner_id')
-            ]);
-
-            $query->set('channel', config('job-core.domain'));
-
-            $query->set('k', config('job-core.keyword'))->set('highlight', '0');
-
-            $client = new JujuProvider($query);
-
-            $sponsored = $client->getJobs()->orderBy('datePosted');
-        }
-        catch(Exception $e)
-        {
-            $sponsored = null;
-        }
+        $sponsored = $this->sponsoredListings();
 
         return view('job-core::listings.index', compact('request', 'listings', 'sponsored', 'days_ago', 'schedules', 'paths', 'travels', 'show_filters'));
     }
