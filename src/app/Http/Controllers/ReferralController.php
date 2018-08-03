@@ -41,7 +41,7 @@ class ReferralController extends Controller
 
         Mail::to($request->to)->send(new ReferralEmail($request->from, $listing));
 
-        Log::info("Referral: {$listing->control_number} [{$request->from} -> {$request->to}]");
+        Log::info("Referral: {$request->from} -> {$request->to}");
 
         return redirect(route('referral.create'))->with('success', 'Email Sent');
     }
