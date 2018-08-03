@@ -48,7 +48,7 @@ trait SponsoredListings
         return new JujuQuery([
             'highlight' => '0',
             'partnerid' => config('job-core.partner_id'),
-            'channel' => strtolower(config('job-core.domain')),
+            'channel' => strtolower(config('job-core.filter')),
             'k' => $this->keyword($request),
             'l' => $this->location(),
         ]);
