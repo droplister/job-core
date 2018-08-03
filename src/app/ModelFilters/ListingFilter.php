@@ -10,7 +10,7 @@ class ListingFilter extends ModelFilter
 {
     public function q($keyword)
     {
-        return $this->where(function ($q) {
+        return $this->where(function ($q) use ($keyword) {
             return $q->where('position_title', 'like', '%' . $keyword . '%')
                 ->orWhere('job_summary', 'like', '%' . $keyword . '%')
                 ->orWhere('qualification_summary', 'like', '%' . $keyword . '%')
