@@ -67,16 +67,13 @@ trait SponsoredListings
         {
             return $this->value;
         }
-        elseif($this instanceof Location)
-        {
-            return config('job-core.keyword_root');
-        }
-        elseif($this instanceof ListingsController ||
+        elseif($this instanceof Location || 
+            $this instanceof ListingsController ||
             $this instanceof MostController ||
             $this instanceof SearchController ||
             $this instanceof SpecificController)
         {
-             return config('job-core.keyword');
+             return config('job-core.keyword_root');
         }
 
         return $this->value . ' ' . config('job-core.keyword_root');

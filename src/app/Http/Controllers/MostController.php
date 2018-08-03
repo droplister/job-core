@@ -14,6 +14,8 @@ use App\Http\Controllers\Controller;
 
 class MostController extends Controller
 {
+    use SponsoredListings;
+
     /**
      * Show the application dashboard.
      *
