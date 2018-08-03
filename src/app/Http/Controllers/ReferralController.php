@@ -7,7 +7,6 @@ use Droplister\JobCore\App\Listing;
 use Droplister\JobCore\App\Mail\ReferralEmail;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 
 class ReferralController extends Controller
