@@ -79,6 +79,6 @@ class ListingFilter extends ModelFilter
 
     public function setup()
     {
-        return $this->listingsFilter();
+        $this->listingsFilter();
     }
 }
