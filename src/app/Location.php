@@ -64,32 +64,9 @@ class Location extends Model
         return Cache::remember('location_' . $this->id . '_page_description', 1440,
             function () {
                 $listings_count = number_format($this->listings()->count());
-                $children = $this->related()->paginate(3);
+                $keyword = strtolower(config('job-core.keyword'));
 
-                if($this->type === 'state' && $children->total() > 2)
-                {
-                    foreach($children as $child)
-                    {
-                        $name = explode(', ', $child->name);
-                        $cities[] = $name[0];
-                    }
-
-                    if(count($cities) > 2)
-                    {
-                        $description = "including opportunities in {$cities[0]}, {$cities[1]}, and {$cities[2]}";
-                    }
-                    elseif(count($cities) > 1)
-                    {
-                        $description = "including opportunities in {$cities[0]} and {$cities[1]}";
-                    }
-
-                    if(isset($description))
-                    {
-                        return "Search {$listings_count} {$this->pageTitle}, {$description}.";
-                    }
-                }
-
-                $description = "Find a full or part-time role with a federal agency in {$this->name}";
+                $description = "Part-time and full-time {$keyword} with a federal government agency in {$this->name}";
 
                 return "Search {$listings_count} {$this->pageTitle}. {$description}.";
             }
