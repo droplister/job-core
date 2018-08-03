@@ -2,7 +2,7 @@
 
 namespace Droplister\JobCore\App\Http\Controllers\Auth;
 
-use Newsletter;
+use Log, Newsletter;
 use Droplister\JobCore\App\User;
 
 use App\Http\Controllers\Controller;
@@ -84,6 +84,8 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
+        Log::info("New User: <mailto:{$user->email}|{$user->name}>");
+
         if($request->has('newsletter'))
         {
             Newsletter::subscribeOrUpdate($user->email, ['NAME' => $user->name], 'subscribers', [

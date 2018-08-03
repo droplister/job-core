@@ -2,6 +2,7 @@
 
 namespace Droplister\JobCore\App\Http\Controllers;
 
+use Log, Mail;
 use Droplister\JobCore\App\Listing;
 use Droplister\JobCore\App\Mail\ReferralEmail;
 
@@ -40,6 +41,8 @@ class ReferralController extends Controller
         $listing = Listing::findBySlug($request->listing);
 
         Mail::to($request->to)->send(new ReferralEmail($request->from, $listing));
+
+        Log::info("Referral: {$listing->control_number} [{$request->from} -> {$request->to}]");
 
         return redirect(route('referral.create'))->with('success', 'Email Sent');
     }
