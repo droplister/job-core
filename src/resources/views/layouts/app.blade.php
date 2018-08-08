@@ -122,7 +122,7 @@
                     @endguest
                 </ul>
                 <form form method="GET" action="{{ route('search.index') }}" aria-label="{{ __('Search') }}"class="form-inline my-2 my-lg-0 d-none d-md-inline-block">
-                    <input name="q" id="q" class="form-control mr-sm-2" type="text" placeholder="Enter a Keyword" aria-label="Search" minlength="3" value="{{ isset($_GET['q']) ? $request->q : '' }}" required>
+                    <input name="q" id="q" class="form-control mr-sm-2" type="text" placeholder="Enter a Keyword" aria-label="Search" minlength="3" value="{{ isset($_GET['q']) ? $_GET['q'] : '' }}" required>
                     <button class="btn my-2 my-sm-0 {{ config('job-core.search_class') }}" type="submit">
                         <i class="fa fa-search"></i>
                         Search
