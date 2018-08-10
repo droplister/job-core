@@ -1,6 +1,7 @@
 @extends('job-core::layouts.app')
 
 @section('title', config('job-core.keyword') . ' - ' . config('job-core.domain'))
+@section('description', config('job-core.keyword') . ' - ' . config('job-core.tagline'))
 
 @section('content')
     <section class="jumbotron text-center mt-3 {{ config('job-core.body_class') }}">
