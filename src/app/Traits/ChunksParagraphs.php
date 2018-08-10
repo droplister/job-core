@@ -14,7 +14,7 @@ trait ChunksParagraphs
 
             '.',
 
-            'i.e', 'e.g', '\(i.e', '\(e.g', '\(ie', '\(eg', '(ch',
+            'i.e', 'e.g', '\(i.e', '\(e.g', '\(ie', '\(eg', '\(ch',
 
             'U.S', 'H.M', 'U.S.C', 'P.L', 'LL.B', 'Stat', 'A.A',
 
