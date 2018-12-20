@@ -378,15 +378,10 @@ class Listing extends Model
      */
     public function scopeListingsFilter($query, $active=true)
     {
-        if($active)
-        {
-            $query = $query->isActive()
-                ->latest('publication_start_date');
-        }
-        else
-        {
-            $query = $query->isNotActive()
-                ->latest('application_close_date');
+        $query = $query->latest('publication_start_date');
+
+        if(! $active) {
+            $query = $query->isNotActive();
         }
 
         switch(config('job-core.filter'))
