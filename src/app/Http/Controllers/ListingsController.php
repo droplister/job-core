@@ -89,12 +89,6 @@ class ListingsController extends Controller
             }
         );
 
-        // Filter Show
-        if($this->guardAgainstDisabledListings($listing))
-        {
-            return abort(404);
-        }
-
         // Get Listings
         $listings = Cache::remember('listings_show_' . $listing->slug . '_listings', 1440,
             function () use ($listing) {
